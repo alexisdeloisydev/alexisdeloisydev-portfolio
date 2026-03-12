@@ -1,316 +1,574 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio de Deloisy Alexis, développeur web front-end. Découvrez mes projets, mon style orienté interfaces modernes, sombres et fluides, ainsi que mes compétences en HTML, CSS et JavaScript. Disponible pour collaborations, alternance ou freelancing.">
-  <title>Portfolio — DELOISY ALEXIS</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/Capture d'écran 2025-12-09 091537.png" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Deloisy Alexis, développeur web front-end. Découvrez mes projets, mon style orienté interfaces modernes, sombres et fluides, ainsi que mes compétences en HTML, CSS et JavaScript. Disponible pour collaborations, alternance ou freelancing."
+    />
+    <title>Portfolio — DELOISY ALEXIS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/Capture d'écran 2025-12-09 091537.png"
+    />
+  </head>
 
-<div class="bubble"></div>
-<div class="bubble"></div>
-<div class="bubble"></div>
-<div class="bubble"></div>
-<div class="bubble"></div>
-<div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
 
-<script>
-  (function () {
-    const bubbles = Array.from(document.querySelectorAll('.bubble'));
-    if (!bubbles.length) return;
+  <!-- Bouton toggle bubble effect -->
+  <button
+    id="bubble-toggle"
+    class="bubble-toggle"
+    aria-label="Désactiver l'effet curseur"
+  >
+    <svg
+      id="bubble-icon-on"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="4" />
+    </svg>
+    <svg
+      id="bubble-icon-off"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="display: none"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+    </svg>
+    <span id="bubble-label">Curseur</span>
+  </button>
 
-    const positions = bubbles.map(() => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
-    const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let idle = false, idleTimer = null;
+  <script>
+    // ── Bubble trail ──────────────────────────────────────────────
+    (function () {
+      const bubbles = Array.from(document.querySelectorAll(".bubble"));
+      if (!bubbles.length) return;
 
-    document.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      idle = false;
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => (idle = true), 120);
-    }, { passive: true });
+      const positions = bubbles.map(() => ({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+      }));
+      const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      let idle = false,
+        idleTimer = null;
+      let bubbleEnabled = true;
 
-    function animate() {
-      positions[0].x += (mouse.x - positions[0].x) * 0.22;
-      positions[0].y += (mouse.y - positions[0].y) * 0.22;
+      document.addEventListener(
+        "mousemove",
+        (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          idle = false;
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(() => (idle = true), 120);
+        },
+        { passive: true },
+      );
 
-      for (let i = 1; i < positions.length; i++) {
-        positions[i].x += (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
-        positions[i].y += (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
-      }
+      // Toggle button logic
+      const toggleBtn = document.getElementById("bubble-toggle");
+      const iconOn = document.getElementById("bubble-icon-on");
+      const iconOff = document.getElementById("bubble-icon-off");
+      const label = document.getElementById("bubble-label");
 
-      if (idle) {
-        for (let i = 1; i < positions.length; i++) {
-          positions[i].x += (positions[0].x - positions[i].x) * 0.12;
-          positions[i].y += (positions[0].y - positions[i].y) * 0.12;
+      toggleBtn.addEventListener("click", () => {
+        bubbleEnabled = !bubbleEnabled;
+        if (bubbleEnabled) {
+          bubbles.forEach((b) => (b.style.display = ""));
+          iconOn.style.display = "";
+          iconOff.style.display = "none";
+          label.textContent = "Curseur";
+          toggleBtn.classList.remove("bubble-toggle--off");
+        } else {
+          bubbles.forEach((b) => (b.style.display = "none"));
+          iconOn.style.display = "none";
+          iconOff.style.display = "";
+          label.textContent = "Curseur";
+          toggleBtn.classList.add("bubble-toggle--off");
         }
-      }
-
-      bubbles.forEach((bubble, i) => {
-        bubble.style.setProperty('--x', positions[i].x);
-        bubble.style.setProperty('--y', positions[i].y);
-        const opacity = Math.max(0.08, 1 - i * 0.18);
-        bubble.style.opacity = opacity;
       });
 
+      function animate() {
+        if (bubbleEnabled) {
+          positions[0].x += (mouse.x - positions[0].x) * 0.22;
+          positions[0].y += (mouse.y - positions[0].y) * 0.22;
+
+          for (let i = 1; i < positions.length; i++) {
+            positions[i].x +=
+              (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
+            positions[i].y +=
+              (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
+          }
+
+          if (idle) {
+            for (let i = 1; i < positions.length; i++) {
+              positions[i].x += (positions[0].x - positions[i].x) * 0.12;
+              positions[i].y += (positions[0].y - positions[i].y) * 0.12;
+            }
+          }
+
+          bubbles.forEach((bubble, i) => {
+            bubble.style.setProperty("--x", positions[i].x);
+            bubble.style.setProperty("--y", positions[i].y);
+            const opacity = Math.max(0.08, 1 - i * 0.18);
+            bubble.style.opacity = opacity;
+          });
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener(
+        "resize",
+        () => {
+          for (let i = 0; i < positions.length; i++) {
+            positions[i].x = window.innerWidth / 2;
+            positions[i].y = window.innerHeight / 2;
+          }
+        },
+        { passive: true },
+      );
+
       requestAnimationFrame(animate);
-    }
 
-    window.addEventListener('resize', () => {
-      for (let i = 0; i < positions.length; i++) {
-        positions[i].x = window.innerWidth / 2;
-        positions[i].y = window.innerHeight / 2;
+      // Hide bubbles on touch devices by default
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        bubbleEnabled = false;
+        bubbles.forEach((b) => (b.style.display = "none"));
+        iconOn.style.display = "none";
+        iconOff.style.display = "";
+        toggleBtn.classList.add("bubble-toggle--off");
       }
-    }, { passive: true });
+    })();
+  </script>
 
-    requestAnimationFrame(animate);
-  })();
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <img src="./images/Logo moderne et digi.png" alt="logo alexis" />
+      </div>
 
-  (function () {
-    const form = document.getElementById('contact-form');
-    const toast = document.getElementById('form-toast');
-    const btn = form.querySelector('.btn-primary');
+      <!-- Hamburger button (mobile) -->
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-    function checkField(field) {
-      const input = field.querySelector("input, textarea");
-      const error = field.querySelector(".error");
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#hero">Accueil</a></li>
+          <li><a href="#projects">Projets</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
+              target="_blank"
+              aria-label="LinkedIn"
+            >
+              <svg
+                height="26px"
+                width="26px"
+                version="1.1"
+                id="Layer_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 382 382"
+                xml:space="preserve"
+                fill="#000000"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    style="fill: #b453cf"
+                    d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"
+                  ></path>
+                </g>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-      if (!input.checkValidity()) {
-        error.textContent = input.validationMessage;
-        return false;
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <h1>DELOISY ALEXIS</h1>
+        <h2>Développeur Web — Front Dev</h2>
+        <p class="hero-subtext">
+          Ma passion du web nourrit mes études, et mes études nourrissent ma
+          créativité.
+        </p>
+        <a href="#projects" class="cta-btn">Voir mes projets</a>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2>Mes Projets</h2>
+      <div class="project-grid">
+        <a href="site2.html" target="_blank" rel="noopener">
+          <div class="project-card">
+            <h3>HELLENISM PALLAS</h3>
+            <p>site vitrine de vente de chapelets paîens en ligne</p>
+            <img
+              src="./images/Capture d'écran 2025-12-04 200011.png"
+              alt="Aperçu du projet Hellenism Pallas"
+            />
+          </div>
+        </a>
+        <a href="umami.html" target="_blank" rel="noopener">
+          <div class="project-card">
+            <h3>UMAMI RAINBOW SHOP</h3>
+            <p>site vitrine de vente de goodies importé du japon</p>
+            <img
+              src="./images/Capture d'écran 2025-12-04 200049.png"
+              alt="Aperçu du projet Umami Rainbow Shop"
+            />
+          </div>
+        </a>
+        <a href="index2.html" target="_blank" rel="noopener">
+          <div class="project-card">
+            <h3>CV SIMPLE</h3>
+            <p>
+              re création de mon cv en html5 css (entrainement div et ul, li)
+            </p>
+            <img
+              src="./images/Capture d'écran 2026-01-09 100915.png"
+              alt="Aperçu du projet CV Simple"
+            />
+          </div>
+        </a>
+        <a href="index_zestia.html" target="_blank" rel="noopener">
+          <div class="project-card">
+            <h3>SITE FICTIF ZESTIA</h3>
+            <p>
+              site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une
+              SAÉ
+            </p>
+            <img
+              src="./images/Capture d'écran 2026-01-09 090734.png"
+              alt="Aperçu du projet Zestia"
+            />
+          </div>
+        </a>
+        <a href="index_kintsugi.html" target="_blank" rel="noopener">
+          <div class="project-card">
+            <h3>SITE KINTSUGI IMPORT</h3>
+            <p>
+              site d'importation de porsche du japon pour la vente en France
+            </p>
+            <img
+              src="./images/Capture d'écran 2026-01-09 103515.png"
+              alt="Aperçu du projet Kintsugi Car Import"
+            />
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>À propos</h2>
+      <div class="about-content">
+        <p class="about-intro">
+          J'aime créer des interfaces sombres, propres et fluides, où chaque
+          détail compte. Je suis quelqu'un qui teste, ajuste, optimise et
+          recommence jusqu'à obtenir exactement l'effet que j'ai en tête. Le
+          développement web est devenu ma façon d'exprimer ce que j'aime : la
+          précision, l'esthétique et la sensation d'un site qui "répond bien".
+          J'apprends vite, je suis curieux et j'aime aller un peu plus loin à
+          chaque projet. Ce portfolio évolue comme moi : étape par étape, mais
+          toujours dans l'envie de faire mieux.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+
+      <div class="contact-grid">
+        <form
+          id="contact-form"
+          class="contact-form"
+          method="POST"
+          action="traitement_envoie_mail.php"
+        >
+          <div class="field">
+            <input id="name" name="name" type="text" required placeholder=" " />
+            <label for="name">Votre nom</label>
+            <span class="error"></span>
+          </div>
+
+          <div class="field">
+            <input
+              id="prenom"
+              name="prenom"
+              type="text"
+              required
+              placeholder=" "
+            />
+            <label for="prenom">Votre prénom</label>
+            <span class="error"></span>
+          </div>
+
+          <div class="field">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder=" "
+            />
+            <label for="email">Email</label>
+            <span class="error"></span>
+          </div>
+
+          <div class="field">
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              placeholder=" "
+            ></textarea>
+            <label for="message">Votre message</label>
+            <span class="error"></span>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn-primary">
+              <span class="btn-content">Envoyer</span>
+              <svg class="btn-loader" viewBox="0 0 50 50">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="4"
+                />
+              </svg>
+            </button>
+            <div id="form-toast" class="form-toast">Message envoyé ✓</div>
+          </div>
+        </form>
+
+        <div class="contact-aside">
+          <p class="aside-title">Besoin d'une collaboration ?</p>
+          <p class="aside-text">
+            Parle-moi de ton projet, je reviens vers toi rapidement.
+          </p>
+
+          <div class="aside-divider"></div>
+
+          <ul class="aside-infos">
+            <li>
+              <span class="icon"
+                ><img
+                  src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                  alt="icon enveloppe / mail"
+              /></span>
+              <span class="info-label">Email</span>
+              <span class="info-value"
+                ><a href="mailto:alexis.deloisy@icloud.com"
+                  >alexis.deloisy@icloud.com</a
+                ></span
+              >
+            </li>
+            <li>
+              <span class="icon"
+                ><img
+                  src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                  alt="icon d'épingle de localisation"
+              /></span>
+              <span class="info-label">Localisation</span>
+              <span class="info-value">Troyes / France</span>
+            </li>
+            <li>
+              <span class="icon"
+                ><img
+                  src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                  alt="icon d'un check validé"
+              /></span>
+              <span class="info-label">Disponibilité</span>
+              <span class="info-value">Freelance / Alternance / CDD / CDI</span>
+            </li>
+            <li>
+              <span class="icon"
+                ><img
+                  src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                  alt="icon de téléphone"
+              /></span>
+              <span class="info-label">Téléphone</span>
+              <span class="info-value"
+                ><a href="tel:+33648582055">+33 6 48 58 20 55</a></span
+              >
+            </li>
+          </ul>
+
+          <a href="mailto:alexis.deloisy@icloud.com" class="aside-cta"
+            >Me contacter</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© DELOISY ALEXIS — Tous droits réservés</p>
+    </footer>
+
+    <!-- Form validation -->
+    <script>
+      (function () {
+        const form = document.getElementById("contact-form");
+        const toast = document.getElementById("form-toast");
+        const btn = form.querySelector(".btn-primary");
+
+        function checkField(field) {
+          const input = field.querySelector("input, textarea");
+          const error = field.querySelector(".error");
+          if (!input.checkValidity()) {
+            error.textContent = input.validationMessage;
+            return false;
+          }
+          error.textContent = "";
+          return true;
+        }
+
+        function validateAll() {
+          return [...document.querySelectorAll(".field")]
+            .map(checkField)
+            .every(Boolean);
+        }
+
+        function showToast() {
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2500);
+        }
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (!validateAll()) return;
+          btn.classList.add("sending");
+          setTimeout(() => {
+            btn.classList.remove("sending");
+            form.reset();
+            showToast();
+          }, 1000);
+        });
+      })();
+
+      // Hamburger menu
+      (function () {
+        const btn = document.getElementById("hamburger");
+        const nav = document.getElementById("main-nav");
+
+        btn.addEventListener("click", () => {
+          const open = nav.classList.toggle("nav--open");
+          btn.classList.toggle("hamburger--open", open);
+          btn.setAttribute("aria-expanded", open);
+        });
+
+        // Close menu on link click
+        nav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            nav.classList.remove("nav--open");
+            btn.classList.remove("hamburger--open");
+            btn.setAttribute("aria-expanded", false);
+          });
+        });
+      })();
+    </script>
+
+    <!-- Smooth scroll -->
+    <script>
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
+        t--;
+        return (-c / 2) * (t * (t - 2) - 1) + b;
       }
-      error.textContent = "";
-      return true;
-    }
 
-    function validateAll() {
-      return [...document.querySelectorAll('.field')].map(checkField).every(Boolean);
-    }
+      function smoothScroll(target, duration) {
+        const element = document.querySelector(target);
+        if (!element) return;
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const gap = 12;
+        const start = window.pageYOffset;
+        const end =
+          element.getBoundingClientRect().top +
+          window.pageYOffset -
+          navbarHeight -
+          gap;
+        const distance = end - start;
+        let startTime = null;
 
-    function showToast() {
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2500);
-    }
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const next = easeInOutQuad(timeElapsed, start, distance, duration);
+          window.scrollTo(0, next);
+          if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        requestAnimationFrame(animation);
+      }
 
-  })();
-</script>
-
-<body>
-  <header class="navbar">
-    <div class="logo">
-      <img src="./images/Logo moderne et digi.png" alt="logo alexis">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#hero">Accueil</a></li>
-        <li><a href="#projects">Projets</a></li>
-        <li><a href="#about">À propos</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://www.linkedin.com/in/alexis-deloisy-53b911281/" target="_blank"><svg height="26px" width="26px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 382 382" xml:space="preserve" fill="#000000" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#b453cf;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"></path> </g></svg></a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <h1>DELOISY ALEXIS</h1>
-      <h2>Développeur Web — Front Dev</h2>
-      <p class="hero-subtext">Ma passion du web nourrit mes études, et mes études nourrissent ma créativité.</p>
-      <a href="#projects" class="cta-btn">Voir mes projets</a>
-    </div>
-  </section>
-
-  <section id="projects" class="projects">
-    <h2>Mes Projets</h2>
-    <div class="project-grid">
-      <a href="site2.html" target="_blank" rel="noopener" >
-      <div class="project-card" >
-          <h3>HELLENISM PALLAS</h3>
-          <p>site vitrine de vente de chapelets paîens en ligne</p>
-          <img src="./images/Capture d'écran 2025-12-04 200011.png" alt="Aperçu du projet Hellenism Pallas">
-      </div>
-      </a>
-      <a href="umami.html" target="_blank" rel="noopener" >
-      <div class="project-card">
-        <h3>UMAMI RAINBOW SHOP</h3>
-        <p>site vitrine de vente de goodies importé du japon</p>
-        <img src="./images/Capture d'écran 2025-12-04 200049.png" alt="Aperçu du projet Umami Rainbow Shop">
-      </div>
-      </a>
-      <a href="index2.html" target="_blank" rel="noopener" >
-      <div class="project-card">
-        <h3>CV SIMPLE</h3>
-        <p>re création de mon cv en html5 css (entrainement div et ul, li) </p>
-        <img src="./images/Capture d'écran 2026-01-09 100915.png" alt="Aperçu du projet CV Simple">
-      </div>
-      </a>
-      <a href="index_zestia.html" target="_blank" rel="noopener" >
-      <div class="project-card">
-        <h3>SITE FICTIF ZESTIA</h3>
-        <p>site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une SAÉ</p>
-        <img src="./images/Capture d'écran 2026-01-09 090734.png" alt="Aperçu du projet Zestia">
-      </div>
-      </a>
-      <a href="index_kintsugi.html" target="_blank" rel="noopener" >
-      <div class="project-card">
-        <h3>SITE KINTSUGI IMPORT</h3>
-          <p>site d'importation de porsche du japon pour la vente en France</p>
-        <img src="./images/Capture d'écran 2026-01-09 103515.png" alt="Aperçu du projet Kintsugi Car Import">
-      </div>
-      </a>
-  </section>
-
-  <section id="about" class="about">
-    <h2>À propos</h2>
-    <div class="about-content">
-      <p class="about-intro">J'aime créer des interfaces sombres, propres et fluides, où chaque détail compte. Je suis quelqu'un qui teste, ajuste, optimise et recommence jusqu'à obtenir exactement l'effet que j'ai en tête. Le développement web est devenu ma façon d'exprimer ce que j'aime : la précision, l'esthétique et la sensation d'un site qui "répond bien".
-      J'apprends vite, je suis curieux et j'aime aller un peu plus loin à chaque projet. Ce portfolio évolue comme moi : étape par étape, mais toujours dans l'envie de faire mieux.</p>
-    </div>
-  </section>
-
- <section id="contact" class="contact">
-    <h2>Contact</h2>
-
-    <div class="contact-grid">
-      <form id="contact-form" class="contact-form" method="POST" action="traitement_envoie_mail.php">
-        
-        <div class="field">
-          <input id="name" name="name" type="text" required placeholder=" " />
-          <label for="name">Votre nom</label>
-          <span class="error"></span>
-        </div>
-
-        <div class="field">
-          <input id="prenom" name="prenom" type="text" required placeholder=" " />
-          <label for="prenom">Votre prénom</label>
-          <span class="error"></span>
-        </div>
-
-        <div class="field">
-          <input id="email" name="email" type="email" required placeholder=" " />
-          <label for="email">Email</label>
-          <span class="error"></span>
-        </div>
-
-        <div class="field">
-          <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-          <label for="message">Votre message</label>
-          <span class="error"></span>
-        </div>
-
-        <div class="actions">
-          <button type="submit" class="btn-primary">
-            <span class="btn-content">Envoyer</span>
-            <svg class="btn-loader" viewBox="0 0 50 50">
-              <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4"/>
-            </svg>
-          </button>
-          <div id="form-toast" class="form-toast">Message envoyé ✓</div>
-        </div>
-
-      </form>
-
-    <div class="contact-aside">
-      <p class="aside-title">Besoin d’une collaboration ?</p>
-      <p class="aside-text">Parle-moi de ton projet, je reviens vers toi rapidement.</p>
-
-      <div class="aside-divider"></div>
-
-      <ul class="aside-infos">
-        <li>
-          <span class="icon"><img src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="icon enveloppe / mail" > </span>
-          <span class="info-label">Email</span>
-          <span class="info-value">
-            <a href="mailto:alexis.deloisy@icloud.com">alexis.deloisy@icloud.com</a>
-          </span>
-        </li>
-
-        <li>
-          <span class="icon"><img src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="icon d'épingle de localisation"></span>
-          <span class="info-label">Localisation</span>
-          <span class="info-value">Troyes / France</span>
-        </li>
-
-        <li>
-          <span class="icon"><img src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="icon d'un check validé"></span>
-          <span class="info-label">Disponibilité</span>
-          <span class="info-value">Freelance / Alternance / CDD / CDI</span>
-        </li>
-
-        <li>
-          <span class="icon"><img src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="icon de téléphone"></span>
-          <span class="info-label">Téléphone</span>
-          <span class="info-value">
-            <a href="tel:+33648582055">+33 6 48 58 20 55</a>
-          </span>
-        </li>
-      </ul>
-
-      <a href="mailto:alexis.deloisy@icloud.com" class="aside-cta">Me contacter</a>
-    </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>© DELOISY ALEXIS — Tous droits réservés</p>
-  </footer>
-
-<!-- cta smooth scroll -->
-<script>
-function easeInOutQuad(t, b, c, d) {
-  t /= d / 2;
-  if (t < 1) return c / 2 * t * t + b;
-  t--;
-  return -c / 2 * (t * (t - 2) - 1) + b;
-}
-
-function smoothScroll(target, duration) {
-  const element = document.querySelector(target);
-  if (!element) return;
-
-  const navbar = document.querySelector('.navbar');
-  const navbarHeight = navbar ? navbar.offsetHeight : 0;
-  const gap = 12; // small spacing below navbar
-
-  const start = window.pageYOffset;
-  const end = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight - gap;
-  const distance = end - start;
-  let startTime = null;
-
-  function animation(currentTime) {
-    if (startTime === null) startTime = currentTime;
-
-    const timeElapsed = currentTime - startTime;
-    const next = easeInOutQuad(timeElapsed, start, distance, duration);
-
-    window.scrollTo(0, next);
-
-    if (timeElapsed < duration) requestAnimationFrame(animation);
-  }
-
-  requestAnimationFrame(animation);
-}
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", function(e) {
-    const target = this.getAttribute("href");
-
-    if (target && target.length > 1) {
-      e.preventDefault();
-      smoothScroll(target, 700);
-      try { history.pushState(null, '', target); } catch (err) { /* ignore */ }
-    }
-  });
-});
-</script>
-
-</body>
-
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const target = this.getAttribute("href");
+          if (target && target.length > 1) {
+            e.preventDefault();
+            smoothScroll(target, 700);
+            try {
+              history.pushState(null, "", target);
+            } catch (err) {}
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
-
-
