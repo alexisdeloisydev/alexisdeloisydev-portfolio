@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio de Deloisy Alexis, développeur web front-end. Découvrez mes projets, mon style orienté interfaces modernes, sombres et fluides, ainsi que mes compétences en HTML, CSS et JavaScript. Disponible pour collaborations, alternance ou freelancing."
+      content="Portfolio de Deloisy Alexis, développeur web front-end."
     />
     <title>Portfolio — DELOISY ALEXIS</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon.ico"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./images/Capture d'écran 2025-12-09 091537.png"
-    />
+
+    <!-- Applique le thème AVANT le rendu pour éviter le flash -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+
+        if (saved) {
+          // L'utilisateur a déjà fait un choix manuel → on le respecte
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+        // Sinon rien : le CSS @media prefers-color-scheme prend le relais automatiquement
+      })();
+    </script>
   </head>
 
   <div class="bubble"></div>
@@ -30,7 +35,51 @@
   <div class="bubble"></div>
   <div class="bubble"></div>
 
-  <!-- Bouton toggle bubble effect -->
+  <!-- Bouton toggle thème (bas gauche) -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
+    <!-- Icône soleil (visible en dark) -->
+    <svg
+      id="theme-icon-sun"
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+    <!-- Icône lune (visible en light) -->
+    <svg
+      id="theme-icon-moon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="display: none"
+    >
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <span id="theme-label">Mode clair</span>
+  </button>
+
+  <!-- Bouton toggle bubble (bas droite) -->
   <button
     id="bubble-toggle"
     class="bubble-toggle"
@@ -71,6 +120,56 @@
   </button>
 
   <script>
+    // ── Theme toggle ──────────────────────────────────────────────
+    (function () {
+      const html = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const iconSun = document.getElementById("theme-icon-sun");
+      const iconMoon = document.getElementById("theme-icon-moon");
+      const label = document.getElementById("theme-label");
+
+      // Résout le thème effectif actuel (priorité : data-theme > system)
+      function currentTheme() {
+        const saved = html.getAttribute("data-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function applyUI(theme) {
+        if (theme === "dark") {
+          iconSun.style.display = "";
+          iconMoon.style.display = "none";
+          label.textContent = "Mode clair";
+        } else {
+          iconSun.style.display = "none";
+          iconMoon.style.display = "";
+          label.textContent = "Mode sombre";
+        }
+      }
+
+      // Init UI selon thème actuel au chargement
+      applyUI(currentTheme());
+
+      btn.addEventListener("click", () => {
+        const next = currentTheme() === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        applyUI(next);
+      });
+
+      // Si la préférence système change ET que l'utilisateur n'a pas fait de choix manuel,
+      // on met à jour l'UI du bouton sans toucher au data-theme
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+          if (!localStorage.getItem("theme")) {
+            applyUI(currentTheme());
+          }
+        });
+    })();
+
     // ── Bubble trail ──────────────────────────────────────────────
     (function () {
       const bubbles = Array.from(document.querySelectorAll(".bubble"));
@@ -97,73 +196,57 @@
         { passive: true },
       );
 
-      // Toggle button logic
       const toggleBtn = document.getElementById("bubble-toggle");
       const iconOn = document.getElementById("bubble-icon-on");
       const iconOff = document.getElementById("bubble-icon-off");
-      const label = document.getElementById("bubble-label");
 
       toggleBtn.addEventListener("click", () => {
         bubbleEnabled = !bubbleEnabled;
-        if (bubbleEnabled) {
-          bubbles.forEach((b) => (b.style.display = ""));
-          iconOn.style.display = "";
-          iconOff.style.display = "none";
-          label.textContent = "Curseur";
-          toggleBtn.classList.remove("bubble-toggle--off");
-        } else {
-          bubbles.forEach((b) => (b.style.display = "none"));
-          iconOn.style.display = "none";
-          iconOff.style.display = "";
-          label.textContent = "Curseur";
-          toggleBtn.classList.add("bubble-toggle--off");
-        }
+        bubbles.forEach((b) => (b.style.display = bubbleEnabled ? "" : "none"));
+        iconOn.style.display = bubbleEnabled ? "" : "none";
+        iconOff.style.display = bubbleEnabled ? "none" : "";
+        toggleBtn.classList.toggle("bubble-toggle--off", !bubbleEnabled);
       });
 
       function animate() {
         if (bubbleEnabled) {
           positions[0].x += (mouse.x - positions[0].x) * 0.22;
           positions[0].y += (mouse.y - positions[0].y) * 0.22;
-
           for (let i = 1; i < positions.length; i++) {
             positions[i].x +=
               (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
             positions[i].y +=
               (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
           }
-
           if (idle) {
             for (let i = 1; i < positions.length; i++) {
               positions[i].x += (positions[0].x - positions[i].x) * 0.12;
               positions[i].y += (positions[0].y - positions[i].y) * 0.12;
             }
           }
-
-          bubbles.forEach((bubble, i) => {
-            bubble.style.setProperty("--x", positions[i].x);
-            bubble.style.setProperty("--y", positions[i].y);
-            const opacity = Math.max(0.08, 1 - i * 0.18);
-            bubble.style.opacity = opacity;
+          bubbles.forEach((b, i) => {
+            b.style.setProperty("--x", positions[i].x);
+            b.style.setProperty("--y", positions[i].y);
+            b.style.opacity = Math.max(0.08, 1 - i * 0.18);
           });
         }
-
         requestAnimationFrame(animate);
       }
 
       window.addEventListener(
         "resize",
         () => {
-          for (let i = 0; i < positions.length; i++) {
-            positions[i].x = window.innerWidth / 2;
-            positions[i].y = window.innerHeight / 2;
-          }
+          positions.forEach((p) => {
+            p.x = window.innerWidth / 2;
+            p.y = window.innerHeight / 2;
+          });
         },
         { passive: true },
       );
 
       requestAnimationFrame(animate);
 
-      // Hide bubbles on touch devices by default
+      // Désactivé par défaut sur tactile
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         bubbleEnabled = false;
         bubbles.forEach((b) => (b.style.display = "none"));
@@ -180,16 +263,13 @@
         <img src="./images/Logo moderne et digi.png" alt="logo alexis" />
       </div>
 
-      <!-- Hamburger button (mobile) -->
       <button
         class="hamburger"
         id="hamburger"
         aria-label="Ouvrir le menu"
         aria-expanded="false"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
 
       <nav id="main-nav">
@@ -207,27 +287,23 @@
               <svg
                 height="26px"
                 width="26px"
-                version="1.1"
-                id="Layer_1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 382 382"
-                xml:space="preserve"
-                fill="#000000"
-                stroke="#000000"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    style="fill: #b453cf"
-                    d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"
-                  ></path>
-                </g>
+                <path
+                  style="fill: #b453cf"
+                  d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
+              C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z
+              M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403
+              c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844z
+              M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
+              s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z
+              M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168
+              c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
+              c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593
+              c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655
+              c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654z"
+                />
               </svg>
             </a>
           </li>
@@ -250,13 +326,13 @@
     <section id="projects" class="projects">
       <h2>Mes Projets</h2>
       <div class="project-grid">
-        <a href="site2.html" target="_blank" rel="noopener">
+        <a href="detail-hellenism.html" target="_blank" rel="noopener">
           <div class="project-card">
             <h3>HELLENISM PALLAS</h3>
             <p>site vitrine de vente de chapelets paîens en ligne</p>
             <img
               src="./images/Capture d'écran 2025-12-04 200011.png"
-              alt="Aperçu du projet Hellenism Pallas"
+              alt="Aperçu Hellenism Pallas"
             />
           </div>
         </a>
@@ -266,7 +342,7 @@
             <p>site vitrine de vente de goodies importé du japon</p>
             <img
               src="./images/Capture d'écran 2025-12-04 200049.png"
-              alt="Aperçu du projet Umami Rainbow Shop"
+              alt="Aperçu Umami Rainbow Shop"
             />
           </div>
         </a>
@@ -278,7 +354,7 @@
             </p>
             <img
               src="./images/Capture d'écran 2026-01-09 100915.png"
-              alt="Aperçu du projet CV Simple"
+              alt="Aperçu CV Simple"
             />
           </div>
         </a>
@@ -291,7 +367,7 @@
             </p>
             <img
               src="./images/Capture d'écran 2026-01-09 090734.png"
-              alt="Aperçu du projet Zestia"
+              alt="Aperçu Zestia"
             />
           </div>
         </a>
@@ -303,7 +379,7 @@
             </p>
             <img
               src="./images/Capture d'écran 2026-01-09 103515.png"
-              alt="Aperçu du projet Kintsugi Car Import"
+              alt="Aperçu Kintsugi Car Import"
             />
           </div>
         </a>
@@ -314,21 +390,20 @@
       <h2>À propos</h2>
       <div class="about-content">
         <p class="about-intro">
-          J'aime créer des interfaces sombres, propres et fluides, où chaque
-          détail compte. Je suis quelqu'un qui teste, ajuste, optimise et
-          recommence jusqu'à obtenir exactement l'effet que j'ai en tête. Le
-          développement web est devenu ma façon d'exprimer ce que j'aime : la
-          précision, l'esthétique et la sensation d'un site qui "répond bien".
-          J'apprends vite, je suis curieux et j'aime aller un peu plus loin à
-          chaque projet. Ce portfolio évolue comme moi : étape par étape, mais
-          toujours dans l'envie de faire mieux.
+          Je m'appelle Deloisy Alexis, j'ai 18 ans et je suis passionné par le
+          développement web front-end. Ce qui me plaît vraiment, c'est de créer
+          des interfaces sombres, propres et fluides, où chaque détail compte.
+          Je suis quelqu'un qui teste, ajuste, optimise et recommence jusqu'à
+          obtenir exactement l'effet que j'ai en tête. Actuellement en
+          formation, j'apprends vite, je suis curieux et j'aime aller un peu
+          plus loin à chaque projet. Ce portfolio évolue comme moi : étape par
+          étape, mais toujours dans l'envie de faire mieux.
         </p>
       </div>
     </section>
 
     <section id="contact" class="contact">
       <h2>Contact</h2>
-
       <div class="contact-grid">
         <form
           id="contact-form"
@@ -401,15 +476,13 @@
           <p class="aside-text">
             Parle-moi de ton projet, je reviens vers toi rapidement.
           </p>
-
           <div class="aside-divider"></div>
-
           <ul class="aside-infos">
             <li>
               <span class="icon"
                 ><img
                   src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="icon enveloppe / mail"
+                  alt="mail"
               /></span>
               <span class="info-label">Email</span>
               <span class="info-value"
@@ -422,7 +495,7 @@
               <span class="icon"
                 ><img
                   src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="icon d'épingle de localisation"
+                  alt="location"
               /></span>
               <span class="info-label">Localisation</span>
               <span class="info-value">Troyes / France</span>
@@ -431,7 +504,7 @@
               <span class="icon"
                 ><img
                   src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="icon d'un check validé"
+                  alt="disponibilité"
               /></span>
               <span class="info-label">Disponibilité</span>
               <span class="info-value">Freelance / Alternance / CDD / CDI</span>
@@ -440,7 +513,7 @@
               <span class="icon"
                 ><img
                   src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="icon de téléphone"
+                  alt="téléphone"
               /></span>
               <span class="info-label">Téléphone</span>
               <span class="info-value"
@@ -448,7 +521,6 @@
               >
             </li>
           </ul>
-
           <a href="mailto:alexis.deloisy@icloud.com" class="aside-cta"
             >Me contacter</a
           >
@@ -460,8 +532,8 @@
       <p>© DELOISY ALEXIS — Tous droits réservés</p>
     </footer>
 
-    <!-- Form validation -->
     <script>
+      // Form validation
       (function () {
         const form = document.getElementById("contact-form");
         const toast = document.getElementById("form-toast");
@@ -484,11 +556,6 @@
             .every(Boolean);
         }
 
-        function showToast() {
-          toast.classList.add("show");
-          setTimeout(() => toast.classList.remove("show"), 2500);
-        }
-
         form.addEventListener("submit", (e) => {
           e.preventDefault();
           if (!validateAll()) return;
@@ -496,7 +563,8 @@
           setTimeout(() => {
             btn.classList.remove("sending");
             form.reset();
-            showToast();
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2500);
           }, 1000);
         });
       })();
@@ -505,67 +573,56 @@
       (function () {
         const btn = document.getElementById("hamburger");
         const nav = document.getElementById("main-nav");
-
         btn.addEventListener("click", () => {
           const open = nav.classList.toggle("nav--open");
           btn.classList.toggle("hamburger--open", open);
           btn.setAttribute("aria-expanded", open);
         });
-
-        // Close menu on link click
-        nav.querySelectorAll("a").forEach((link) => {
+        nav.querySelectorAll("a").forEach((link) =>
           link.addEventListener("click", () => {
             nav.classList.remove("nav--open");
             btn.classList.remove("hamburger--open");
             btn.setAttribute("aria-expanded", false);
-          });
-        });
+          }),
+        );
       })();
-    </script>
 
-    <!-- Smooth scroll -->
-    <script>
+      // Smooth scroll
       function easeInOutQuad(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return (c / 2) * t * t + b;
         t--;
         return (-c / 2) * (t * (t - 2) - 1) + b;
       }
-
       function smoothScroll(target, duration) {
-        const element = document.querySelector(target);
-        if (!element) return;
+        const el = document.querySelector(target);
+        if (!el) return;
         const navbar = document.querySelector(".navbar");
-        const navbarHeight = navbar ? navbar.offsetHeight : 0;
-        const gap = 12;
         const start = window.pageYOffset;
         const end =
-          element.getBoundingClientRect().top +
+          el.getBoundingClientRect().top +
           window.pageYOffset -
-          navbarHeight -
-          gap;
-        const distance = end - start;
+          (navbar ? navbar.offsetHeight : 0) -
+          12;
+        const dist = end - start;
         let startTime = null;
-
-        function animation(currentTime) {
-          if (startTime === null) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const next = easeInOutQuad(timeElapsed, start, distance, duration);
-          window.scrollTo(0, next);
-          if (timeElapsed < duration) requestAnimationFrame(animation);
+        function step(now) {
+          if (!startTime) startTime = now;
+          const elapsed = now - startTime;
+          window.scrollTo(0, easeInOutQuad(elapsed, start, dist, duration));
+          if (elapsed < duration) requestAnimationFrame(step);
         }
-        requestAnimationFrame(animation);
+        requestAnimationFrame(step);
       }
-
       document.querySelectorAll('a[href^="#"]').forEach((link) => {
         link.addEventListener("click", function (e) {
-          const target = this.getAttribute("href");
-          if (target && target.length > 1) {
+          const t = this.getAttribute("href");
+          if (t && t.length > 1) {
             e.preventDefault();
-            smoothScroll(target, 700);
+            smoothScroll(t, 700);
             try {
-              history.pushState(null, "", target);
-            } catch (err) {}
+              history.pushState(null, "", t);
+            } catch (_) {}
           }
         });
       });
