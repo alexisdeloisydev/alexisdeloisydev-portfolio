@@ -15,15 +15,9 @@
     <script>
       (function () {
         const saved = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
-
         if (saved) {
-          // L'utilisateur a déjà fait un choix manuel → on le respecte
           document.documentElement.setAttribute("data-theme", saved);
         }
-        // Sinon rien : le CSS @media prefers-color-scheme prend le relais automatiquement
       })();
     </script>
   </head>
@@ -37,7 +31,6 @@
 
   <!-- Bouton toggle thème (bas gauche) -->
   <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
-    <!-- Icône soleil (visible en dark) -->
     <svg
       id="theme-icon-sun"
       xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +53,6 @@
       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
     </svg>
-    <!-- Icône lune (visible en light) -->
     <svg
       id="theme-icon-moon"
       xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +120,6 @@
       const iconMoon = document.getElementById("theme-icon-moon");
       const label = document.getElementById("theme-label");
 
-      // Résout le thème effectif actuel (priorité : data-theme > system)
       function currentTheme() {
         const saved = html.getAttribute("data-theme");
         if (saved) return saved;
@@ -149,7 +140,6 @@
         }
       }
 
-      // Init UI selon thème actuel au chargement
       applyUI(currentTheme());
 
       btn.addEventListener("click", () => {
@@ -159,8 +149,6 @@
         applyUI(next);
       });
 
-      // Si la préférence système change ET que l'utilisateur n'a pas fait de choix manuel,
-      // on met à jour l'UI du bouton sans toucher au data-theme
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", () => {
@@ -260,7 +248,16 @@
   <body>
     <header class="navbar">
       <div class="logo">
-        <img src="./images/Logo moderne et digi.png" alt="logo alexis" />
+        <img
+          src="./images/Logo moderne et digi.png"
+          alt="logo alexis"
+          class="logo-dark"
+        />
+        <img
+          src="./images/Sans_titre-1-removebg-preview.png"
+          alt="logo alexis"
+          class="logo-light"
+        />
       </div>
 
       <button
@@ -311,6 +308,7 @@
       </nav>
     </header>
 
+    <!-- ══ HERO ══════════════════════════════════════════ -->
     <section id="hero" class="hero">
       <div class="hero-content">
         <h1>DELOISY ALEXIS</h1>
@@ -319,211 +317,300 @@
           Ma passion du web nourrit mes études, et mes études nourrissent ma
           créativité.
         </p>
+
+        <!-- Stacks -->
+        <div class="stacks-wrapper">
+          <p class="stacks-label">Stack principale</p>
+          <div class="stacks-row">
+            <div class="stack-card">
+              <img src="./images/docker.svg" alt="Docker" />
+              <span>Docker</span>
+            </div>
+            <div class="stack-card">
+              <img src="./images/PHP.svg" alt="PHP" />
+              <span>PHP</span>
+            </div>
+            <div class="stack-card">
+              <img src="./images/mysql-logo-pure.svg" alt="MySQL" />
+              <span>MySQL</span>
+            </div>
+            <div class="stack-card">
+              <img src="./images/html-1.svg" alt="HTML" />
+              <span>HTML</span>
+            </div>
+            <div class="stack-card">
+              <img src="./images/css-3.svg" alt="CSS" />
+              <span>CSS</span>
+            </div>
+            <div class="stack-card">
+              <img src="./images/javascript-r.svg" alt="JavaScript" />
+              <span>JavaScript</span>
+            </div>
+            <div class="stack-card">
+              <img src="./images/claude-logo.svg" alt="Claude" />
+              <span>Claude</span>
+            </div>
+          </div>
+
+          <p class="stacks-label stacks-label--secondary">
+            Outils &amp; création
+          </p>
+          <div class="stacks-row stacks-row--secondary">
+            <div class="stack-card stack-card--secondary">
+              <img src="./images/wordpress-2.svg" alt="WordPress" />
+              <span>WordPress</span>
+            </div>
+            <div class="stack-card stack-card--secondary">
+              <img src="./images/adobe-photoshop-2.svg" alt="Photoshop" />
+              <span>Photoshop</span>
+            </div>
+            <div class="stack-card stack-card--secondary">
+              <img src="./images/after-effects-1.svg" alt="After Effects" />
+              <span>After Effects</span>
+            </div>
+            <div class="stack-card stack-card--secondary">
+              <img
+                src="./images/adobe-illustrator-cc-3.svg"
+                alt="Illustrator"
+              />
+              <span>Illustrator</span>
+            </div>
+            <div class="stack-card stack-card--secondary">
+              <img src="./images/premiere-pro-cc.svg" alt="Premiere Pro" />
+              <span>Premiere Pro</span>
+            </div>
+          </div>
+        </div>
+
         <a href="#projects" class="cta-btn">Voir mes projets</a>
       </div>
     </section>
 
+    <!-- ══ PROJECTS ══════════════════════════════════════ -->
     <section id="projects" class="projects">
-      <h2>Mes Projets</h2>
-      <div class="project-grid">
-        <a href="detail-hellenism.html" target="_blank" rel="noopener">
-          <div class="project-card">
-            <h3>HELLENISM PALLAS</h3>
-            <p>site vitrine de vente de chapelets paîens en ligne</p>
-            <img
-              src="./images/Capture d'écran 2025-12-04 200011.png"
-              alt="Aperçu Hellenism Pallas"
-            />
-          </div>
-        </a>
-        <a href="umami.html" target="_blank" rel="noopener">
-          <div class="project-card">
-            <h3>UMAMI RAINBOW SHOP</h3>
-            <p>site vitrine de vente de goodies importé du japon</p>
-            <img
-              src="./images/Capture d'écran 2025-12-04 200049.png"
-              alt="Aperçu Umami Rainbow Shop"
-            />
-          </div>
-        </a>
-        <a href="index2.html" target="_blank" rel="noopener">
-          <div class="project-card">
-            <h3>CV SIMPLE</h3>
-            <p>
-              re création de mon cv en html5 css (entrainement div et ul, li)
-            </p>
-            <img
-              src="./images/Capture d'écran 2026-01-09 100915.png"
-              alt="Aperçu CV Simple"
-            />
-          </div>
-        </a>
-        <a href="index_zestia.html" target="_blank" rel="noopener">
-          <div class="project-card">
-            <h3>SITE FICTIF ZESTIA</h3>
-            <p>
-              site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une
-              SAÉ
-            </p>
-            <img
-              src="./images/Capture d'écran 2026-01-09 090734.png"
-              alt="Aperçu Zestia"
-            />
-          </div>
-        </a>
-        <a href="index_kintsugi.html" target="_blank" rel="noopener">
-          <div class="project-card">
-            <h3>SITE KINTSUGI IMPORT</h3>
-            <p>
-              site d'importation de porsche du japon pour la vente en France
-            </p>
-            <img
-              src="./images/Capture d'écran 2026-01-09 103515.png"
-              alt="Aperçu Kintsugi Car Import"
-            />
-          </div>
-        </a>
+      <div class="section-inner">
+        <h2>Mes Projets</h2>
+        <div class="project-grid">
+          <a href="detail-hellenism.html" target="_blank" rel="noopener">
+            <div class="project-card">
+              <h3>HELLENISM PALLAS</h3>
+              <p>site vitrine de vente de chapelets paîens en ligne</p>
+              <img
+                src="./images/Capture d'écran 2025-12-04 200011.png"
+                alt="Aperçu Hellenism Pallas"
+              />
+            </div>
+          </a>
+          <a href="detail-rainbow.html" target="_blank" rel="noopener">
+            <div class="project-card">
+              <h3>UMAMI RAINBOW SHOP</h3>
+              <p>site vitrine de vente de goodies importé du japon</p>
+              <img
+                src="./images/Capture d'écran 2025-12-04 200049.png"
+                alt="Aperçu Umami Rainbow Shop"
+              />
+            </div>
+          </a>
+          <a href="index2.html" target="_blank" rel="noopener">
+            <div class="project-card">
+              <h3>CV SIMPLE</h3>
+              <p>
+                re création de mon cv en html5 css (entrainement div et ul, li)
+              </p>
+              <img
+                src="./images/Capture d'écran 2026-01-09 100915.png"
+                alt="Aperçu CV Simple"
+              />
+            </div>
+          </a>
+          <a href="index_zestia.html" target="_blank" rel="noopener">
+            <div class="project-card">
+              <h3>SITE FICTIF ZESTIA</h3>
+              <p>
+                site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une
+                SAÉ
+              </p>
+              <img
+                src="./images/Capture d'écran 2026-01-09 090734.png"
+                alt="Aperçu Zestia"
+              />
+            </div>
+          </a>
+          <a href="index_kintsugi.html" target="_blank" rel="noopener">
+            <div class="project-card">
+              <h3>SITE KINTSUGI IMPORT</h3>
+              <p>
+                site d'importation de porsche du japon pour la vente en France
+              </p>
+              <img
+                src="./images/Capture d'écran 2026-01-09 103515.png"
+                alt="Aperçu Kintsugi Car Import"
+              />
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
+    <!-- ══ ABOUT ══════════════════════════════════════════ -->
     <section id="about" class="about">
-      <h2>À propos</h2>
-      <div class="about-content">
-        <p class="about-intro">
-          Je m'appelle Deloisy Alexis, j'ai 18 ans et je suis passionné par le
-          développement web front-end. Ce qui me plaît vraiment, c'est de créer
-          des interfaces sombres, propres et fluides, où chaque détail compte.
-          Je suis quelqu'un qui teste, ajuste, optimise et recommence jusqu'à
-          obtenir exactement l'effet que j'ai en tête. Actuellement en
-          formation, j'apprends vite, je suis curieux et j'aime aller un peu
-          plus loin à chaque projet. Ce portfolio évolue comme moi : étape par
-          étape, mais toujours dans l'envie de faire mieux.
-        </p>
+      <div class="section-inner">
+        <h2>À propos</h2>
+        <div class="about-content">
+          <p class="about-intro">
+            Je m'appelle Deloisy Alexis, j'ai 18 ans et je suis passionné par le
+            développement web front-end. Ce qui me plaît vraiment, c'est de
+            créer des interfaces sombres, propres et fluides, où chaque détail
+            compte. Je suis quelqu'un qui teste, ajuste, optimise et recommence
+            jusqu'à obtenir exactement l'effet que j'ai en tête. Actuellement en
+            formation, j'apprends vite, je suis curieux et j'aime aller un peu
+            plus loin à chaque projet. Ce portfolio évolue comme moi : étape par
+            étape, mais toujours dans l'envie de faire mieux.
+          </p>
+        </div>
       </div>
     </section>
 
+    <!-- ══ CONTACT ════════════════════════════════════════ -->
     <section id="contact" class="contact">
-      <h2>Contact</h2>
-      <div class="contact-grid">
-        <form
-          id="contact-form"
-          class="contact-form"
-          method="POST"
-          action="traitement_envoie_mail.php"
-        >
-          <div class="field">
-            <input id="name" name="name" type="text" required placeholder=" " />
-            <label for="name">Votre nom</label>
-            <span class="error"></span>
-          </div>
-
-          <div class="field">
-            <input
-              id="prenom"
-              name="prenom"
-              type="text"
-              required
-              placeholder=" "
-            />
-            <label for="prenom">Votre prénom</label>
-            <span class="error"></span>
-          </div>
-
-          <div class="field">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              placeholder=" "
-            />
-            <label for="email">Email</label>
-            <span class="error"></span>
-          </div>
-
-          <div class="field">
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              placeholder=" "
-            ></textarea>
-            <label for="message">Votre message</label>
-            <span class="error"></span>
-          </div>
-
-          <div class="actions">
-            <button type="submit" class="btn-primary">
-              <span class="btn-content">Envoyer</span>
-              <svg class="btn-loader" viewBox="0 0 50 50">
-                <circle
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="4"
-                />
-              </svg>
-            </button>
-            <div id="form-toast" class="form-toast">Message envoyé ✓</div>
-          </div>
-        </form>
-
-        <div class="contact-aside">
-          <p class="aside-title">Besoin d'une collaboration ?</p>
-          <p class="aside-text">
-            Parle-moi de ton projet, je reviens vers toi rapidement.
-          </p>
-          <div class="aside-divider"></div>
-          <ul class="aside-infos">
-            <li>
-              <span class="icon"
-                ><img
-                  src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="mail"
-              /></span>
-              <span class="info-label">Email</span>
-              <span class="info-value"
-                ><a href="mailto:alexis.deloisy@icloud.com"
-                  >alexis.deloisy@icloud.com</a
-                ></span
-              >
-            </li>
-            <li>
-              <span class="icon"
-                ><img
-                  src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="location"
-              /></span>
-              <span class="info-label">Localisation</span>
-              <span class="info-value">Troyes / France</span>
-            </li>
-            <li>
-              <span class="icon"
-                ><img
-                  src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="disponibilité"
-              /></span>
-              <span class="info-label">Disponibilité</span>
-              <span class="info-value">Freelance / Alternance / CDD / CDI</span>
-            </li>
-            <li>
-              <span class="icon"
-                ><img
-                  src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                  alt="téléphone"
-              /></span>
-              <span class="info-label">Téléphone</span>
-              <span class="info-value"
-                ><a href="tel:+33648582055">+33 6 48 58 20 55</a></span
-              >
-            </li>
-          </ul>
-          <a href="mailto:alexis.deloisy@icloud.com" class="aside-cta"
-            >Me contacter</a
+      <div class="section-inner">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <form
+            id="contact-form"
+            class="contact-form"
+            method="POST"
+            action="https://formspree.io/f/mgonbkyp"
           >
+            <div class="field">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder=" "
+              />
+              <label for="name">Votre nom</label>
+              <span class="error"></span>
+            </div>
+
+            <div class="field">
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                required
+                placeholder=" "
+              />
+              <label for="prenom">Votre prénom</label>
+              <span class="error"></span>
+            </div>
+
+            <div class="field">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder=" "
+              />
+              <label for="email">Email</label>
+              <span class="error"></span>
+            </div>
+
+            <div class="field">
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder=" "
+              ></textarea>
+              <label for="message">Votre message</label>
+              <span class="error"></span>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn-primary">
+                <span class="btn-content">Envoyer</span>
+                <svg class="btn-loader" viewBox="0 0 50 50">
+                  <circle
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  />
+                </svg>
+              </button>
+              <div id="form-toast" class="form-toast">Message envoyé ✓</div>
+            </div>
+          </form>
+
+          <div class="contact-aside">
+            <p class="aside-title">Besoin d'une collaboration ?</p>
+            <p class="aside-text">
+              Parle-moi de ton projet, je reviens vers toi rapidement.
+            </p>
+            <div class="aside-divider"></div>
+            <ul class="aside-infos">
+              <li>
+                <span class="icon"
+                  ><img
+                    src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="mail"
+                /></span>
+                <span class="info-label">Email</span>
+                <span class="info-value"
+                  ><a
+                    href="/cdn-cgi/l/email-protection#1672737a797f656f38777a736e7f6556717b777f7a3875797b"
+                    ><span
+                      class="__cf_email__"
+                      data-cfemail="90f4f5fcfff9e3e9bef1fcf5e8f9e3d0f7fdf1f9fcbef3fffd"
+                      >[email&#160;protected]</span
+                    ></a
+                  ></span
+                >
+              </li>
+              <li>
+                <span class="icon"
+                  ><img
+                    src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="location"
+                /></span>
+                <span class="info-label">Localisation</span>
+                <span class="info-value">Troyes / France</span>
+              </li>
+              <li>
+                <span class="icon"
+                  ><img
+                    src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="disponibilité"
+                /></span>
+                <span class="info-label">Disponibilité</span>
+                <span class="info-value"
+                  >Freelance / Alternance / CDD / CDI</span
+                >
+              </li>
+              <li>
+                <span class="icon"
+                  ><img
+                    src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="téléphone"
+                /></span>
+                <span class="info-label">Téléphone</span>
+                <span class="info-value"
+                  ><a href="tel:+33648582055">+33 6 48 58 20 55</a></span
+                >
+              </li>
+            </ul>
+            <a
+              href="/cdn-cgi/l/email-protection#ed89888182849e94c38c818895849ead8a808c8481c38e8280"
+              class="aside-cta"
+              >Me contacter</a
+            >
+          </div>
         </div>
       </div>
     </section>
@@ -532,6 +619,10 @@
       <p>© DELOISY ALEXIS — Tous droits réservés</p>
     </footer>
 
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
     <script>
       // Form validation
       (function () {
@@ -617,15 +708,30 @@
       document.querySelectorAll('a[href^="#"]').forEach((link) => {
         link.addEventListener("click", function (e) {
           const t = this.getAttribute("href");
-          if (t && t.length > 1) {
+          if (t && t.startsWith("#") && document.querySelector(t)) {
             e.preventDefault();
             smoothScroll(t, 700);
-            try {
-              history.pushState(null, "", t);
-            } catch (_) {}
           }
         });
       });
+
+      // Fade-in on scroll
+      (function () {
+        const els = document.querySelectorAll(".fade-in");
+        if (!els.length) return;
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        els.forEach((el) => observer.observe(el));
+      })();
     </script>
   </body>
 </html>
