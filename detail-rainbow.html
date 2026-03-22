@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umami Rainbow Shop — Détail Projet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styledetail.css" />
+    <!-- Anti-flash thème -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme");
+        if (saved) document.documentElement.setAttribute("data-theme", saved);
+      })();
+    </script>
+  </head>
+
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <!-- Bouton toggle thème (bas gauche) -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
+    <svg
+      id="theme-icon-sun"
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+    <svg
+      id="theme-icon-moon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="display: none"
+    >
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <span id="theme-label">Mode clair</span>
+  </button>
+
+  <!-- Bouton toggle bubble (bas droite) -->
+  <button
+    id="bubble-toggle"
+    class="bubble-toggle"
+    aria-label="Désactiver l'effet curseur"
+  >
+    <svg
+      id="bubble-icon-on"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="4" />
+    </svg>
+    <svg
+      id="bubble-icon-off"
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="display: none"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+    </svg>
+    <span>Curseur</span>
+  </button>
+
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="logo">
+        <img src="./images/Logo moderne et digi.png" alt="logo alexis" />
+      </div>
+      <nav>
+        <ul style="list-style: none; display: flex">
+          <li>
+            <a href="index.html" class="back-btn">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M19 12H5M12 5l-7 7 7 7" />
+              </svg>
+              Retour au portfolio
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="hero-meta">
+        <span class="project-type">E-commerce</span>
+        <span class="meta-dot"></span>
+        <span class="project-year">2025</span>
+      </div>
+
+      <h1>UMAMI RAINBOW SHOP</h1>
+      <p class="project-tagline">
+        Boutique en ligne spécialisée dans la vente de papeterie et d'objets kawaii
+        japonais — une expérience visuelle colorée et mignonne qui immerse le visiteur
+        dans l'univers de la culture Japanese pop, avec un design playful et des
+        fonctionnalités e-commerce complètes.
+      </p>
+
+      <div class="hero-tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">E-commerce</span>
+        <span class="tag">Design</span>
+      </div>
+    </section>
+
+    <!-- PREVIEW -->
+    <div class="preview-strip">
+      <div class="preview-frame">
+        <div class="browser-bar">
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <div class="browser-url">umami-rainbow-shop.fr</div>
+        </div>
+        <img
+          class="preview-img"
+          src="./images/Capture d'écran 2025-12-04 200049.png"
+          alt="Aperçu Umami Rainbow Shop"
+        />
+      </div>
+    </div>
+
+    <!-- CORPS -->
+    <div class="detail-body">
+      <!-- Contexte -->
+      <div class="context-grid reveal">
+        <div class="context-text">
+          <p class="section-label">Contexte du projet</p>
+          <h2>
+            Une boutique en ligne colorée et joyeuse, dédiée à la culture
+            japonaise kawaii
+          </h2>
+          <p>
+            Ce projet est né de la passion pour la culture japonaise et ses créations
+            adorables : une boutique spécialisée dans la papeterie kawaii, les peluches,
+            les stickers et tous les trésors mignons du Japon.
+          </p>
+          <p>
+            Le design s'inspire de la couleur, de la douceur et de l'univers pop — tout
+            en maintenant une navigation fluide et intuitive. Chaque section est pensée
+            pour enchanter le visiteur et créer une expérience d'achat agréable et
+            inoubliable.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-item">
+            <span class="info-item-label">Type</span>
+            <span class="info-item-value">Boutique e-commerce complète</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Année</span>
+            <span class="info-item-value">2025</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Statut</span>
+            <span class="info-item-value">En cours de développement</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Rôle</span>
+            <span class="info-item-value"
+              >Design · Intégration · Dev front</span
+            >
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Durée</span>
+            <span class="info-item-value">~2-3 semaines</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features-section reveal">
+        <p class="section-label">Ce que le site propose</p>
+        <h2>Fonctionnalités clés</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Design kawaii coloré</h3>
+            <p>
+              Une identité visuelle joyeuse et mignonne inspirée de la culture
+              japonaise, avec une palette pastel et des accents rose/cyan.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Carousel produits</h3>
+            <p>
+              Présentation dynamique des produits avec carousel auto-défilant
+              et navigation fluide pour explorer les offres.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Galerie interactive</h3>
+            <p>
+              Galerie d'images responsive qui s'adapte à tous les écrans
+              pour mettre en valeur les photos produits.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Panier et achat</h3>
+            <p>
+              Système de panier fonctionnel avec stockage localStorage
+              pour un e-commerce complet et fonctionnel.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Animations pop-in</h3>
+            <p>
+              Effets visuels au scroll et au hover pour une expérience
+              dynamique et engageante.
+            </p>
+          </div>
+        </div>
+
+      <!-- Stack -->
+      <div class="stack-section reveal">
+        <p class="section-label">Technologies utilisées</p>
+        <h2>Stack technique</h2>
+        <div class="stack-list">
+          <span class="stack-item">HTML5</span>
+          <span class="stack-item">CSS3 / Flexbox</span>
+          <span class="stack-item">JavaScript Vanilla</span>
+          <span class="stack-item">Animations CSS</span>
+          <span class="stack-item">Google Fonts</span>
+        </div>
+      </div>
+
+      <!-- Bilan -->
+      <div class="lessons-section reveal">
+        <p class="section-label">Bilan & apprentissages</p>
+        <h2>Ce que ce projet m'a appris</h2>
+        <p>
+            Umami Rainbow Shop a été l'occasion d'explorer le design e-commerce playful
+          Umami Rainbow Shop a été l'occasion d'explorer le design e-commerce playful
+          et coloré. J'ai appris à construire un carousel fluide et un système de
+          panier avec localStorage, tout en maintenant une expérience utilisateur
+          joyeuse et accessible. Ce projet m'a montré comment traduire une atmosphère
+          culturelle forte — l'énergie kawaii japonaise — en interface digitale
+          performante et engageante.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section reveal">
+        <h2>Prêt à découvrir Umami ?</h2>
+        <p>
+          Naviguez librement dans l'interface de la boutique Umami Rainbow Shop
+        <div class="cta-buttons">
+          <a href="umami.html" target="_blank" rel="noopener" class="btn-visit">
+            Visiter le projet
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+          <a href="index.html" class="btn-back">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Retour au portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>© DELOISY ALEXIS — Tous droits réservés</p>
+    </footer>
+  </body>
+
+  <script>
+    /* THEME TOGGLE */
+    (function () {
+      const html = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const iconSun = document.getElementById("theme-icon-sun");
+      const iconMoon = document.getElementById("theme-icon-moon");
+      const label = document.getElementById("theme-label");
+
+      function currentTheme() {
+        const saved = html.getAttribute("data-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function applyUI(theme) {
+        if (theme === "dark") {
+          iconSun.style.display = "";
+          iconMoon.style.display = "none";
+          label.textContent = "Mode clair";
+        } else {
+          iconSun.style.display = "none";
+          iconMoon.style.display = "";
+          label.textContent = "Mode sombre";
+        }
+      }
+
+      applyUI(currentTheme());
+
+      btn.addEventListener("click", () => {
+        const next = currentTheme() === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        applyUI(next);
+      });
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+          if (!localStorage.getItem("theme")) applyUI(currentTheme());
+        });
+    })();
+
+    /* BUBBLE TRAIL */
+    (function () {
+      const bubbles = Array.from(document.querySelectorAll(".bubble"));
+      if (!bubbles.length) return;
+      const positions = bubbles.map(() => ({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+      }));
+      const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      let idle = false,
+        idleTimer = null;
+      let bubbleEnabled = true;
+
+      document.addEventListener(
+        "mousemove",
+        (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          idle = false;
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(() => (idle = true), 120);
+        },
+        { passive: true },
+      );
+
+      const toggleBtn = document.getElementById("bubble-toggle");
+      const iconOn = document.getElementById("bubble-icon-on");
+      const iconOff = document.getElementById("bubble-icon-off");
+
+      toggleBtn.addEventListener("click", () => {
+        bubbleEnabled = !bubbleEnabled;
+        bubbles.forEach((b) => (b.style.display = bubbleEnabled ? "" : "none"));
+        iconOn.style.display = bubbleEnabled ? "" : "none";
+        iconOff.style.display = bubbleEnabled ? "none" : "";
+        toggleBtn.classList.toggle("bubble-toggle--off", !bubbleEnabled);
+      });
+
+      function animate() {
+        if (bubbleEnabled) {
+          positions[0].x += (mouse.x - positions[0].x) * 0.22;
+          positions[0].y += (mouse.y - positions[0].y) * 0.22;
+          for (let i = 1; i < positions.length; i++) {
+            positions[i].x +=
+              (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
+            positions[i].y +=
+              (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
+          }
+          if (idle) {
+            for (let i = 1; i < positions.length; i++) {
+              positions[i].x += (positions[0].x - positions[i].x) * 0.12;
+              positions[i].y += (positions[0].y - positions[i].y) * 0.12;
+            }
+          }
+          bubbles.forEach((b, i) => {
+            b.style.setProperty("--x", positions[i].x);
+            b.style.setProperty("--y", positions[i].y);
+            b.style.opacity = Math.max(0.08, 1 - i * 0.18);
+          });
+        }
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      // Désactivé par défaut sur tactile
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        bubbleEnabled = false;
+        bubbles.forEach((b) => (b.style.display = "none"));
+        iconOn.style.display = "none";
+        iconOff.style.display = "";
+        toggleBtn.classList.add("bubble-toggle--off");
+      }
+    })();
+
+    /* SCROLL REVEAL */
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    })();
+  </script>
+</html>
