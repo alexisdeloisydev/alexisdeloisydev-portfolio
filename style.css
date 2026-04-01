@@ -615,36 +615,210 @@ h3 {
 .project-card img { display: block; width: 100%; max-width: 100%; height: auto; margin-top: 14px; border-radius: 6px; }
 
 /* ════════════════════════════════════════
-   ABOUT
+   ABOUT — portrait vertical + texte
 ════════════════════════════════════════ */
+
 .about {
-  padding: 80px 20px;
-  text-align: center;
-  background: var(--bg-alt);
-  transition: background 0.3s;
+  background: var(--bg);
+  padding: 100px 0 100px;
 }
 
-@media (min-width: 900px) {
-  .about { padding: 100px 0; }
+/* ─── Layout principal : portrait | texte ─── */
+.about-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 72px;
+  width: 88%;
+  max-width: 1060px;
+  margin: 0 auto;
+  align-items: start;
 }
 
-.about h2 { font-size: clamp(1.6rem, 5vw, 2.4rem); margin-bottom: 40px; color: var(--text); }
-.about-content { max-width: 800px; margin: 0 auto; }
+/* ─── Colonne portrait ─── */
+.about-portrait-col {
+  position: sticky;
+  top: 96px; /* colle sous la navbar */
+}
 
-.about-intro {
-  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-  line-height: 1.8;
+.about-portrait-wrap {
+  position: relative;
+  /* ratio portrait 2/3 */
+  aspect-ratio: 2 / 3;
+}
+
+/* ── Lueur violette derrière le portrait ── */
+.about-portrait-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -10% -20%;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 65%,
+      rgba(139, 92, 246, 0.55) 0%,
+      rgba(139, 92, 246, 0.22) 40%,
+      rgba(236, 72, 153, 0.10) 65%,
+      transparent 80%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 1s ease;
+}
+
+.about-portrait-wrap:hover::before {
+  background:
+    radial-gradient(ellipse 75% 65% at 50% 65%,
+      rgba(139, 92, 246, 0.70) 0%,
+      rgba(139, 92, 246, 0.30) 40%,
+      rgba(236, 72, 153, 0.15) 65%,
+      transparent 80%);
+}
+
+.about-portrait-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  transform-origin: bottom center;
+}
+
+.about-portrait-wrap:hover .about-portrait-img {
+  transform: scale(1.03) translateY(-6px);
+  filter: drop-shadow(0 0 18px rgba(139, 92, 246, 0.45));
+}
+
+/* Badge rôle + lieu superposé en bas de la photo */
+.about-portrait-badge {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ─── Texte côté droit ─── */
+.about-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 8px;
+}
+
+.about-banner-role {
+  display: block;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .9;
+}
+
+.about-banner-name {
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: var(--text);
+  margin: 0 0 36px;
+}
+
+.about-banner-name em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--accent);
+}
+
+.about-banner-location {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+
+.about-chapeau {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--text);
+  opacity: .9;
+  margin: 0 0 28px;
+  font-weight: 400;
+}
+
+/* Citation avec grande guillemet décorative */
+.about-bq {
+  margin: 0 0 36px;
+  padding: 0 0 0 20px;
+  border: none;
+  position: relative;
+}
+
+.about-bq::before {
+  content: '"';
+  position: absolute;
+  left: -8px;
+  top: -16px;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .18;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+
+.about-bq p, .about-bq {
+  font-style: italic;
+  font-size: .86rem;
+  line-height: 1.7;
   color: var(--text-muted);
-  padding: 24px 22px;
-  background: rgba(139,92,246,0.05);
-  border-left: 3px solid var(--accent);
-  border-radius: 8px;
-  text-align: left;
+  opacity: .6;
 }
 
-@media (min-width: 768px) {
-  .about-content { max-width: 960px; }
-  .about-intro { padding: 30px; }
+/* Filet horizontal séparateur */
+.about-text-col .about-bq {
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 32px;
+}
+
+.about-col--body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 28px;
+}
+
+.about-col--body p {
+  font-size: .9rem;
+  line-height: 1.88;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 860px) {
+  .about {
+    padding: 60px 0 70px;
+  }
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    width: 90%;
+  }
+  .about-portrait-col {
+    position: static;
+    /* portrait centré, largeur max 280px */
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .about-banner-name {
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
+    margin-bottom: 24px;
+  }
 }
 
 /* ════════════════════════════════════════
