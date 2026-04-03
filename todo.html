@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Taskflow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="todo.css" />
+  </head>
+  <body data-theme="light" data-tex="none">
+    <div class="page">
+      <!-- Header -->
+      <header class="site-header">
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <span class="logo-word">TASK<b>FLOW</b></span>
+        </div>
+        <div class="header-right">
+          <button
+            class="icon-btn"
+            id="btn-theme"
+            title="Thème"
+            onclick="quickToggle()"
+          >
+            ☀
+          </button>
+          <button class="icon-btn" title="Personnaliser" onclick="openPanel()">
+            ⚙
+          </button>
+        </div>
+      </header>
+
+      <!-- Stats grid -->
+      <div class="stats-strip">
+        <div class="stat">
+          <span class="stat-n" id="s-total">0</span
+          ><span class="stat-l">Total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n" id="s-active">0</span
+          ><span class="stat-l">Actives</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n" id="s-done">0</span
+          ><span class="stat-l">Faites</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n" id="s-late">0</span
+          ><span class="stat-l">Retard</span>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="prog" style="width: 0%"></div>
+        </div>
+        <div class="progress-label">
+          <span>Progression</span><span id="prog-pct">0%</span>
+        </div>
+      </div>
+
+      <!-- Add card -->
+      <div class="add-card">
+        <div class="add-main">
+          <input
+            type="text"
+            id="new-text"
+            placeholder="Nouvelle tâche…"
+            autocomplete="off"
+          />
+          <button class="btn-add" onclick="addTask()">+ Ajouter</button>
+        </div>
+        <div class="add-meta">
+          <select class="meta-select" id="new-prio">
+            <option value="low">Basse</option>
+            <option value="med" selected>Moyenne</option>
+            <option value="high">Haute</option>
+          </select>
+          <div class="divider-v"></div>
+          <input type="date" class="meta-select" id="new-date" />
+          <div class="divider-v"></div>
+          <select class="meta-select" id="new-cat">
+            <option value="">Catégorie…</option>
+          </select>
+        </div>
+        <div class="tag-add-row" id="tag-selector"></div>
+        <div class="row-inline" style="margin-top: 8px">
+          <input
+            class="chip-input"
+            id="new-tag-in"
+            type="text"
+            placeholder="+ tag…"
+          />
+          <button class="btn-sm" onclick="createTag()">Créer</button>
+        </div>
+      </div>
+
+      <!-- Filters — horizontal scroll on mobile -->
+      <div class="filters-wrap">
+        <div class="filters" id="filters">
+          <button class="filter-btn active" onclick="setF('all', this)">
+            Toutes
+          </button>
+          <button class="filter-btn" onclick="setF('active', this)">
+            Actives
+          </button>
+          <button class="filter-btn" onclick="setF('done', this)">
+            Terminées
+          </button>
+          <button class="filter-btn" onclick="setF('high', this)">
+            Haute priorité
+          </button>
+          <button class="filter-btn" onclick="setF('overdue', this)">
+            En retard
+          </button>
+        </div>
+      </div>
+
+      <!-- List -->
+      <div id="list-container"></div>
+    </div>
+
+    <!-- Settings panel -->
+    <div class="panel-overlay" id="overlay" onclick="closePanel()"></div>
+    <div class="settings-panel" id="panel">
+      <div class="panel-header">
+        <span class="panel-title">Personnalisation</span>
+        <button class="close-btn" onclick="closePanel()">✕</button>
+      </div>
+
+      <div class="sg">
+        <span class="sg-label">Thème</span>
+        <div class="sg-row">
+          <button
+            class="theme-btn active"
+            id="tbtn-light"
+            onclick="setTheme('light', this)"
+          >
+            ☀ Clair
+          </button>
+          <button
+            class="theme-btn"
+            id="tbtn-dark"
+            onclick="setTheme('dark', this)"
+          >
+            ☾ Sombre
+          </button>
+        </div>
+      </div>
+
+      <div class="sg">
+        <span class="sg-label">Couleur d'accent</span>
+        <div class="sg-row" id="swatch-row">
+          <div
+            class="swatch active"
+            style="background: #c1121f"
+            onclick="setAccent('#c1121f', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #1971c2"
+            onclick="setAccent('#1971c2', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #d9730d"
+            onclick="setAccent('#d9730d', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #2f9e44"
+            onclick="setAccent('#2f9e44', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #7048e8"
+            onclick="setAccent('#7048e8', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #c2255c"
+            onclick="setAccent('#c2255c', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #0c8599"
+            onclick="setAccent('#0c8599', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #e67700"
+            onclick="setAccent('#e67700', this)"
+          ></div>
+        </div>
+        <div class="acc-custom">
+          <label>Personnalisé</label>
+          <input
+            type="color"
+            id="custom-color"
+            value="#c1121f"
+            oninput="setAccent(this.value, null)"
+          />
+        </div>
+      </div>
+
+      <div class="sg">
+        <span class="sg-label">Police</span>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Libre+Baskerville&family=Josefin+Sans:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+        <div class="sg-row">
+          <button
+            class="font-btn active"
+            style="font-family: &quot;Syne&quot;, sans-serif"
+            onclick="setFont('Syne', this)"
+          >
+            Syne
+          </button>
+          <button
+            class="font-btn"
+            style="font-family: &quot;Playfair Display&quot;, serif"
+            onclick="setFont('Playfair Display', this)"
+          >
+            Playfair
+          </button>
+          <button
+            class="font-btn"
+            style="font-family: &quot;Fira Code&quot;, monospace"
+            onclick="setFont('Fira Code', this)"
+          >
+            Fira
+          </button>
+        </div>
+        <div class="sg-row" style="margin-top: 7px">
+          <button
+            class="font-btn"
+            style="font-family: &quot;DM Sans&quot;, sans-serif"
+            onclick="setFont('DM Sans', this)"
+          >
+            DM Sans
+          </button>
+          <button
+            class="font-btn"
+            style="font-family: &quot;Libre Baskerville&quot;, serif"
+            onclick="setFont('Libre Baskerville', this)"
+          >
+            Baskerville
+          </button>
+          <button
+            class="font-btn"
+            style="font-family: &quot;Josefin Sans&quot;, sans-serif"
+            onclick="setFont('Josefin Sans', this)"
+          >
+            Josefin
+          </button>
+        </div>
+      </div>
+
+      <div class="sg">
+        <span class="sg-label">Taille du texte</span>
+        <div class="slider-wrap">
+          <input
+            type="range"
+            min="13"
+            max="24"
+            value="16"
+            step="1"
+            id="fs-slider"
+            oninput="setFontSize(this.value)"
+          />
+          <span class="slider-val" id="fs-val">16px</span>
+        </div>
+      </div>
+
+      <div class="sg">
+        <span class="sg-label">Texture de fond</span>
+        <div class="sg-row" style="flex-wrap: wrap">
+          <button class="tex-btn active" onclick="setTex('none', this)">
+            Aucun
+          </button>
+          <button class="tex-btn" onclick="setTex('dots', this)">Points</button>
+          <button class="tex-btn" onclick="setTex('lines', this)">
+            Lignes
+          </button>
+          <button class="tex-btn" onclick="setTex('grid', this)">Grille</button>
+          <button class="tex-btn" onclick="setTex('grain', this)">Grain</button>
+        </div>
+      </div>
+
+      <div class="sg">
+        <span class="sg-label">Catégories</span>
+        <div
+          id="cat-manager"
+          style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px"
+        ></div>
+        <div class="row-inline">
+          <input
+            class="chip-input"
+            id="new-cat-in"
+            placeholder="Nouvelle catégorie…"
+            style="flex: 1; width: auto"
+          />
+          <button class="btn-sm" onclick="createCat()">+</button>
+        </div>
+      </div>
+
+      <div class="panel-sep"></div>
+      <button class="danger-btn" onclick="clearDone()">
+        Supprimer les terminées
+      </button>
+    </div>
+
+    <script>
+      /* ── Persistance localStorage ───────────────────────────── */
+      function loadState() {
+        try {
+          const s = localStorage.getItem("taskflow_state");
+          return s ? JSON.parse(s) : null;
+        } catch (e) {
+          return null;
+        }
+      }
+      function saveState() {
+        try {
+          localStorage.setItem(
+            "taskflow_state",
+            JSON.stringify({
+              tasks,
+              allTags,
+              allCats,
+              nid,
+              theme: document.body.dataset.theme,
+              accent:
+                document.getElementById("custom-color")?.value || "#c1121f",
+              font: document.body.style.fontFamily || "",
+              fontSize: document.documentElement.style.fontSize || "16px",
+              tex: document.body.dataset.tex || "none",
+            }),
+          );
+        } catch (e) {}
+      }
+
+      /* ── State ─────────────────────────────────────────────── */
+      const _saved = loadState();
+      let tasks = _saved?.tasks ?? [];
+      let allTags = _saved?.allTags ?? ["design", "dev", "urgent", "idée"];
+      let allCats = _saved?.allCats ?? ["Dev", "Design", "Perso", "Work"];
+      let nid = _saved?.nid ?? 1;
+      let newTaskTags = [];
+      let activeFilter = "all";
+      let dragSrc = null,
+        dragId = null;
+
+      /* ── Restaurer les préférences visuelles ────────────────── */
+      if (_saved) {
+        if (_saved.theme) document.body.dataset.theme = _saved.theme;
+        if (_saved.tex) document.body.dataset.tex = _saved.tex;
+        if (_saved.font) document.body.style.fontFamily = _saved.font;
+        if (_saved.fontSize)
+          document.documentElement.style.fontSize = _saved.fontSize;
+      }
+
+      /* ── Init ─────────────────────────────────────────────────── */
+      // Appliquer l'accent sauvegardé après le chargement du DOM
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedAccent = _saved?.accent || "#c1121f";
+        setAccent(savedAccent, null);
+        // Synchroniser le bouton thème
+        const savedTheme = _saved?.theme || "light";
+        $("btn-theme").textContent = savedTheme === "dark" ? "☾" : "☀";
+        $("tbtn-" + savedTheme)?.classList.add("active");
+        // Synchroniser le slider de taille
+        const fs = parseInt(_saved?.fontSize) || 16;
+        const slider = $("fs-slider");
+        if (slider) {
+          slider.value = fs;
+          $("fs-val").textContent = fs + "px";
+        }
+      });
+
+      const $ = (id) => document.getElementById(id);
+      const today = () => new Date().toISOString().split("T")[0];
+
+      /* ── Render ─────────────────────────────────────────────── */
+      function render() {
+        updateStats();
+        updateProgress();
+        renderCatSelect();
+        renderTagSel();
+        renderCatMgr();
+        const list = filtered();
+        const cont = $("list-container");
+        if (!list.length) {
+          cont.innerHTML = `<div class="empty-state"><div class="empty-icon">○</div><div class="empty-text">aucune tâche ici</div></div>`;
+          return;
+        }
+        const active = list.filter((t) => !t.done),
+          done = list.filter((t) => t.done);
+        let html = "";
+        if (active.length) {
+          html += `<div class="section-head"><span class="section-title">À faire — ${active.length}</span><div class="section-line"></div></div>`;
+          html += `<div class="task-list">${active.map(tHTML).join("")}</div>`;
+        }
+        if (done.length) {
+          html += `<div class="section-head"><span class="section-title">Terminées — ${done.length}</span><div class="section-line"></div></div>`;
+          html += `<div class="task-list">${done.map(tHTML).join("")}</div>`;
+        }
+        cont.innerHTML = html;
+        /* drag events — desktop only */
+        cont.querySelectorAll(".task").forEach((el) => {
+          el.addEventListener("dragstart", dStart);
+          el.addEventListener("dragover", dOver);
+          el.addEventListener("drop", dDrop);
+          el.addEventListener("dragend", dEnd);
+        });
+      }
+
+      function tHTML(t) {
+        const over = t.date && t.date < today() && !t.done;
+        const pl = { high: "haute", med: "moyenne", low: "basse" };
+        const tags = t.tags
+          .map((tg) => `<span class="inline-tag">${tg}</span>`)
+          .join("");
+        const cat = t.cat ? `<span class="cat-tag">${t.cat}</span>` : "";
+        const date = t.date
+          ? `<span class="date-tag${over ? " overdue" : ""}">${over ? "⚠ " : ""}${t.date}</span>`
+          : "";
+        return `<div class="task" draggable="true" data-id="${t.id}" data-prio="${t.prio}">
+    <span class="drag-grip">⠿</span>
+    <div class="cb${t.done ? " done" : ""}" id="cb${t.id}" onclick="toggleDone(${t.id},this)">
+      <span class="cb-check"></span>
+    </div>
+    <div class="task-body">
+      <span class="task-text-wrap${t.done ? " struck" : ""}">
+        <span class="task-text${t.done ? " done" : ""}">${t.text}</span>
+      </span>
+      <div class="task-meta">
+        <span class="prio-badge prio-${t.prio}">${pl[t.prio]}</span>
+        ${date}${cat}${tags}
+      </div>
+    </div>
+    <div class="task-actions">
+      <button class="act-btn del" onclick="del(${t.id})" title="Supprimer">✕</button>
+    </div>
+  </div>`;
+      }
+
+      function updateStats() {
+        const act = tasks.filter((t) => !t.done).length,
+          don = tasks.filter((t) => t.done).length;
+        const ovd = tasks.filter(
+          (t) => t.date && t.date < today() && !t.done,
+        ).length;
+        $("s-total").textContent = tasks.length;
+        $("s-active").textContent = act;
+        $("s-done").textContent = don;
+        $("s-late").textContent = ovd;
+      }
+      function updateProgress() {
+        const pct = tasks.length
+          ? Math.round(
+              (tasks.filter((t) => t.done).length / tasks.length) * 100,
+            )
+          : 0;
+        $("prog").style.width = pct + "%";
+        $("prog-pct").textContent = pct + "%";
+      }
+
+      /* ── Filter ─────────────────────────────────────────────── */
+      function filtered() {
+        if (activeFilter === "active") return tasks.filter((t) => !t.done);
+        if (activeFilter === "done") return tasks.filter((t) => t.done);
+        if (activeFilter === "high")
+          return tasks.filter((t) => t.prio === "high" && !t.done);
+        if (activeFilter === "overdue")
+          return tasks.filter((t) => t.date && t.date < today() && !t.done);
+        return tasks;
+      }
+      function setF(f, el) {
+        activeFilter = f;
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        render();
+      }
+
+      /* ── Add ────────────────────────────────────────────────── */
+      function addTask() {
+        const txt = $("new-text").value.trim();
+        if (!txt) return;
+        tasks.push({
+          id: nid++,
+          text: txt,
+          prio: $("new-prio").value,
+          date: $("new-date").value,
+          done: false,
+          tags: [...newTaskTags],
+          cat: $("new-cat").value,
+        });
+        $("new-text").value = "";
+        $("new-date").value = "";
+        newTaskTags = [];
+        render();
+        saveState();
+      }
+      $("new-text").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") addTask();
+      });
+
+      /* ── Tags ───────────────────────────────────────────────── */
+      function renderTagSel() {
+        const row = $("tag-selector");
+        const chips = allTags
+          .map(
+            (t) =>
+              `<span class="chip${newTaskTags.includes(t) ? " sel" : ""}" onclick="toggleNewTag('${t}')">${t}</span>`,
+          )
+          .join("");
+        row.innerHTML = `<span style="font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:.06em">TAGS :</span>${chips}`;
+      }
+      function toggleNewTag(t) {
+        const i = newTaskTags.indexOf(t);
+        i >= 0 ? newTaskTags.splice(i, 1) : newTaskTags.push(t);
+        renderTagSel();
+      }
+      function createTag() {
+        const v = $("new-tag-in").value.trim().toLowerCase();
+        if (!v || allTags.includes(v)) return;
+        allTags.push(v);
+        $("new-tag-in").value = "";
+        render();
+        saveState();
+      }
+      $("new-tag-in").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") createTag();
+      });
+
+      /* ── Cats ───────────────────────────────────────────────── */
+      function renderCatSelect() {
+        const s = $("new-cat"),
+          cur = s.value;
+        s.innerHTML =
+          '<option value="">Catégorie…</option>' +
+          allCats.map((c) => `<option>${c}</option>`).join("");
+        s.value = cur;
+      }
+      function renderCatMgr() {
+        $("cat-manager").innerHTML = allCats
+          .map((c) => `<span class="chip" style="cursor:default">${c}</span>`)
+          .join("");
+      }
+      function createCat() {
+        const v = $("new-cat-in").value.trim();
+        if (!v || allCats.includes(v)) return;
+        allCats.push(v);
+        $("new-cat-in").value = "";
+        render();
+        saveState();
+      }
+      $("new-cat-in").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") createCat();
+      });
+
+      /* ── Toggle done ────────────────────────────────────────── */
+      function toggleDone(id, cbEl) {
+        const t = tasks.find((t) => t.id === id);
+        if (!t) return;
+        const taskEl = cbEl?.closest(".task");
+        const wrapEl = taskEl?.querySelector(".task-text-wrap");
+        const textEl = taskEl?.querySelector(".task-text");
+
+        if (!t.done) {
+          t.done = true;
+          if (cbEl) {
+            cbEl.classList.add("done", "ring");
+            setTimeout(() => cbEl.classList.remove("ring"), 400);
+          }
+          if (textEl) textEl.classList.add("done");
+          if (wrapEl) wrapEl.classList.add("struck");
+          if (taskEl) {
+            taskEl.classList.add("completing");
+            taskEl.addEventListener(
+              "animationend",
+              () => taskEl.classList.remove("completing"),
+              { once: true },
+            );
+          }
+          setTimeout(() => {
+            render();
+            saveState();
+          }, 480);
+        } else {
+          t.done = false;
+          if (cbEl) cbEl.classList.remove("done");
+          if (textEl) textEl.classList.remove("done");
+          if (wrapEl) wrapEl.classList.remove("struck");
+          if (taskEl) {
+            taskEl.classList.add("uncompleting");
+            taskEl.addEventListener(
+              "animationend",
+              () => taskEl.classList.remove("uncompleting"),
+              { once: true },
+            );
+          }
+          setTimeout(() => {
+            render();
+            saveState();
+          }, 320);
+        }
+      }
+
+      /* ── Delete ─────────────────────────────────────────────── */
+      function del(id) {
+        tasks = tasks.filter((t) => t.id !== id);
+        render();
+        saveState();
+      }
+      function clearDone() {
+        tasks = tasks.filter((t) => !t.done);
+        render();
+        saveState();
+      }
+
+      /* ── Drag & drop ─────────────────────────────────────────── */
+      function dStart(e) {
+        dragSrc = e.currentTarget;
+        dragId = parseInt(dragSrc.dataset.id);
+        dragSrc.classList.add("dragging");
+        e.dataTransfer.effectAllowed = "move";
+      }
+      function dOver(e) {
+        e.preventDefault();
+        document
+          .querySelectorAll(".task")
+          .forEach((el) => el.classList.remove("drag-over"));
+        e.currentTarget.classList.add("drag-over");
+      }
+      function dDrop(e) {
+        e.preventDefault();
+        const did = parseInt(e.currentTarget.dataset.id);
+        if (dragId === did) return;
+        const si = tasks.findIndex((t) => t.id === dragId),
+          di = tasks.findIndex((t) => t.id === did);
+        const [item] = tasks.splice(si, 1);
+        tasks.splice(di, 0, item);
+        render();
+        saveState();
+      }
+      function dEnd() {
+        document
+          .querySelectorAll(".task")
+          .forEach((el) => el.classList.remove("dragging", "drag-over"));
+        dragSrc = null;
+        dragId = null;
+      }
+
+      /* ── Panel ──────────────────────────────────────────────── */
+      function openPanel() {
+        $("panel").classList.add("open");
+        $("overlay").classList.add("open");
+      }
+      function closePanel() {
+        $("panel").classList.remove("open");
+        $("overlay").classList.remove("open");
+      }
+
+      /* ── Theme ──────────────────────────────────────────────── */
+      function setTheme(t, el) {
+        document.body.dataset.theme = t;
+        $("btn-theme").textContent = t === "dark" ? "☾" : "☀";
+        document
+          .querySelectorAll(".theme-btn")
+          .forEach((b) => b.classList.remove("active"));
+        if (el) el.classList.add("active");
+        /* re-apply accent so dark mode gets the brightened + darkened-sel versions */
+        const cur = $("custom-color").value || "#c1121f";
+        setAccent(cur, null);
+        saveState();
+      }
+      function quickToggle() {
+        const cur = document.body.dataset.theme,
+          next = cur === "dark" ? "light" : "dark";
+        setTheme(next);
+        $("tbtn-" + next).classList.add("active");
+        $("tbtn-" + cur).classList.remove("active");
+      }
+
+      /* ── Accent ─────────────────────────────────────────────── */
+      function darken(hex, amount) {
+        hex = hex.replace("#", "");
+        if (hex.length === 3)
+          hex = hex
+            .split("")
+            .map((c) => c + c)
+            .join("");
+        const r = Math.round(parseInt(hex.slice(0, 2), 16) * (1 - amount));
+        const g = Math.round(parseInt(hex.slice(2, 4), 16) * (1 - amount));
+        const b = Math.round(parseInt(hex.slice(4, 6), 16) * (1 - amount));
+        return (
+          "#" +
+          [r, g, b]
+            .map((v) => Math.max(0, v).toString(16).padStart(2, "0"))
+            .join("")
+        );
+      }
+      function lighten(hex, amount) {
+        hex = hex.replace("#", "");
+        if (hex.length === 3)
+          hex = hex
+            .split("")
+            .map((c) => c + c)
+            .join("");
+        const r = Math.round(
+          parseInt(hex.slice(0, 2), 16) +
+            (255 - parseInt(hex.slice(0, 2), 16)) * amount,
+        );
+        const g = Math.round(
+          parseInt(hex.slice(2, 4), 16) +
+            (255 - parseInt(hex.slice(2, 4), 16)) * amount,
+        );
+        const b = Math.round(
+          parseInt(hex.slice(4, 6), 16) +
+            (255 - parseInt(hex.slice(4, 6), 16)) * amount,
+        );
+        return (
+          "#" +
+          [r, g, b]
+            .map((v) => Math.min(255, v).toString(16).padStart(2, "0"))
+            .join("")
+        );
+      }
+      function setAccent(color, el) {
+        const dark = document.body.dataset.theme === "dark";
+        /* In dark mode: brighten accent so it's visible on dark surfaces (text/icons),
+     but use a darker shade as bg for selected elements so white text stays AA. */
+        const displayed = dark ? lighten(color, 0.18) : color;
+        const sel = dark ? darken(color, 0.28) : color;
+        document.documentElement.style.setProperty("--accent", displayed);
+        document.documentElement.style.setProperty("--accent-sel", sel);
+        document
+          .querySelectorAll(".swatch")
+          .forEach((s) => s.classList.remove("active"));
+        if (el) el.classList.add("active");
+        $("custom-color").value = color;
+        saveState();
+      }
+
+      /* ── Font ───────────────────────────────────────────────── */
+      function setFont(f, el) {
+        document.body.style.fontFamily = `'${f}',sans-serif`;
+        document
+          .querySelectorAll(".font-btn")
+          .forEach((b) => b.classList.remove("active"));
+        if (el) el.classList.add("active");
+        saveState();
+      }
+
+      /* ── Font size — 13 → 24px ──────────────────────────────── */
+      function setFontSize(v) {
+        document.documentElement.style.fontSize = v + "px";
+        $("fs-val").textContent = v + "px";
+        saveState();
+      }
+
+      /* ── Texture ─────────────────────────────────────────────── */
+      function setTex(t, el) {
+        document.body.dataset.tex = t;
+        document
+          .querySelectorAll(".tex-btn")
+          .forEach((b) => b.classList.remove("active"));
+        if (el) el.classList.add("active");
+        saveState();
+      }
+
+      render();
+    </script>
+  </body>
+</html>
