@@ -841,7 +841,7 @@ h3 {
 
 .contact-form {
   display: flex; flex-direction: column; gap: 22px;
-  padding: 28px 22px;
+  padding: 28px 22px 80px;
   border-radius: 14px;
   background: var(--bg-card-2);
   border: 1px solid var(--border-soft);
@@ -850,7 +850,7 @@ h3 {
   transition: background 0.3s, border-color 0.3s;
 }
 
-@media (min-width: 480px) { .contact-form { padding: 40px; } }
+@media (min-width: 480px) { .contact-form { padding: 40px 40px 80px; } }
 
 .field { position: relative; }
 
@@ -924,18 +924,28 @@ h3 {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .form-toast {
+  position: absolute;
+  bottom: 32px;
+  left: 40px;
   opacity: 0;
   background: var(--toast-bg); padding: 12px 22px; border-radius: 8px;
   border: 1.5px solid var(--toast-border); color: var(--toast-text);
   font-size: 0.9rem; transform: translateY(10px); transition: 0.3s;
+  pointer-events: none;
 }
 .form-toast.show { opacity: 1; transform: translateY(0); }
 
-.contact-form .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 4px; }
-
-@media (min-width: 860px) {
-  .contact-form .actions { position: absolute; right: -165px; bottom: 35px; flex-wrap: nowrap; justify-content: flex-end; margin-top: 0; }
+.contact-form .actions {
+  position: absolute;
+  bottom: 28px;
+  right: 22px;
 }
+
+@media (min-width: 480px) {
+  .contact-form .actions { bottom: 32px; right: 40px; }
+}
+
+
 
 /* ════════════════════════════════════════
    CONTACT ASIDE
