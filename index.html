@@ -282,6 +282,7 @@
           <li><a href="#projects">Projets</a></li>
           <li><a href="#about">À propos</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="erreur.html">Erreurs</a></li>
           <li>
             <a
               href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
@@ -688,7 +689,7 @@
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
     ></script>
     <script>
-      // Form validation
+      // ── Form validation + Formspree AJAX ─────────────────────────
       (function () {
         const form = document.getElementById("contact-form");
         const toast = document.getElementById("form-toast");
@@ -711,20 +712,52 @@
             .every(Boolean);
         }
 
-        form.addEventListener("submit", (e) => {
+        function showToast(message, isError) {
+          toast.textContent = message;
+          toast.classList.toggle("toast--error", !!isError);
+          toast.classList.add("show");
+          setTimeout(
+            () => {
+              toast.classList.remove("show", "toast--error");
+              toast.textContent = "Message envoyé ✓";
+            },
+            isError ? 3500 : 2500,
+          );
+        }
+
+        form.addEventListener("submit", async (e) => {
           e.preventDefault();
           if (!validateAll()) return;
+
           btn.classList.add("sending");
-          setTimeout(() => {
+
+          try {
+            const response = await fetch("https://formspree.io/f/mgonbkyp", {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: new FormData(form),
+            });
+
+            if (response.ok) {
+              btn.classList.remove("sending");
+              form.reset();
+              showToast("Message envoyé ✓", false);
+            } else {
+              const data = await response.json();
+              btn.classList.remove("sending");
+              const msg =
+                data?.errors?.map((err) => err.message).join(", ") ||
+                "Erreur lors de l'envoi.";
+              showToast(msg, true);
+            }
+          } catch (_) {
             btn.classList.remove("sending");
-            form.reset();
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2500);
-          }, 1000);
+            showToast("Erreur réseau. Réessaie.", true);
+          }
         });
       })();
 
-      // Hamburger menu
+      // ── Hamburger menu ────────────────────────────────────────────
       (function () {
         const btn = document.getElementById("hamburger");
         const nav = document.getElementById("main-nav");
@@ -742,7 +775,7 @@
         );
       })();
 
-      // Smooth scroll
+      // ── Smooth scroll ─────────────────────────────────────────────
       function easeInOutQuad(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return (c / 2) * t * t + b;
@@ -779,7 +812,7 @@
         });
       });
 
-      // Fade-in on scroll
+      // ── Fade-in on scroll ─────────────────────────────────────────
       (function () {
         const els = document.querySelectorAll(".fade-in");
         if (!els.length) return;
