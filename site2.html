@@ -165,14 +165,19 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(13, 36, 40, 0.75);
             color: #dd985c;
-            border: none;
-            padding: 0.5rem;
-            font-size: 1.5rem;
+            border: 1px solid rgba(221, 152, 92, 0.4);
+            width: 44px;
+            height: 44px;
+            font-size: 1.1rem;
             cursor: pointer;
             z-index: 10;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
         }
 
         .prev-btn {
@@ -184,7 +189,10 @@
         }
 
         .carousel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #dd985c;
+            color: #1e1e1e;
+            border-color: #dd985c;
+            transform: translateY(-50%) scale(1.1);
         }
 
         /* Section contact */
@@ -294,47 +302,69 @@
     </section>
 </body>
 <script>
-    const track = document.querySelector('.carousel-track');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    const track     = document.querySelector('.carousel-track');
+    const prevBtn   = document.querySelector('.prev-btn');
+    const nextBtn   = document.querySelector('.next-btn');
+    const origCards = Array.from(track.children);
+    const n         = origCards.length;
 
-    const cards = Array.from(track.children);
-    const firstClone = cards[0].cloneNode(true);
-    const lastClone = cards[cards.length - 1].cloneNode(true);
+    // On clone TOUTES les cards des deux côtés.
+    // Avec seulement 1 clone de chaque côté, le carousel affiche plusieurs cards
+    // simultanément et le vide derrière le dernier clone devient visible avant le jump.
+    //
+    // Structure finale :
+    // [clone card4 card3 card2 card1] | card1 card2 card3 card4 | [clone card1 card2 card3 card4]
+    //  ← n clones à gauche           |       originaux          |  n clones à droite →
 
-    track.appendChild(firstClone);
-    track.insertBefore(lastClone, cards[0]);
+    origCards.forEach(card => {
+        track.appendChild(card.cloneNode(true));         // clones à droite
+    });
+    [...origCards].reverse().forEach(card => {
+        track.insertBefore(card.cloneNode(true), track.firstChild); // clones à gauche
+    });
 
-    const cardWidth = cards[0].getBoundingClientRect().width + 24; 
-    let currentIndex = 1;
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    // currentIndex pointe sur la 1ère card originale (index n)
+    let currentIndex    = n;
+    let isTransitioning = false;
+
+    function getCardWidth() {
+        return track.children[0].getBoundingClientRect().width + 24; // +24px = gap 1.5rem
+    }
+
+    function goTo(index, animate = true) {
+        track.style.transition = animate ? 'transform 0.5s ease' : 'none';
+        track.style.transform  = `translateX(-${index * getCardWidth()}px)`;
+        currentIndex = index;
+    }
+
+    // Position initiale sans animation
+    goTo(currentIndex, false);
+
+    track.addEventListener('transitionend', () => {
+        // Atterri dans les clones de droite → jump vers les originaux
+        if (currentIndex >= n * 2) {
+            goTo(currentIndex - n, false);
+        }
+        // Atterri dans les clones de gauche → jump vers les originaux
+        else if (currentIndex < n) {
+            goTo(currentIndex + n, false);
+        }
+        isTransitioning = false;
+    });
 
     nextBtn.addEventListener('click', () => {
-        currentIndex++;
-        track.style.transition = 'transform 0.5s ease';
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-        track.addEventListener('transitionend', () => {
-            if (currentIndex === cards.length + 1) {
-                currentIndex = 1;
-                track.style.transition = 'none';
-                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            }
-        });
+        if (isTransitioning) return;
+        isTransitioning = true;
+        goTo(currentIndex + 1);
     });
 
     prevBtn.addEventListener('click', () => {
-        currentIndex--;
-        track.style.transition = 'transform 0.5s ease';
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-        track.addEventListener('transitionend', () => {
-            if (currentIndex === 0) {
-                currentIndex = cards.length;
-                track.style.transition = 'none';
-                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            }
-        });
+        if (isTransitioning) return;
+        isTransitioning = true;
+        goTo(currentIndex - 1);
     });
+
+    // Recalcul si la fenêtre est redimensionnée
+    window.addEventListener('resize', () => goTo(currentIndex, false));
 </script>
 </html>
