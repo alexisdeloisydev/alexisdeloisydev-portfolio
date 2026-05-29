@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2PAC — Official</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="Gemini_Generated_Image_8j6k3i8j6k3i8j6k.ico"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #8a0303;
+        --red-deep: #5e0202;
+        --red-dim: #400101;
+        --red-bright: #b30404;
+        --black: #080505;
+        --dark: #0f0606;
+        --surface: #160808;
+        --surface2: #1e0a0a;
+        --text: #ffffff;
+        --muted: #b5a4a4;
+        --gold: #8a0303;
+        --gold-dim: #5e0202;
+        --gold-light: #b30404;
+
+        /* Variables spécifiques pour les sections à fond blanc */
+        --white: #ffffff;
+        --light-bg: #f9f9f9;
+        --light-surface: #f0f0f0;
+        --text-dark: #111111;
+        --muted-dark: #666666;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--text);
+        font-family: "Barlow", sans-serif;
+        font-weight: 400;
+        overflow-x: hidden;
+        cursor: default;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2rem 3rem;
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 9, 5, 0.97) 0%,
+          transparent 100%
+        );
+      }
+      .nav-logo {
+        font-family: "Anton", sans-serif;
+        font-size: 2rem;
+        letter-spacing: 0.05em;
+        color: var(--red);
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-cta {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--red);
+        padding: 0.55rem 1.4rem;
+        text-decoration: none;
+        font-weight: 700;
+        transition: background 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--red-bright);
+      }
+
+      /* ── HERO ── */
+      #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 80% at 65% 50%,
+            rgba(138, 3, 3, 0.1) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 100% 60% at 50% 100%,
+            rgba(138, 3, 3, 0.2) 0%,
+            transparent 60%
+          ),
+          #080505;
+      }
+      .hero-stripes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 80px,
+          rgba(138, 3, 3, 0.03) 80px,
+          rgba(138, 3, 3, 0.03) 81px
+        );
+      }
+      .hero-texture {
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          -45deg,
+          transparent 0px,
+          transparent 18px,
+          rgba(138, 3, 3, 0.025) 18px,
+          rgba(138, 3, 3, 0.025) 19px
+        );
+        pointer-events: none;
+      }
+      .hero-ghost {
+        position: absolute;
+        bottom: -2rem;
+        right: -2rem;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(14rem, 30vw, 26rem);
+        line-height: 0.85;
+        color: rgba(138, 3, 3, 0.055);
+        letter-spacing: 0.02em;
+        user-select: none;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 6rem 7rem;
+        max-width: 780px;
+      }
+      .hero-eyebrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 2px;
+        background: var(--red);
+      }
+      .hero-title {
+        font-family: "Anton", sans-serif;
+        font-size: clamp(5.5rem, 12vw, 11rem);
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+      .hero-title span {
+        color: var(--red);
+      }
+      .hero-sub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        text-transform: uppercase;
+      }
+      .btn-primary {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        background: var(--red);
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: var(--red-bright);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        border: 2px solid var(--red);
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        background: var(--red);
+        border-color: var(--red-bright);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 6rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        writing-mode: vertical-rl;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        z-index: 2;
+      }
+      .hero-scroll::after {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 50px;
+        background: linear-gradient(to bottom, var(--red), transparent);
+      }
+
+      /* ── CONFIGURATION DES SECTIONS ── */
+      section {
+        position: relative;
+        z-index: 1;
+        padding: 6rem 4rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      .section-number {
+        font-family: "Anton", sans-serif;
+        font-size: 1.2rem;
+        color: var(--red);
+        letter-spacing: 0.1em;
+      }
+      .section-title {
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        letter-spacing: 0.02em;
+        color: inherit;
+        line-height: 1;
+      }
+      .section-line {
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, var(--red), transparent);
+        margin-left: 1rem;
+      }
+
+      .bg-dark-section {
+        background: var(--dark);
+        color: var(--text);
+      }
+
+      .bg-white-section {
+        background: var(--white);
+        color: var(--text-dark);
+      }
+
+      /* ── LATEST RELEASE STRIP ── */
+      #latest {
+        background: var(--red);
+        padding: 1.2rem 3rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        overflow: hidden;
+      }
+      .latest-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .latest-title {
+        font-family: "Anton", sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 0.05em;
+        color: #fff;
+      }
+      .latest-sub {
+        font-family: "Barlow", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .latest-links {
+        margin-left: auto;
+        display: flex;
+        gap: 1.2rem;
+      }
+      .stream-btn {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.4);
+        padding: 0.5rem 1.1rem;
+        text-decoration: none;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+      .stream-btn:hover {
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      /* ── 01. MUSIC (FOND BLANC) ── */
+      .bg-white-section .music-display-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .bg-white-section .main-album-showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .bg-white-section .main-album-card {
+        background: var(--light-surface);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bg-white-section .album-cover-square,
+      .bg-white-section .ep-cover-square {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        overflow: hidden;
+        background: #000;
+      }
+      .bg-white-section .album-cover-square img,
+      .bg-white-section .ep-cover-square img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .bg-white-section .album-info-block {
+        padding: 2rem;
+      }
+      .bg-white-section .album-name {
+        font-size: 2.8rem;
+        line-height: 1;
+        font-family: "Anton", sans-serif;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+      }
+      .bg-white-section .album-year {
+        font-size: 0.9rem;
+        color: var(--muted-dark);
+        font-weight: 500;
+        margin-bottom: 1.2rem;
+      }
+      .bg-white-section .featured-badge {
+        display: inline-block;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+        background: var(--red);
+        padding: 0.2rem 0.6rem;
+        margin-bottom: 0.8rem;
+        width: fit-content;
+      }
+      .bg-white-section .tracklist {
+        list-style: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        margin: 1.2rem 0;
+      }
+      .bg-white-section .tracklist li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.55rem 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        color: var(--muted-dark);
+        cursor: pointer;
+        transition: color 0.15s;
+      }
+      .bg-white-section .tracklist li:hover {
+        color: var(--red-bright);
+      }
+      .bg-white-section .tracklist li span:first-child {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--red);
+        min-width: 18px;
+      }
+      .bg-white-section .tracklist li span:last-child {
+        margin-left: auto;
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
+
+      /* Sidebar des EPs */
+      .bg-white-section .ep-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .bg-white-section .ep-sidebar-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-dark);
+        border-bottom: 2px solid var(--red);
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .bg-white-section .ep-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .bg-white-section .ep-card {
+        background: var(--light-bg);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .bg-white-section .ep-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--red);
+      }
+      .bg-white-section .ep-info {
+        padding: 0.8rem;
+      }
+      .bg-white-section .ep-type {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.2rem;
+      }
+      .bg-white-section .ep-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
+      }
+      .bg-white-section .ep-details {
+        font-size: 0.75rem;
+        color: var(--muted-dark);
+      }
+
+      /* Overlay effet Play */
+      .album-cover-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0);
+        transition: background 0.25s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+      .main-album-card:hover .album-cover-overlay,
+      .ep-card:hover .album-cover-overlay {
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .play-icon {
+        opacity: 0;
+        transition: opacity 0.25s;
+        width: 44px;
+        height: 44px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .play-icon::after {
+        content: "";
+        border: none;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 11px solid #fff;
+        margin-left: 2px;
+      }
+      .main-album-card:hover .play-icon,
+      .ep-card:hover .play-icon {
+        opacity: 1;
+      }
+
+      /* ── 02. MERCH (FOND NOIR) ── */
+      .bg-dark-section .merch-card {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .bg-dark-section .merch-card:hover {
+        border-color: var(--red);
+      }
+      .bg-dark-section .merch-name,
+      .bg-dark-section .merch-price {
+        color: var(--text);
+      }
+      .bg-dark-section .size-tag {
+        color: var(--muted);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .merch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .merch-card {
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          border-color 0.2s;
+        position: relative;
+      }
+      .merch-card:hover {
+        transform: translateY(-3px);
+      }
+      .merch-img {
+        width: 100%;
+        aspect-ratio: 1;
+        display: block;
+        background: #111;
+        overflow: hidden;
+      }
+      .merch-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+      .merch-card:hover .merch-img img {
+        transform: scale(1.05);
+      }
+      .merch-badge {
+        position: absolute;
+        top: 0.7rem;
+        right: 0.7rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: var(--red);
+        color: #fff;
+        padding: 0.2rem 0.6rem;
+        font-weight: 700;
+        z-index: 2;
+      }
+      .merch-info {
+        padding: 1rem;
+      }
+      .merch-cat {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.3rem;
+      }
+      .merch-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .merch-price {
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+      .merch-sizes {
+        display: flex;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+      }
+      .size-tag {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        padding: 0.15rem 0.45rem;
+      }
+      .add-btn {
+        display: block;
+        margin-top: 0.8rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: center;
+        color: #fff;
+        background: var(--red);
+        padding: 0.6rem;
+        text-decoration: none;
+        transition: background 0.2s;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+      }
+      .add-btn:hover {
+        background: var(--red-bright);
+      }
+
+      /* ── 03. BIO / ABOUT (FOND BLANC) ── */
+      .bg-white-section .about-quote-block {
+        background: var(--light-surface);
+      }
+      .bg-white-section .about-quote {
+        color: var(--text-dark);
+      }
+      .bg-white-section .stat-box {
+        background: var(--light-surface);
+      }
+      .bg-white-section .stat-num {
+        color: var(--text-dark);
+      }
+      .bg-white-section .stat-label {
+        color: var(--muted-dark);
+      }
+      .bg-white-section .bio-text h3 {
+        color: var(--text-dark);
+      }
+      .bg-white-section .bio-text p {
+        color: var(--muted-dark);
+      }
+
+      #about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+      }
+      .about-quote-block {
+        border-left: 4px solid var(--red);
+        padding: 1.5rem 2rem;
+        position: relative;
+      }
+      .about-quote-block::before {
+        content: "\201C";
+        font-family: "Anton", sans-serif;
+        font-size: 8rem;
+        color: var(--red);
+        opacity: 0.15;
+        position: absolute;
+        top: -2rem;
+        left: 1rem;
+        line-height: 1;
+      }
+      .about-quote {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.4;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+      }
+      .about-quote-attr {
+        margin-top: 1rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--red);
+        position: relative;
+        z-index: 1;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .stat-box {
+        padding: 1.2rem;
+        border-bottom: 3px solid var(--red);
+      }
+      .stat-num {
+        font-family: "Anton", sans-serif;
+        font-size: 2.6rem;
+        letter-spacing: 0.05em;
+        line-height: 1;
+      }
+      .stat-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-top: 0.2rem;
+      }
+      .bio-text h3 {
+        font-family: "Anton", sans-serif;
+        font-size: 3rem;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+      .bio-text h3 span {
+        color: var(--red);
+      }
+      .bio-text p {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+
+      /* ── 04. CONNECT (STRUCTURE 3 COLONNES) ── */
+      .bg-dark-section .social-card {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .bg-dark-section .social-card:hover {
+        background: var(--surface2);
+        border-color: var(--red);
+      }
+      .bg-dark-section .social-name {
+        color: var(--text);
+      }
+      .bg-dark-section .social-handle,
+      .bg-dark-section .newsletter p {
+        color: var(--muted);
+      }
+      .bg-dark-section .email-input {
+        background: var(--surface);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-right: none;
+        color: var(--text);
+      }
+      .bg-dark-section .email-input:focus {
+        border-color: var(--red);
+      }
+      .bg-dark-section .contact-info-block {
+        background: var(--surface) !important;
+      }
+      .bg-dark-section .contact-text {
+        color: var(--muted) !important;
+      }
+      .bg-dark-section .contact-email {
+        color: var(--text) !important;
+      }
+
+      #connect-container {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1.2fr;
+        gap: 3rem;
+        align-items: start;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .social-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+      .social-card {
+        padding: 1rem 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        cursor: pointer;
+      }
+      .social-icon {
+        font-size: 1.3rem;
+        color: var(--red);
+        min-width: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .social-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .social-handle {
+        font-size: 0.8rem;
+        margin-top: 0.1rem;
+      }
+
+      .newsletter h3 {
+        font-family: "Anton", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.02em;
+        color: inherit;
+        margin-bottom: 0.5rem;
+      }
+      .newsletter p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+      .email-form {
+        display: flex;
+        gap: 0;
+      }
+      .email-input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        font-family: "Barlow", sans-serif;
+        font-size: 0.9rem;
+        outline: none;
+      }
+      .email-submit {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #fff;
+        background: var(--red);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .email-submit:hover {
+        background: var(--red-bright);
+      }
+
+      /* Bloc Rappel Merch Centralisé */
+      .side-merch-reminder {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .side-merch-header h4 {
+        font-family: "Anton", sans-serif;
+        font-size: 1.2rem;
+        letter-spacing: 0.03em;
+        color: var(--text);
+        text-transform: uppercase;
+      }
+      .side-merch-header p {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 0.1rem;
+      }
+      .side-merch-thumbs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+      }
+      .side-thumb {
+        width: 100%;
+        aspect-ratio: 1;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+      .side-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--black);
+        border-top: 2px solid var(--red);
+        padding: 2.5rem 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer-logo {
+        font-family: "Anton", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.05em;
+        color: var(--red-deep);
+      }
+      .footer-legal {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+      }
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .footer-links a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--red-bright);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-content {
+        animation: fadeInUp 0.9s ease forwards;
+      }
+
+      /* Responsive adaptation */
+      @media (max-width: 1024px) {
+        #connect-container {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="nav-logo">2PAC</a>
+      <ul class="nav-links">
+        <li><a href="#music">Music</a></li>
+        <li><a href="#merch">Merch</a></li>
+        <li><a href="#about">Bio</a></li>
+        <li><a href="#connect-container">Connect</a></li>
+      </ul>
+      <a href="#connect-container" class="nav-cta">Newsletter</a>
+    </nav>
+
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-stripes"></div>
+      <div class="hero-texture"></div>
+      <div class="hero-ghost">2PAC</div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">Compton, California — Death Row Records</p>
+        <h1 class="hero-title">TU<span>PAC</span><br />SHA<span>KUR</span></h1>
+        <p class="hero-sub">Rapper · Poet · Activist · Icon</p>
+        <div class="hero-actions">
+          <a href="#music" class="btn-primary">Écouter Maintenant</a>
+          <a href="#merch" class="btn-outline">Voir le Merch</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <div id="latest">
+      <span class="latest-label">Nouvel Album</span>
+      <div>
+        <div class="latest-title"></div>
+        <div class="latest-sub">
+          2Pacalypse Now Disponible sur toutes les plateformes — 1991
+        </div>
+      </div>
+      <div class="latest-links">
+        <a
+          href="https://open.spotify.com/intl-fr/album/5Ijk8JGsEkwCZd5i0Iy09a"
+          class="stream-btn"
+          >▶ Spotify</a
+        >
+        <a
+          href="https://music.apple.com/us/album/2pacalypse-now/1440489998"
+          class="stream-btn"
+          >▶ Apple Music</a
+        >
+        <a
+          href="https://www.youtube.com/playlist?list=OLAK5uy_luDw2fzcTy8txl83cRhIcRr11wQ93l3Gw"
+          class="stream-btn"
+          >▶ YouTube</a
+        >
+        <a
+          href="https://soundcloud.com/2pac/sets/2pacalypse-now-2"
+          class="stream-btn"
+          >▶ SoundCloud</a
+        >
+      </div>
+    </div>
+
+    <section id="music" class="bg-white-section">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Discographie</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="music-display-container">
+        <div class="main-album-showcase">
+          <div class="main-album-card">
+            <div class="album-cover-square">
+              <img src="2Pacalypse-Now.webp" alt="2Pacalypse Now Cover" />
+              <div class="album-cover-overlay">
+                <div class="play-icon"></div>
+              </div>
+            </div>
+            <div class="album-info-block">
+              <div class="featured-badge">Album Debut</div>
+              <div class="album-name">2Pacalypse Now</div>
+              <div class="album-year">1991 · Interscope Records</div>
+              <ul class="tracklist">
+                <li><span>01</span>Young Black Male<span>4:19</span></li>
+                <li><span>02</span>Trapped<span>4:48</span></li>
+                <li><span>03</span>Soulja's Story<span>5:38</span></li>
+                <li><span>04</span>I Don't Give a F**k<span>4:09</span></li>
+                <li><span>05</span>Brenda's Got a Baby<span>4:25</span></li>
+                <li><span>06</span>Keep Ya Head Up<span>4:40</span></li>
+              </ul>
+              <a
+                href="#"
+                class="btn-primary"
+                style="margin-top: 0.5rem; display: block; text-align: center"
+                >Écouter l'Album</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="ep-sidebar">
+          <div class="ep-sidebar-title">EPs et sons Marquants</div>
+          <div class="ep-grid">
+            <div class="ep-card">
+              <div class="ep-cover-square">
+                <img src="samesong.webp" alt="Digital Underground EP Cover" />
+                <div class="album-cover-overlay">
+                  <div class="play-icon"></div>
+                </div>
+              </div>
+              <div class="ep-info">
+                <div class="ep-type">EP</div>
+                <div class="ep-name">Digital Underground</div>
+                <div class="ep-details">1990 · 5 titres</div>
+              </div>
+            </div>
+
+            <div class="ep-card">
+              <div class="ep-cover-square">
+                <img src="ybm.webp" alt="young black male Cover" />
+                <div class="album-cover-overlay">
+                  <div class="play-icon"></div>
+                </div>
+              </div>
+              <div class="ep-info">
+                <div class="ep-type">Premier son de 2Pacalypse Now</div>
+                <div class="ep-name">Young Black Male</div>
+                <div class="ep-details">1991 · Extraits 2Pacalypse Now</div>
+              </div>
+            </div>
+
+            <div class="ep-card">
+              <div class="ep-cover-square">
+                <img src="violent.webp" alt="Violent Cover" />
+                <div class="album-cover-overlay">
+                  <div class="play-icon"></div>
+                </div>
+              </div>
+              <div class="ep-info">
+                <div class="ep-type">son marquant de 2Pacalypse Now</div>
+                <div class="ep-name">Violent</div>
+                <div class="ep-details">1991 · 2Pacalypse Now</div>
+              </div>
+            </div>
+
+            <div class="ep-card">
+              <div class="ep-cover-square">
+                <img
+                  src="Tupacrendasbaby2.webp"
+                  alt="Brenda's Got a Baby Cover"
+                />
+                <div class="album-cover-overlay">
+                  <div class="play-icon"></div>
+                </div>
+              </div>
+              <div class="ep-info">
+                <div class="ep-type">Brenda's Got a Baby</div>
+                <div class="ep-name">2Pacalypse Now</div>
+                <div class="ep-details">1991 · 2Pacalypse Now</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="merch" class="bg-dark-section">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Merch Officiel</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="merch-grid">
+        <div class="merch-card">
+          <div class="merch-img">
+            <img
+              src="Gemini_Generated_Image_1uatx41uatx41uat.png"
+              alt="2Pac Tour Tee 1993"
+            />
+            <div class="merch-badge">New</div>
+          </div>
+          <div class="merch-info">
+            <div class="merch-cat">T-Shirt</div>
+            <div class="merch-name">2Pacalypse Now tee</div>
+            <div class="merch-price">25$</div>
+            <div class="merch-sizes">
+              <span class="size-tag">S</span><span class="size-tag">M</span
+              ><span class="size-tag">L</span><span class="size-tag">XL</span
+              ><span class="size-tag">XXL</span>
+            </div>
+            <button class="add-btn">Ajouter au panier</button>
+          </div>
+        </div>
+
+        <div class="merch-card">
+          <div class="merch-img">
+            <img
+              src="Gemini_Generated_Image_3a2lgt3a2lgt3a2l.jpg"
+              alt="Thug Life Hoodie Noir"
+            />
+          </div>
+          <div class="merch-info">
+            <div class="merch-cat">Hoodie</div>
+            <div class="merch-name">2Pacalypse Now hoodie</div>
+            <div class="merch-price">35$</div>
+            <div class="merch-sizes">
+              <span class="size-tag">S</span><span class="size-tag">M</span
+              ><span class="size-tag">L</span><span class="size-tag">XL</span>
+            </div>
+            <button class="add-btn">Ajouter au panier</button>
+          </div>
+        </div>
+
+        <div class="merch-card">
+          <div class="merch-img">
+            <img
+              src="Gemini_Generated_Image_c3mhxrc3mhxrc3mh.jpg"
+              alt="Snapback 2Pac Compton"
+            />
+            <div class="merch-badge" style="background: var(--red-deep)">
+              Limited
+            </div>
+          </div>
+          <div class="merch-info">
+            <div class="merch-cat">Casquette</div>
+            <div class="merch-name">Snapback 2Pacalypse Now</div>
+            <div class="merch-price">30$</div>
+            <div class="merch-sizes">
+              <span class="size-tag">Taille unique</span>
+            </div>
+            <button class="add-btn">Ajouter au panier</button>
+          </div>
+        </div>
+
+        <div class="merch-card">
+          <div class="merch-img">
+            <img
+              src="Gemini_Generated_Image_dl4csidl4csidl4c.jpg"
+              alt="bandana 2Pacalypse Now 1991"
+            />
+          </div>
+          <div class="merch-info">
+            <div class="merch-cat">Bandana</div>
+            <div class="merch-name">Bandana 2Pacalypse Now 1991</div>
+            <div class="merch-price">25$</div>
+            <div class="merch-sizes">
+              <span class="size-tag">Taille unique</span>
+            </div>
+            <button class="add-btn">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem">
+        <a href="#" class="btn-outline">Voir tout le merch</a>
+      </div>
+    </section>
+
+    <section id="about" class="bg-white-section">
+      <div class="about-visual">
+        <div class="about-quote-block">
+          <p class="about-quote">
+            I know it seems hard sometimes but remember one thing. Through every
+            dark night, there's a bright day after that.
+          </p>
+          <p class="about-quote-attr">— Tupac Shakur</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Album Solo Référencé</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">200k</div>
+            <div class="stat-label">Disques vendus</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4</div>
+            <div class="stat-label">EPs Marquants</div>
+          </div>
+        </div>
+      </div>
+      <div class="bio-text">
+        <h3>La Voix d'une <span>Génération</span></h3>
+        <p>
+          Né le 16 juin 1971 à East Harlem, New York, Tupac Amaru Shakur a
+          grandi entre Baltimore et Oakland, façonné par une enfance marquée par
+          la pauvreté et l'activisme politique. Fils de Afeni Shakur, membre des
+          Black Panthers, il a absorbé dès l'enfance les injustices sociales
+          qu'il mettra en mots avec une précision chirurgicale.
+        </p>
+        <p>
+          Rejoint Digital Underground en 1990, il s'impose rapidement comme une
+          force à part. Son premier album solo <em>2Pacalypse Now</em> (1991)
+          provoque la controverse — le Vice-Président Dan Quayle exige son
+          retrait des bacs. Une controverse qui confirme la puissance de ses
+          mots.
+        </p>
+        <p>
+          Poète, actor, activiste — Tupac incarne la dualité de toute une
+          génération, coincée entre la brutalité des rues et l'aspiration à
+          quelque chose de plus grand. Sa musique n'est pas de l'entertainment.
+          C'est un témoignage.
+        </p>
+        <div
+          style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap"
+        >
+          <a href="#music" class="btn-primary">Écouter la musique</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect" class="bg-dark-section">
+      <div id="connect-container">
+        <div>
+          <div class="section-header" style="margin-bottom: 2rem">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Réseaux</h2>
+          </div>
+          <div class="social-grid">
+            <a href="#" class="social-card">
+              <div class="social-icon">◉</div>
+              <div>
+                <div class="social-name">Instagram</div>
+                <div class="social-handle">@2pac</div>
+              </div>
+            </a>
+            <a href="#" class="social-card">
+              <div class="social-icon">▶</div>
+              <div>
+                <div class="social-name">YouTube</div>
+                <div class="social-handle">2PacOfficialYT</div>
+              </div>
+            </a>
+            <a href="#" class="social-card">
+              <div class="social-icon">♪</div>
+              <div>
+                <div class="social-name">Spotify</div>
+                <div class="social-handle">Tupac Shakur</div>
+              </div>
+            </a>
+            <a href="#" class="social-card">
+              <div class="social-icon">✦</div>
+              <div>
+                <div class="social-name">Twitter / X</div>
+                <div class="social-handle">@2PAC</div>
+              </div>
+            </a>
+            <a href="#" class="social-card">
+              <div class="social-icon">♬</div>
+              <div>
+                <div class="social-name">TikTok</div>
+                <div class="social-handle">@2pac</div>
+              </div>
+            </a>
+            <a href="#" class="social-card">
+              <div class="social-icon">●</div>
+              <div>
+                <div class="social-name">Apple Music</div>
+                <div class="social-handle">2Pac</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div style="align-self: center">
+          <div class="side-merch-reminder">
+            <div class="side-merch-header">
+              <h4>Collection Officielle</h4>
+              <p>Éditions limitées Death Row Records & Tour Apparel.</p>
+            </div>
+            <div class="side-merch-thumbs">
+              <div class="side-thumb">
+                <img
+                  src="Gemini_Generated_Image_1uatx41uatx41uat.png"
+                  alt="Merch Thumb 1"
+                />
+              </div>
+              <div class="side-thumb">
+                <img
+                  src="Gemini_Generated_Image_3a2lgt3a2lgt3a2l.jpg"
+                  alt="Merch Thumb 2"
+                />
+              </div>
+              <div class="side-thumb">
+                <img
+                  src="Gemini_Generated_Image_dl4csidl4csidl4c.jpg"
+                  alt="Merch Thumb 3"
+                />
+              </div>
+            </div>
+            <a
+              href="#merch"
+              class="btn-primary"
+              style="
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+                text-align: center;
+              "
+              >Visiter la boutique</a
+            >
+          </div>
+        </div>
+
+        <div>
+          <div class="newsletter">
+            <div class="section-header" style="margin-bottom: 1.5rem">
+              <span class="section-number">04</span>
+              <h2 class="section-title">Newsletter</h2>
+            </div>
+            <p>
+              Sois le premier informé des nouveaux drops, dates de concert et
+              sorties exclusives. Aucun spam.
+            </p>
+            <div class="email-form">
+              <input
+                type="email"
+                class="email-input"
+                placeholder="ton@email.com"
+              />
+              <button class="email-submit">Subscribe</button>
+            </div>
+            <p
+              style="
+                font-size: 0.8rem;
+                margin-top: 0.8rem;
+                letter-spacing: 0.05em;
+              "
+            >
+              En t'inscrivant tu acceptes de recevoir des communications de 2Pac
+              / Death Row Records.
+            </p>
+          </div>
+
+          <div
+            class="contact-info-block"
+            style="
+              padding: 1.5rem;
+              border-left: 4px solid var(--red);
+              margin-top: 2rem;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Barlow Condensed&quot;, sans-serif;
+                font-size: 0.8rem;
+                font-weight: 700;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                color: var(--red);
+                margin-bottom: 0.5rem;
+              "
+            >
+              Contact Pro
+            </div>
+            <div
+              class="contact-text"
+              style="font-size: 0.9rem; font-weight: 500; line-height: 1.8"
+            >
+              Booking · Interviews · Press<br />
+              <span class="contact-email" style="font-weight: 600"
+                >management@2pac-official.com</span
+              >
+            </div>
+            <div
+              class="contact-text"
+              style="
+                font-size: 0.9rem;
+                font-weight: 500;
+                margin-top: 0.5rem;
+                line-height: 1.8;
+              "
+            >
+              Merch · Licences · Partenariats<br />
+              <span class="contact-email" style="font-weight: 600"
+                >business@2pac-official.com</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-logo">2PAC</div>
+      <ul class="footer-links">
+        <li><a href="#">Presse</a></li>
+        <li><a href="#">Booking</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+        <li><a href="#">CGV</a></li>
+      </ul>
+      <p class="footer-legal">
+        © 1991 Tupac Shakur / Interscope Records In association with Digital
+        Underground. Tous droits réservés.
+      </p>
+    </footer>
+  </body>
+</html>
