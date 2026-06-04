@@ -3,16 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Deloisy Alexis, développeur web front-end." />
+    <meta
+      name="description"
+      content="Portfolio de Deloisy Alexis, développeur web front-end."
+    />
     <title>Portfolio — DELOISY ALEXIS</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="./images/favicon.ico" />
-
-    <!-- theme-color pour éviter le fond blanc avant paint -->
-    <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-
-    <!-- Applique le thème AVANT le rendu pour éviter le flash -->
+    <meta
+      name="theme-color"
+      content="#0f0f0f"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
     <script>
       (function () {
         const saved = localStorage.getItem("theme");
@@ -21,16 +28,21 @@
     </script>
   </head>
   <body>
-
-    <!-- ═══════════════════════════════════════════════════
-         SPRITE SVG — toutes les icônes définies une seule fois
-         display:none = pas rendu, pas de requête, réutilisable
-         avec <use href="#icon-xxx"> partout dans la page
-    ════════════════════════════════════════════════════════ -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-
-      <!-- Icône soleil (thème clair) -->
-      <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- SPRITE SVG — 0 requete HTTP, tout est inline -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: none"
+      aria-hidden="true"
+    >
+      <symbol
+        id="icon-sun"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <circle cx="12" cy="12" r="5" />
         <line x1="12" y1="1" x2="12" y2="3" />
         <line x1="12" y1="21" x2="12" y2="23" />
@@ -42,80 +54,253 @@
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
       </symbol>
 
-      <!-- Icône lune (thème sombre) -->
-      <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <symbol
+        id="icon-moon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </symbol>
 
-      <!-- Icône curseur actif (bulle on) -->
-      <symbol id="icon-bubble-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <symbol
+        id="icon-bubble-on"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <circle cx="12" cy="12" r="10" />
         <circle cx="12" cy="12" r="4" />
       </symbol>
 
-      <!-- Icône curseur désactivé (bulle off) -->
-      <symbol id="icon-bubble-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <symbol
+        id="icon-bubble-off"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <circle cx="12" cy="12" r="10" />
         <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
       </symbol>
 
-      <!-- Icône LinkedIn -->
       <symbol id="icon-linkedin" viewBox="0 0 382 382">
-        <path fill="currentColor" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
-          C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z
-          M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403
-          c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844z
-          M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
-          s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z
-          M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168
-          c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
-          c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593
-          c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655
-          c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654z"/>
+        <path
+          fill="currentColor"
+          d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0zM118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844zM86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432zM341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654z"
+        />
       </symbol>
 
+      <symbol
+        id="icon-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </symbol>
+
+      <symbol
+        id="icon-location"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+        />
+        <circle cx="12" cy="9" r="2.5" />
+      </symbol>
+
+      <symbol
+        id="icon-check"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+
+      <symbol
+        id="icon-phone"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+        />
+      </symbol>
+
+      <symbol id="icon-html" viewBox="0 0 124 141.53">
+        <path
+          d="M10.383 126.894L0 0l124 .255-10.979 126.639-50.553 14.638z"
+          fill="#e34f26"
+        />
+        <path
+          d="M62.468 129.277V12.085l51.064.17-9.106 104.851z"
+          fill="#ef652a"
+        />
+        <path
+          d="M99.49 41.362l1.446-15.49H22.383l4.34 47.49h54.213L78.81 93.617l-17.362 4.68-17.617-5.106-.936-12.085H27.319l2.128 24.681 32 8.936 32.255-8.936 4.34-48.17H41.107L39.49 41.362z"
+          fill="#fff"
+        />
+      </symbol>
+
+      <symbol id="icon-css" viewBox="0 0 124 141.53">
+        <path
+          d="M10.383 126.892L0 0l124 .255-10.979 126.637-50.553 14.638z"
+          fill="#1b73ba"
+        />
+        <path
+          d="M62.468 129.275V12.085l51.064.17-9.106 104.85z"
+          fill="#1c88c7"
+        />
+        <path
+          d="M100.851 27.064H22.298l2.128 15.318h37.276l-36.68 15.745 2.127 14.808h54.043l-1.958 20.68-18.298 3.575-16.595-4.255-1.277-11.745H27.83l2.042 24.426 32.681 9.106 31.32-9.957 4-47.745H64.765l36.085-14.978z"
+          fill="#fff"
+        />
+      </symbol>
+
+      <symbol id="icon-js" viewBox="0 0 124 141.53">
+        <path
+          d="M10.383 126.894L0 0l124 .255-10.979 126.639-50.553 14.638z"
+          fill="#e9ca32"
+        />
+        <path
+          d="M62.468 129.277V12.085l51.064.17-9.106 104.851z"
+          fill="#ffde25"
+        />
+        <path
+          d="M57 26H43.5v78L33 102V91.5l-12.5-2V113l36.5 9.5zm10.127 0H104.5L102 40.95H81.394v24.533H102L99.5 115l-32.373 7.5V107L89 99.5 90.263 79l-23.136 3.35z"
+          fill="#fff"
+        />
+      </symbol>
+
+      <symbol id="icon-photoshop" viewBox="0 0 240 234">
+        <path
+          d="M42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0z"
+          fill="#001e36"
+        />
+        <g fill="#31a8ff">
+          <path
+            d="M54 164.1V61.2c0-.7.3-1.1 1-1.1 1.7 0 3.3 0 5.6-.1 2.4-.1 4.9-.1 7.6-.2s5.6-.1 8.7-.2 6.1-.1 9.1-.1c8.2 0 15 1 20.6 3.1 5 1.7 9.6 4.5 13.4 8.2 3.2 3.2 5.7 7.1 7.3 11.4 1.5 4.2 2.3 8.5 2.3 13 0 8.6-2 15.7-6 21.3s-9.6 9.8-16.1 12.2c-6.8 2.5-14.3 3.4-22.5 3.4-2.4 0-4 0-5-.1s-2.4-.1-4.3-.1V164c.1.7-.4 1.3-1.1 1.4H55.2c-.8 0-1.2-.4-1.2-1.3zm21.8-84.7V113c1.4.1 2.7.2 3.9.2H85c3.9 0 7.8-.6 11.5-1.8 3.2-.9 6-2.8 8.2-5.3 2.1-2.5 3.1-5.9 3.1-10.3.1-3.1-.7-6.2-2.3-8.9-1.7-2.6-4.1-4.6-7-5.7-3.7-1.5-7.7-2.1-11.8-2-2.6 0-4.9 0-6.8.1-2-.1-3.4 0-4.1.1zM192 106.9c-3-1.6-6.2-2.7-9.6-3.4-3.7-.8-7.4-1.3-11.2-1.3-2-.1-4.1.2-6 .7-1.3.3-2.4 1-3.1 2-.5.8-.8 1.8-.8 2.7s.4 1.8 1 2.6c.9 1.1 2.1 2 3.4 2.7 2.3 1.2 4.7 2.3 7.1 3.3 5.4 1.8 10.6 4.3 15.4 7.3 3.3 2.1 6 4.9 7.9 8.3 1.6 3.2 2.4 6.7 2.3 10.3.1 4.7-1.3 9.4-3.9 13.3-2.8 4-6.7 7.1-11.2 8.9-4.9 2.1-10.9 3.2-18.1 3.2-4.6 0-9.1-.4-13.6-1.3-3.5-.6-7-1.7-10.2-3.2-.7-.4-1.2-1.1-1.1-1.9v-17.4c0-.3.1-.7.4-.9s.6-.1.9.1c3.9 2.3 8 3.9 12.4 4.9 3.8 1 7.8 1.5 11.8 1.5 3.8 0 6.5-.5 8.3-1.4 1.6-.7 2.7-2.4 2.7-4.2 0-1.4-.8-2.7-2.4-4s-4.9-2.8-9.8-4.7c-5.1-1.8-9.8-4.2-14.2-7.2-3.1-2.2-5.7-5.1-7.6-8.5-1.6-3.2-2.4-6.7-2.3-10.2 0-4.3 1.2-8.4 3.4-12.1 2.5-4 6.2-7.2 10.5-9.2 4.7-2.4 10.6-3.5 17.7-3.5 4.1 0 8.3.3 12.4.9 3 .4 5.9 1.2 8.6 2.3.4.1.8.5 1 .9.1.4.2.8.2 1.2v16.3c0 .4-.2.8-.5 1-.9.2-1.4.2-1.8 0z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-aftereffects" viewBox="0 0 2500 2437.5">
+        <path
+          d="M442.71 0h1614.58C2302.08 0 2500 197.92 2500 442.71v1552.08c0 244.79-197.92 442.71-442.71 442.71H442.71C197.92 2437.5 0 2239.58 0 1994.79V442.71C0 197.92 197.92 0 442.71 0z"
+          fill="#00005b"
+        />
+        <g fill="#99f">
+          <path
+            d="M1004.17 1458.33h-387.5l-79.17 245.83c-2.08 9.37-10.42 15.62-19.79 14.58H321.88c-11.46 0-14.58-6.25-11.46-18.75l335.42-961.46c3.12-10.42 6.25-19.79 10.42-32.29 4.17-21.87 6.25-44.79 6.25-67.71-1.04-5.21 3.12-10.42 8.33-11.46h269.79c7.29 0 12.5 3.12 13.54 8.33l380.21 1062.5c3.13 11.46 0 16.67-10.42 16.67h-217.71c-7.29 1.04-14.58-4.17-16.67-11.46l-85.42-250v5.21zm-327.08-207.29h264.58c-6.25-21.87-14.58-47.92-23.96-75-9.38-28.12-18.75-58.33-28.12-89.58-10.42-32.29-19.79-63.54-30.21-95.83s-19.79-62.5-28.12-92.71c-8.33-29.17-15.62-56.25-22.92-81.25h-2.08c-9.38 44.79-20.83 89.58-35.42 134.38-15.62 50-31.25 102.08-47.92 154.17-13.54 53.12-30.21 102.08-45.83 145.83zM1947.92 1364.58h-330.21c4.17 32.29 14.58 64.58 32.29 92.71 18.75 28.12 44.79 50 76.04 62.5 41.67 17.71 87.5 27.08 133.33 26.04 36.46-1.04 72.92-4.17 108.33-11.46 32.29-4.17 63.54-12.5 92.71-23.96 5.21-4.17 8.33-2.08 8.33 8.33v159.38c0 4.17-1.04 8.33-2.08 12.5-2.08 3.13-4.17 5.21-7.29 7.29-33.33 14.58-67.71 25-104.17 31.25-48.96 9.37-97.92 13.54-147.92 12.5-79.17 0-145.83-12.5-200-36.46-51.04-21.88-95.83-56.25-131.25-98.96-33.33-40.62-57.29-86.46-71.87-136.46-14.58-48.96-21.88-100-21.88-152.08 0-56.25 8.33-111.46 26.04-165.63 16.67-52.08 42.71-100 78.12-142.71 34.38-41.67 77.08-75 126.04-98.96s107.29-32.29 173.96-32.29c55.21-1.04 110.42 9.38 161.46 32.29 42.71 18.75 80.21 46.88 109.38 83.33 27.08 35.42 48.96 75 62.5 118.75 13.54 41.67 19.79 84.37 19.79 127.08 0 25-1.04 46.88-2.08 66.67-2.08 19.79-3.13 34.38-4.17 43.75-1.04 7.29-7.29 13.54-14.58 13.54-6.25 0-17.71 1.04-34.38 2.08-16.67 2.08-36.46 3.13-60.42 3.13s-48.96-4.17-76.04-4.17zm-330.21-152.08h219.79c27.08 0 46.88 0 59.37-1.04 8.33-1.04 16.67-3.13 23.96-8.33v-10.42c0-13.54-2.08-26.04-6.25-38.54-18.75-58.33-73.96-97.92-135.42-95.83-57.29-3.13-111.46 27.08-138.54 79.17-12.5 23.96-19.79 48.96-22.92 75z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-illustrator" viewBox="0 0 240 234">
+        <path
+          d="M42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0z"
+          fill="#300"
+        />
+        <g fill="#ff9a00">
+          <path
+            d="M116.3 140.4H79.1l-7.6 23.5c-.2.9-1 1.5-1.9 1.4H50.8c-1.1 0-1.4-.6-1.1-1.8l32.2-92.7c.3-1 .6-2.1 1-3.3.4-2.1.6-4.3.6-6.5-.1-.5.3-1 .8-1.1H110.2c.8 0 1.2.3 1.3.8l36.5 103c.3 1.1 0 1.6-1 1.6h-20.9c-.7.1-1.4-.4-1.6-1.1zm-31.4-20.3h25.4c-.6-2.1-1.4-4.6-2.3-7.2-.9-2.7-1.8-5.6-2.7-8.6-1-3.1-1.9-6.1-2.9-9.2s-1.9-6-2.7-8.9c-.8-2.8-1.5-5.4-2.2-7.8h-.2c-.9 4.3-2 8.6-3.4 12.9-1.5 4.8-3 9.8-4.6 14.8-1.4 5.1-2.9 9.8-4.4 14zM169.8 77c-3.3.1-6.5-1.2-8.9-3.5-2.3-2.5-3.5-5.8-3.4-9.2-.1-3.4 1.2-6.6 3.6-8.9s5.6-3.5 8.9-3.5c3.9 0 6.9 1.2 9.1 3.5 2.2 2.4 3.4 5.6 3.3 8.9.1 3.4-1.1 6.7-3.5 9.2-2.3 2.4-5.7 3.7-9.1 3.5zm-11.2 86.8v-77c0-1 .4-1.4 1.3-1.4h19.8c.9 0 1.3.5 1.3 1.4v77c0 1.1-.4 1.6-1.3 1.6h-19.6c-1 0-1.5-.6-1.5-1.6z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-premiere" viewBox="0 0 240 234">
+        <path
+          d="M42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0z"
+          fill="#00005b"
+        />
+        <g fill="#99f">
+          <path
+            d="M57 164V61c0-.7.3-1.1 1-1.1 1.7 0 3.3 0 5.6-.1 2.4-.1 4.9-.1 7.6-.2s5.6-.1 8.7-.2 6.1-.1 9.1-.1c8.2 0 15 1 20.6 3.1 5 1.7 9.6 4.5 13.4 8.2 3.2 3.2 5.7 7.1 7.3 11.4 1.5 4.2 2.3 8.5 2.3 13 0 8.6-2 15.7-6 21.3s-9.6 9.8-16.1 12.2c-6.8 2.5-14.3 3.4-22.5 3.4-2.4 0-4 0-5-.1s-2.4-.1-4.3-.1v32.1c.1.7-.4 1.3-1.1 1.4H58.2c-.8 0-1.2-.4-1.2-1.3zm21.8-84.7v33.6c1.4.1 2.7.2 3.9.2H88c3.9 0 7.8-.6 11.5-1.8 3.2-.9 6-2.8 8.2-5.3 2.1-2.5 3.1-5.9 3.1-10.3.1-3.1-.7-6.2-2.3-8.9-1.7-2.6-4.1-4.6-7-5.7-3.7-1.5-7.7-2.1-11.8-2-2.6 0-4.9 0-6.8.1-2-.1-3.4 0-4.1.1zM147 85.2h17.5c1 0 1.8.7 2.1 1.6.3.8.5 1.6.6 2.5.2 1 .4 2.1.5 3.1.1 1.1.2 2.3.2 3.6 3-3.5 6.6-6.4 10.7-8.6 4.6-2.6 9.9-3.9 15.2-3.9.7-.1 1.3.4 1.4 1.1v19.9c0 .8-.5 1.1-1.6 1.1-3.6-.1-7.3.2-10.8 1-2.9.6-5.7 1.5-8.4 2.7-1.9.9-3.7 2.1-5.1 3.7v51c0 1-.4 1.4-1.3 1.4h-19.7c-.8.1-1.5-.4-1.6-1.2v-55.8c0-2.4 0-4.9-.1-7.5s-.1-5.2-.2-7.8c0-2.3-.2-4.5-.4-6.8-.1-.5.2-1 .7-1.1 0-.1.2-.1.3 0z"
+          />
+        </g>
+      </symbol>
     </svg>
-    <!-- FIN SPRITE SVG -->
 
-
-    <!-- Bouton toggle thème (bas gauche) -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
-      <!-- <use> pointe vers le symbol défini dans le sprite ci-dessus -->
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Changer de theme"
+    >
       <svg id="theme-icon-sun" width="17" height="17" aria-hidden="true">
         <use href="#icon-sun" />
       </svg>
-      <svg id="theme-icon-moon" width="17" height="17" aria-hidden="true" style="display:none">
+      <svg
+        id="theme-icon-moon"
+        width="17"
+        height="17"
+        aria-hidden="true"
+        style="display: none"
+      >
         <use href="#icon-moon" />
       </svg>
       <span id="theme-label">Mode clair</span>
     </button>
 
-    <!-- Bouton toggle bubble (bas droite) -->
-    <button id="bubble-toggle" class="bubble-toggle" aria-label="Désactiver l'effet curseur">
+    <button
+      id="bubble-toggle"
+      class="bubble-toggle"
+      aria-label="Desactiver l'effet curseur"
+    >
       <svg id="bubble-icon-on" width="18" height="18" aria-hidden="true">
         <use href="#icon-bubble-on" />
       </svg>
-      <svg id="bubble-icon-off" width="18" height="18" aria-hidden="true" style="display:none">
+      <svg
+        id="bubble-icon-off"
+        width="18"
+        height="18"
+        aria-hidden="true"
+        style="display: none"
+      >
         <use href="#icon-bubble-off" />
       </svg>
       <span id="bubble-label">Curseur</span>
     </button>
 
     <script>
-      // ── Theme toggle ──────────────────────────────────────────────
       (function () {
         const html = document.documentElement;
         const btn = document.getElementById("theme-toggle");
         const iconSun = document.getElementById("theme-icon-sun");
         const iconMoon = document.getElementById("theme-icon-moon");
         const label = document.getElementById("theme-label");
-
         function currentTheme() {
           const saved = html.getAttribute("data-theme");
           if (saved) return saved;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
         }
-
         function applyUI(theme) {
           if (theme === "dark") {
             iconSun.style.display = "";
@@ -127,37 +312,49 @@
             label.textContent = "Mode sombre";
           }
         }
-
         applyUI(currentTheme());
-
         btn.addEventListener("click", () => {
           const next = currentTheme() === "dark" ? "light" : "dark";
           html.setAttribute("data-theme", next);
           localStorage.setItem("theme", next);
           applyUI(next);
+          setTimeout(applyLogo, 0);
         });
-
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-          if (!localStorage.getItem("theme")) applyUI(currentTheme());
-        });
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", () => {
+            if (!localStorage.getItem("theme")) {
+              applyUI(currentTheme());
+              applyLogo();
+            }
+          });
       })();
 
-      // ── Bubble trail — créées dynamiquement, uniquement sur desktop ──
-      (function () {
-        const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-        const toggleBtn = document.getElementById("bubble-toggle");
-        const iconOn  = document.getElementById("bubble-icon-on");
-        const iconOff = document.getElementById("bubble-icon-off");
+      function applyLogo() {
+        const theme =
+          document.documentElement.getAttribute("data-theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        const logoEl = document.getElementById("navbar-logo");
+        if (!logoEl) return;
+        logoEl.src =
+          theme === "dark"
+            ? "./images/Logo_moderne_et_digi_min.webp"
+            : "./images/Logo_moderne_et_digi_light_min.webp";
+      }
+      applyLogo();
 
-        // Sur mobile : on cache le bouton bubble et on sort
+      (function () {
+        const isTouch =
+          "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        const toggleBtn = document.getElementById("bubble-toggle");
+        const iconOn = document.getElementById("bubble-icon-on");
+        const iconOff = document.getElementById("bubble-icon-off");
         if (isTouch) {
           toggleBtn.style.display = "none";
           return;
         }
-
-        // Création des 6 bulles uniquement sur desktop
-        // Insérées au début du body via un fragment pour que nth-child(1..6)
-        // corresponde bien à grande → petite (comme dans le CSS)
         const fragment = document.createDocumentFragment();
         const bubbles = Array.from({ length: 6 }, () => {
           const d = document.createElement("div");
@@ -166,38 +363,43 @@
           return d;
         });
         document.body.insertBefore(fragment, document.body.firstChild);
-
         const positions = bubbles.map(() => ({
           x: window.innerWidth / 2,
           y: window.innerHeight / 2,
         }));
         const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-        let idle = false, idleTimer = null;
-        let bubbleEnabled = true;
-
-        document.addEventListener("mousemove", (e) => {
-          mouse.x = e.clientX;
-          mouse.y = e.clientY;
-          idle = false;
-          clearTimeout(idleTimer);
-          idleTimer = setTimeout(() => (idle = true), 120);
-        }, { passive: true });
-
+        let idle = false,
+          idleTimer = null,
+          bubbleEnabled = true;
+        document.addEventListener(
+          "mousemove",
+          (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            idle = false;
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => (idle = true), 120);
+          },
+          { passive: true },
+        );
         toggleBtn.addEventListener("click", () => {
           bubbleEnabled = !bubbleEnabled;
-          bubbles.forEach((b) => (b.style.display = bubbleEnabled ? "" : "none"));
-          iconOn.style.display  = bubbleEnabled ? "" : "none";
+          bubbles.forEach(
+            (b) => (b.style.display = bubbleEnabled ? "" : "none"),
+          );
+          iconOn.style.display = bubbleEnabled ? "" : "none";
           iconOff.style.display = bubbleEnabled ? "none" : "";
           toggleBtn.classList.toggle("bubble-toggle--off", !bubbleEnabled);
         });
-
         function animate() {
           if (bubbleEnabled) {
             positions[0].x += (mouse.x - positions[0].x) * 0.22;
             positions[0].y += (mouse.y - positions[0].y) * 0.22;
             for (let i = 1; i < positions.length; i++) {
-              positions[i].x += (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
-              positions[i].y += (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
+              positions[i].x +=
+                (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
+              positions[i].y +=
+                (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
             }
             if (idle) {
               for (let i = 1; i < positions.length; i++) {
@@ -213,41 +415,60 @@
           }
           requestAnimationFrame(animate);
         }
-
-        window.addEventListener("resize", () => {
-          positions.forEach((p) => {
-            p.x = window.innerWidth / 2;
-            p.y = window.innerHeight / 2;
-          });
-        }, { passive: true });
-
+        window.addEventListener(
+          "resize",
+          () => {
+            positions.forEach((p) => {
+              p.x = window.innerWidth / 2;
+              p.y = window.innerHeight / 2;
+            });
+          },
+          { passive: true },
+        );
         requestAnimationFrame(animate);
       })();
     </script>
 
-
     <header class="navbar">
       <div class="logo">
-        <img src="./images/Logo_moderne_et_digi_min.webp" alt="logo alexis" class="logo-dark" width="120" height="40" />
-        <img src="./images/Logo_moderne_et_digi_light_min.webp" alt="logo alexis" class="logo-light" width="120" height="40" />
+        <img
+          id="navbar-logo"
+          src="./images/Logo_moderne_et_digi_min.webp"
+          alt="logo alexis"
+          width="120"
+          height="40"
+        />
       </div>
-
-      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
         <span></span><span></span><span></span>
       </button>
-
       <nav id="main-nav">
         <ul>
           <li><a href="#hero">Accueil</a></li>
           <li><a href="#projects">Projets</a></li>
-          <li><a href="#about">À propos</a></li>
+          <li><a href="#about">A propos</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="erreur.html">Erreurs</a></li>
           <li>
-            <a href="https://www.linkedin.com/in/alexis-deloisy-53b911281/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <!-- <use> pointe vers #icon-linkedin défini dans le sprite -->
-              <svg width="26" height="26" aria-hidden="true" class="linkedin-icon" style="fill: #b453cf; color: #b453cf;">
-                <use href="#icon-linkedin" style="fill: #b453cf;" />
+            <a
+              href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+              <svg
+                width="26"
+                height="26"
+                aria-hidden="true"
+                class="linkedin-icon"
+                style="fill: #b453cf; color: #b453cf"
+              >
+                <use href="#icon-linkedin" />
               </svg>
             </a>
           </li>
@@ -255,21 +476,24 @@
       </nav>
     </header>
 
-
-    <!-- ══ HERO ══════════════════════════════════════════ -->
     <section id="hero" class="hero">
       <div class="hero-content">
         <h1>DELOISY ALEXIS</h1>
-        <h2>Développeur Web - Front Dev</h2>
+        <h2>Developpeur Web - Front Dev</h2>
         <p class="hero-subtext">
-          Ma passion du web nourrit mes études, et mes études nourrissent ma créativité.
+          Ma passion du web nourrit mes etudes, et mes etudes nourrissent ma
+          creativite.
         </p>
-
         <div class="stacks-wrapper">
           <p class="stacks-label">Stack principale</p>
           <div class="stacks-row">
             <div class="stack-card">
-              <img src="./images/docker.svg" alt="Docker" width="40" height="40" />
+              <img
+                src="./images/docker.svg"
+                alt="Docker"
+                width="40"
+                height="40"
+              />
               <span>Docker</span>
             </div>
             <div class="stack-card">
@@ -277,268 +501,458 @@
               <span>PHP</span>
             </div>
             <div class="stack-card">
-              <img src="./images/mysql-logo-pure.svg" alt="MySQL" width="40" height="40" />
+              <img
+                src="./images/mysql-logo-pure.svg"
+                alt="MySQL"
+                width="40"
+                height="40"
+              />
               <span>MySQL</span>
             </div>
             <div class="stack-card">
-              <img src="./images/html-1.svg" alt="HTML" width="40" height="40" />
+              <svg width="40" height="40" aria-label="HTML" role="img">
+                <use href="#icon-html" />
+              </svg>
               <span>HTML</span>
             </div>
             <div class="stack-card">
-              <img src="./images/css-3.svg" alt="CSS" width="40" height="40" />
+              <svg width="40" height="40" aria-label="CSS" role="img">
+                <use href="#icon-css" />
+              </svg>
               <span>CSS</span>
             </div>
             <div class="stack-card">
-              <img src="./images/javascript-r.svg" alt="JavaScript" width="40" height="40" />
+              <svg width="40" height="40" aria-label="JavaScript" role="img">
+                <use href="#icon-js" />
+              </svg>
               <span>JavaScript</span>
             </div>
             <div class="stack-card">
-              <img src="./images/claude-logo.svg" alt="Claude" width="40" height="40" />
+              <img
+                src="./images/claude-logo.svg"
+                alt="Claude"
+                width="40"
+                height="40"
+              />
               <span>Claude</span>
             </div>
           </div>
-
-          <p class="stacks-label stacks-label--secondary">Outils &amp; création</p>
+          <p class="stacks-label stacks-label--secondary">
+            Outils &amp; creation
+          </p>
           <div class="stacks-row stacks-row--secondary">
             <div class="stack-card stack-card--secondary">
-              <img src="./images/wordpress-2.svg" alt="WordPress" width="40" height="40" />
+              <img
+                src="./images/wordpress-2.svg"
+                alt="WordPress"
+                width="40"
+                height="40"
+              />
               <span>WordPress</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/adobe-photoshop-2.svg" alt="Photoshop" width="40" height="40" />
+              <svg width="40" height="40" aria-label="Photoshop" role="img">
+                <use href="#icon-photoshop" />
+              </svg>
               <span>Photoshop</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/after-effects-1.svg" alt="After Effects" width="40" height="40" />
+              <svg width="40" height="40" aria-label="After Effects" role="img">
+                <use href="#icon-aftereffects" />
+              </svg>
               <span>After Effects</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/adobe-illustrator-cc-3.svg" alt="Illustrator" width="40" height="40" />
+              <svg width="40" height="40" aria-label="Illustrator" role="img">
+                <use href="#icon-illustrator" />
+              </svg>
               <span>Illustrator</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/premiere-pro-cc.svg" alt="Premiere Pro" width="40" height="40" />
+              <svg width="40" height="40" aria-label="Premiere Pro" role="img">
+                <use href="#icon-premiere" />
+              </svg>
               <span>Premiere Pro</span>
             </div>
           </div>
         </div>
-
         <a href="#projects" class="cta-btn">Voir mes projets</a>
       </div>
     </section>
 
-
-    <!-- ══ PROJECTS ══════════════════════════════════════ -->
     <section id="projects" class="projects">
       <div class="section-inner">
         <h2>Mes Projets</h2>
         <div class="project-grid">
-
           <a href="detail-hellenism.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>HELLENISM PALLAS</h3>
-              <p>site vitrine de vente de chapelets paîens en ligne</p>
-              <!-- width/height évitent le layout shift ; loading=lazy évite le chargement immédiat -->
-              <img src="./images/Capture-d_écran-2025-12-04-200011.webp" alt="Aperçu Hellenism Pallas" width="600" height="400" loading="lazy" decoding="async" />
+              <p>site vitrine de vente de chapelets paiens en ligne</p>
+              <img
+                src="./images/Capture-d_écran-2025-12-04-200011.webp"
+                alt="Apercu Hellenism Pallas"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-rainbow.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>UMAMI RAINBOW SHOP</h3>
-              <p>site vitrine de vente de goodies importé du japon</p>
-              <img src="./images/Capture-d_écran-2025-12-04-200049.webp" alt="Aperçu Umami Rainbow Shop" width="600" height="400" loading="lazy" decoding="async" />
+              <p>site vitrine de vente de goodies importe du japon</p>
+              <img
+                src="./images/Capture-d_écran-2025-12-04-200049.webp"
+                alt="Apercu Umami Rainbow Shop"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-cv.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>CV SIMPLE</h3>
-              <p>re création de mon cv en html5 css (entrainement div et ul, li)</p>
-              <img src="./images/Capture-d_écran-2025-12-04-210244.webp" alt="Aperçu CV Simple" width="600" height="400" loading="lazy" decoding="async" />
+              <p>re creation de mon cv en html5 css</p>
+              <img
+                src="./images/Capture-d_écran-2025-12-04-210244.webp"
+                alt="Apercu CV Simple"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-zestia.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>SITE FICTIF ZESTIA</h3>
-              <p>site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une SAÉ</p>
-              <img src="./images/Capture-d_écran-2026-01-09-090734.webp" alt="Aperçu Zestia" width="600" height="400" loading="lazy" decoding="async" />
+              <p>
+                site vitrine d'eau gazeuse aromatise fictif dans le cadre d'une
+                SAE
+              </p>
+              <img
+                src="./images/Capture-d_écran-2026-01-09-090734.webp"
+                alt="Apercu Zestia"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-kintsugi.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>KINTSUGI CARS IMPORT</h3>
-              <p>site d'importation de porsche du japon pour la vente en France</p>
-              <img src="./images/Capture-d_écran-2026-01-09-103515.webp" alt="Aperçu Kintsugi Car Import" width="600" height="400" loading="lazy" decoding="async" />
+              <p>
+                site d'importation de porsche du japon pour la vente en France
+              </p>
+              <img
+                src="./images/Capture-d_écran-2026-01-09-103515.webp"
+                alt="Apercu Kintsugi Car Import"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-linda.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>SITE LINDA CONVERT</h3>
-              <p>site vitrine d'une practicienne indépendante en reflexologie</p>
-              <img src="./images/Capture-d_écran-2026-03-22-185657.webp" alt="Aperçu site Linda Convert" width="600" height="400" loading="lazy" decoding="async" />
+              <p>
+                site vitrine d'une practicienne independante en reflexologie
+              </p>
+              <img
+                src="./images/Capture-d_écran-2026-03-22-185657.webp"
+                alt="Apercu site Linda Convert"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-todo.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>TASKFLOW</h3>
-              <p>application de gestion de tâches</p>
-              <img src="./images/Capture-d_écran-2026-04-03-141534.webp" alt="Aperçu Taskflow" width="600" height="400" loading="lazy" decoding="async" />
+              <p>application de gestion de taches</p>
+              <img
+                src="./images/Capture-d_écran-2026-04-03-141534.webp"
+                alt="Apercu Taskflow"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
           <a href="detail-tupac.html" target="_blank" rel="noopener">
             <div class="project-card">
-              <h3>TUPAC SHAKUR — OFFICIAL</h3>
-              <p>site fictif de Tupac imaginé si internet avaient existé en 1991</p>
-              <img src="./images/Capture_d-écran2026-05-30_120648_1.webp" alt="Aperçu site Tupac Shakur" width="600" height="400" loading="lazy" decoding="async" />
+              <h3>TUPAC SHAKUR - OFFICIAL</h3>
+              <p>
+                site fictif de Tupac imagine si internet avaient existe en 1991
+              </p>
+              <img
+                src="./images/Capture_d-écran2026-05-30_120648_1.webp"
+                alt="Apercu site Tupac Shakur"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </a>
-
         </div>
       </div>
     </section>
 
-
-    <!-- ══ ABOUT ═══════════════════════════════════════ -->
     <section id="about" class="about">
       <div class="about-layout">
         <div class="about-portrait-col">
           <div class="about-portrait-wrap">
-            <img src="./images/portrait2.webp" alt="Alexis Deloisy" class="about-portrait-img" width="400" height="500" loading="lazy" decoding="async" />
+            <img
+              src="./images/portrait2.webp"
+              alt="Alexis Deloisy"
+              class="about-portrait-img"
+              width="400"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
             <div class="about-portrait-badge">
-              <span class="about-banner-role">Développeur Front-End</span>
+              <span class="about-banner-role">Developpeur Front-End</span>
               <div class="about-banner-location">Troyes - France</div>
             </div>
           </div>
         </div>
-
         <div class="about-text-col">
           <h2 class="about-banner-name">Deloisy<br /><em>Alexis</em></h2>
           <p class="about-chapeau">
-            Je suis un développeur front-end qui croit que coder c'est aussi concevoir - chaque interface que je construis est pensée dans ses moindres détails, parce que la forme et le fond ne font qu'un.
+            Je suis un developpeur front-end qui croit que coder c'est aussi
+            concevoir - chaque interface que je construis est pensee dans ses
+            moindres details, parce que la forme et le fond ne font qu'un.
           </p>
           <blockquote class="about-bq">
-            "Ma passion du web nourrit mes études, et mes études nourrissent ma créativité."
+            "Ma passion du web nourrit mes etudes, et mes etudes nourrissent ma
+            creativite."
           </blockquote>
           <div class="about-col--body">
-            <p>Ma passion pour le web est née au lycée, là où j'ai compris qu'on pouvait exprimer autant sa logique que sa créativité en construisant des choses sur internet. Depuis, je n'ai pas arrêté.</p>
-            <p>Avant de toucher au code, je structure toujours&nbsp;: arborescence, organisation, palette, typographies. J'ai besoin d'une vision claire pour que le développement soit fluide. Puis je construis avec une approche perfectionniste - tester, ajuster, recommencer - jusqu'à ce que le résultat soit fidèle à ce que j'avais imaginé.</p>
-            <p>Curieux et déterminé, j'intègre l'IA dans mon workflow comme un vrai partenaire de travail. Solide en front-end, je renforce ma maîtrise du back-end pour avoir une vision complète du projet - de la base de données à l'interface.</p>
-            <p>Mon cap&nbsp;: devenir fullstack, décrocher une alternance solide, et construire quelque chose sur la durée.</p>
+            <p>
+              Ma passion pour le web est nee au lycee, la ou j'ai compris qu'on
+              pouvait exprimer autant sa logique que sa creativite en
+              construisant des choses sur internet. Depuis, je n'ai pas arrete.
+            </p>
+            <p>
+              Avant de toucher au code, je structure toujours&nbsp;:
+              arborescence, organisation, palette, typographies. J'ai besoin
+              d'une vision claire pour que le developpement soit fluide. Puis je
+              construis avec une approche perfectionniste - tester, ajuster,
+              recommencer - jusqu'a ce que le resultat soit fidele a ce que
+              j'avais imagine.
+            </p>
+            <p>
+              Curieux et determine, j'integre l'IA dans mon workflow comme un
+              vrai partenaire de travail. Solide en front-end, je renforce ma
+              maitrise du back-end pour avoir une vision complete du projet - de
+              la base de donnees a l'interface.
+            </p>
+            <p>
+              Mon cap&nbsp;: devenir fullstack, decrocher une alternance solide,
+              et construire quelque chose sur la duree.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- ══ CONTACT ════════════════════════════════════════ -->
     <section id="contact" class="contact">
       <div class="section-inner">
         <h2>Contact</h2>
         <div class="contact-grid">
-          <form id="contact-form" class="contact-form" method="POST" action="https://formspree.io/f/mgonbkyp">
+          <form
+            id="contact-form"
+            class="contact-form"
+            method="POST"
+            action="https://formspree.io/f/mgonbkyp"
+          >
             <div class="field">
-              <input id="name" name="name" type="text" required placeholder=" " />
-              <label for="name">Votre nom</label>
-              <span class="error"></span>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder=" "
+              />
+              <label for="name">Votre nom</label><span class="error"></span>
             </div>
             <div class="field">
-              <input id="prenom" name="prenom" type="text" required placeholder=" " />
-              <label for="prenom">Votre prénom</label>
-              <span class="error"></span>
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                required
+                placeholder=" "
+              />
+              <label for="prenom">Votre prenom</label
+              ><span class="error"></span>
             </div>
             <div class="field">
-              <input id="email" name="email" type="email" required placeholder=" " />
-              <label for="email">Email</label>
-              <span class="error"></span>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder=" "
+              />
+              <label for="email">Email</label><span class="error"></span>
             </div>
             <div class="field">
-              <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-              <label for="message">Votre message</label>
-              <span class="error"></span>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder=" "
+              ></textarea>
+              <label for="message">Votre message</label
+              ><span class="error"></span>
             </div>
             <div class="actions">
               <button type="submit" class="btn-primary">
                 <span class="btn-content">Envoyer</span>
                 <svg class="btn-loader" viewBox="0 0 50 50" aria-hidden="true">
-                  <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" />
+                  <circle
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  />
                 </svg>
               </button>
             </div>
-            <div id="form-toast" class="form-toast">Message envoyé ✓</div>
+            <div id="form-toast" class="form-toast">Message envoye</div>
           </form>
-
           <div class="contact-aside">
             <p class="aside-title">Besoin d'une collaboration ?</p>
-            <p class="aside-text">Parle-moi de ton projet, je reviens vers toi rapidement.</p>
+            <p class="aside-text">
+              Parle-moi de ton projet, je reviens vers toi rapidement.
+            </p>
             <div class="aside-divider"></div>
             <ul class="aside-infos">
               <li>
-                <span class="icon"><img src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="mail" width="24" height="24" /></span>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-mail" /></svg
+                ></span>
                 <span class="info-label">Email</span>
-                <span class="info-value"><a href="mailto:alexis.deloisydev@gmail.com">alexis.deloisydev@gmail.com</a></span>
+                <span class="info-value"
+                  ><a href="mailto:alexis.deloisydev@gmail.com"
+                    >alexis.deloisydev@gmail.com</a
+                  ></span
+                >
               </li>
               <li>
-                <span class="icon"><img src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="location" width="24" height="24" /></span>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-location" /></svg
+                ></span>
                 <span class="info-label">Localisation</span>
                 <span class="info-value">Troyes / France</span>
               </li>
               <li>
-                <span class="icon"><img src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="disponibilité" width="24" height="24" /></span>
-                <span class="info-label">Disponibilité</span>
-                <span class="info-value">Freelance / Alternance / CDD / CDI</span>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-check" /></svg
+                ></span>
+                <span class="info-label">Disponibilite</span>
+                <span class="info-value"
+                  >Freelance / Alternance / CDD / CDI</span
+                >
               </li>
               <li>
-                <span class="icon"><img src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="téléphone" width="24" height="24" /></span>
-                <span class="info-label">Téléphone</span>
-                <span class="info-value"><a href="tel:+33648582055">+33 6 48 58 20 55</a></span>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-phone" /></svg
+                ></span>
+                <span class="info-label">Telephone</span>
+                <span class="info-value"
+                  ><a href="tel:+33648582055">+33 6 48 58 20 55</a></span
+                >
               </li>
             </ul>
-            <a href="mailto:alexis.deloisydev@gmail.com" class="aside-cta">Me contacter</a>
+            <a href="mailto:alexis.deloisydev@gmail.com" class="aside-cta"
+              >Me contacter</a
+            >
           </div>
         </div>
       </div>
     </section>
 
     <footer class="footer">
-      <p>© DELOISY ALEXIS - Tous droits réservés</p>
+      <p>&#169; DELOISY ALEXIS - Tous droits reserves</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
     <script>
-      // ── Form validation + Formspree AJAX ─────────────────────────
       (function () {
-        const form  = document.getElementById("contact-form");
+        const form = document.getElementById("contact-form");
         const toast = document.getElementById("form-toast");
-        const btn   = form.querySelector(".btn-primary");
-
+        const btn = form.querySelector(".btn-primary");
         function checkField(field) {
           const input = field.querySelector("input, textarea");
           const error = field.querySelector(".error");
-          if (!input.checkValidity()) { error.textContent = input.validationMessage; return false; }
+          if (!input.checkValidity()) {
+            error.textContent = input.validationMessage;
+            return false;
+          }
           error.textContent = "";
           return true;
         }
-
         function validateAll() {
-          return [...document.querySelectorAll(".field")].map(checkField).every(Boolean);
+          return [...document.querySelectorAll(".field")]
+            .map(checkField)
+            .every(Boolean);
         }
-
         function showToast(message, isError) {
           toast.textContent = message;
           toast.classList.toggle("toast--error", !!isError);
           toast.classList.add("show");
-          setTimeout(() => {
-            toast.classList.remove("show", "toast--error");
-            toast.textContent = "Message envoyé ✓";
-          }, isError ? 3500 : 2500);
+          setTimeout(
+            () => {
+              toast.classList.remove("show", "toast--error");
+              toast.textContent = "Message envoye";
+            },
+            isError ? 3500 : 2500,
+          );
         }
-
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
           if (!validateAll()) return;
@@ -552,20 +966,22 @@
             if (response.ok) {
               btn.classList.remove("sending");
               form.reset();
-              showToast("Message envoyé ✓", false);
+              showToast("Message envoye", false);
             } else {
               const data = await response.json();
               btn.classList.remove("sending");
-              showToast(data?.errors?.map((err) => err.message).join(", ") || "Erreur lors de l'envoi.", true);
+              showToast(
+                data?.errors?.map((err) => err.message).join(", ") ||
+                  "Erreur lors de l'envoi.",
+                true,
+              );
             }
           } catch (_) {
             btn.classList.remove("sending");
-            showToast("Erreur réseau. Réessaie.", true);
+            showToast("Erreur reseau. Reessaie.", true);
           }
         });
       })();
-
-      // ── Hamburger menu ────────────────────────────────────────────
       (function () {
         const btn = document.getElementById("hamburger");
         const nav = document.getElementById("main-nav");
@@ -579,11 +995,9 @@
             nav.classList.remove("nav--open");
             btn.classList.remove("hamburger--open");
             btn.setAttribute("aria-expanded", false);
-          })
+          }),
         );
       })();
-
-      // ── Smooth scroll ─────────────────────────────────────────────
       function easeInOutQuad(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return (c / 2) * t * t + b;
@@ -595,7 +1009,11 @@
         if (!el) return;
         const navbar = document.querySelector(".navbar");
         const start = window.pageYOffset;
-        const end = el.getBoundingClientRect().top + window.pageYOffset - (navbar ? navbar.offsetHeight : 0) - 12;
+        const end =
+          el.getBoundingClientRect().top +
+          window.pageYOffset -
+          (navbar ? navbar.offsetHeight : 0) -
+          12;
         const dist = end - start;
         let startTime = null;
         function step(now) {
@@ -615,28 +1033,22 @@
           }
         });
       });
-
-      // ── Fade-in on scroll ─────────────────────────────────────────
       (function () {
         const els = document.querySelectorAll(".fade-in");
         if (!els.length) return;
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
             });
           },
-          { threshold: 0.15 }
+          { threshold: 0.15 },
         );
         els.forEach((el) => observer.observe(el));
       })();
     </script>
-
-    <!-- Pour la couleur du SVG LinkedIn via CSS :
-         Ajoute dans style.css :
-         .linkedin-icon { fill: #b453cf; }
-         .navbar a:hover .linkedin-icon { fill: #9a3ab5; }
-    -->
-
   </body>
 </html>
