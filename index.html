@@ -3,50 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portfolio de Deloisy Alexis, développeur web front-end."
-    />
+    <meta name="description" content="Portfolio de Deloisy Alexis, développeur web front-end." />
     <title>Portfolio — DELOISY ALEXIS</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="./images/favicon.ico" />
+
+    <!-- theme-color pour éviter le fond blanc avant paint -->
+    <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 
     <!-- Applique le thème AVANT le rendu pour éviter le flash -->
     <script>
       (function () {
         const saved = localStorage.getItem("theme");
-        if (saved) {
-          document.documentElement.setAttribute("data-theme", saved);
-        }
+        if (saved) document.documentElement.setAttribute("data-theme", saved);
       })();
     </script>
   </head>
   <body>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
 
-    <!-- Bouton toggle thème (bas gauche) -->
-    <button
-      id="theme-toggle"
-      class="theme-toggle"
-      aria-label="Changer de thème"
-    >
-      <svg
-        id="theme-icon-sun"
-        xmlns="http://www.w3.org/2000/svg"
-        width="17"
-        height="17"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
+    <!-- ═══════════════════════════════════════════════════
+         SPRITE SVG — toutes les icônes définies une seule fois
+         display:none = pas rendu, pas de requête, réutilisable
+         avec <use href="#icon-xxx"> partout dans la page
+    ════════════════════════════════════════════════════════ -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+
+      <!-- Icône soleil (thème clair) -->
+      <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="5" />
         <line x1="12" y1="1" x2="12" y2="3" />
         <line x1="12" y1="21" x2="12" y2="23" />
@@ -56,61 +40,63 @@
         <line x1="21" y1="12" x2="23" y2="12" />
         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-      </svg>
-      <svg
-        id="theme-icon-moon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="17"
-        height="17"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        style="display: none"
-      >
+      </symbol>
+
+      <!-- Icône lune (thème sombre) -->
+      <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </symbol>
+
+      <!-- Icône curseur actif (bulle on) -->
+      <symbol id="icon-bubble-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="4" />
+      </symbol>
+
+      <!-- Icône curseur désactivé (bulle off) -->
+      <symbol id="icon-bubble-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+      </symbol>
+
+      <!-- Icône LinkedIn -->
+      <symbol id="icon-linkedin" viewBox="0 0 382 382">
+        <path fill="currentColor" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
+          C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z
+          M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403
+          c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844z
+          M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
+          s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z
+          M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168
+          c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
+          c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593
+          c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655
+          c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654z"/>
+      </symbol>
+
+    </svg>
+    <!-- FIN SPRITE SVG -->
+
+
+    <!-- Bouton toggle thème (bas gauche) -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
+      <!-- <use> pointe vers le symbol défini dans le sprite ci-dessus -->
+      <svg id="theme-icon-sun" width="17" height="17" aria-hidden="true">
+        <use href="#icon-sun" />
+      </svg>
+      <svg id="theme-icon-moon" width="17" height="17" aria-hidden="true" style="display:none">
+        <use href="#icon-moon" />
       </svg>
       <span id="theme-label">Mode clair</span>
     </button>
 
     <!-- Bouton toggle bubble (bas droite) -->
-    <button
-      id="bubble-toggle"
-      class="bubble-toggle"
-      aria-label="Désactiver l'effet curseur"
-    >
-      <svg
-        id="bubble-icon-on"
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="4" />
+    <button id="bubble-toggle" class="bubble-toggle" aria-label="Désactiver l'effet curseur">
+      <svg id="bubble-icon-on" width="18" height="18" aria-hidden="true">
+        <use href="#icon-bubble-on" />
       </svg>
-      <svg
-        id="bubble-icon-off"
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        style="display: none"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+      <svg id="bubble-icon-off" width="18" height="18" aria-hidden="true" style="display:none">
+        <use href="#icon-bubble-off" />
       </svg>
       <span id="bubble-label">Curseur</span>
     </button>
@@ -127,9 +113,7 @@
         function currentTheme() {
           const saved = html.getAttribute("data-theme");
           if (saved) return saved;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
+          return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
 
         function applyUI(theme) {
@@ -153,51 +137,56 @@
           applyUI(next);
         });
 
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .addEventListener("change", () => {
-            if (!localStorage.getItem("theme")) {
-              applyUI(currentTheme());
-            }
-          });
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+          if (!localStorage.getItem("theme")) applyUI(currentTheme());
+        });
       })();
 
-      // ── Bubble trail ──────────────────────────────────────────────
+      // ── Bubble trail — créées dynamiquement, uniquement sur desktop ──
       (function () {
-        const bubbles = Array.from(document.querySelectorAll(".bubble"));
-        if (!bubbles.length) return;
+        const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        const toggleBtn = document.getElementById("bubble-toggle");
+        const iconOn  = document.getElementById("bubble-icon-on");
+        const iconOff = document.getElementById("bubble-icon-off");
+
+        // Sur mobile : on cache le bouton bubble et on sort
+        if (isTouch) {
+          toggleBtn.style.display = "none";
+          return;
+        }
+
+        // Création des 6 bulles uniquement sur desktop
+        // Insérées au début du body via un fragment pour que nth-child(1..6)
+        // corresponde bien à grande → petite (comme dans le CSS)
+        const fragment = document.createDocumentFragment();
+        const bubbles = Array.from({ length: 6 }, () => {
+          const d = document.createElement("div");
+          d.className = "bubble";
+          fragment.appendChild(d);
+          return d;
+        });
+        document.body.insertBefore(fragment, document.body.firstChild);
 
         const positions = bubbles.map(() => ({
           x: window.innerWidth / 2,
           y: window.innerHeight / 2,
         }));
         const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-        let idle = false,
-          idleTimer = null;
+        let idle = false, idleTimer = null;
         let bubbleEnabled = true;
 
-        document.addEventListener(
-          "mousemove",
-          (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            idle = false;
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(() => (idle = true), 120);
-          },
-          { passive: true },
-        );
-
-        const toggleBtn = document.getElementById("bubble-toggle");
-        const iconOn = document.getElementById("bubble-icon-on");
-        const iconOff = document.getElementById("bubble-icon-off");
+        document.addEventListener("mousemove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          idle = false;
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(() => (idle = true), 120);
+        }, { passive: true });
 
         toggleBtn.addEventListener("click", () => {
           bubbleEnabled = !bubbleEnabled;
-          bubbles.forEach(
-            (b) => (b.style.display = bubbleEnabled ? "" : "none"),
-          );
-          iconOn.style.display = bubbleEnabled ? "" : "none";
+          bubbles.forEach((b) => (b.style.display = bubbleEnabled ? "" : "none"));
+          iconOn.style.display  = bubbleEnabled ? "" : "none";
           iconOff.style.display = bubbleEnabled ? "none" : "";
           toggleBtn.classList.toggle("bubble-toggle--off", !bubbleEnabled);
         });
@@ -207,10 +196,8 @@
             positions[0].x += (mouse.x - positions[0].x) * 0.22;
             positions[0].y += (mouse.y - positions[0].y) * 0.22;
             for (let i = 1; i < positions.length; i++) {
-              positions[i].x +=
-                (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
-              positions[i].y +=
-                (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
+              positions[i].x += (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
+              positions[i].y += (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
             }
             if (idle) {
               for (let i = 1; i < positions.length; i++) {
@@ -227,52 +214,25 @@
           requestAnimationFrame(animate);
         }
 
-        window.addEventListener(
-          "resize",
-          () => {
-            positions.forEach((p) => {
-              p.x = window.innerWidth / 2;
-              p.y = window.innerHeight / 2;
-            });
-          },
-          { passive: true },
-        );
+        window.addEventListener("resize", () => {
+          positions.forEach((p) => {
+            p.x = window.innerWidth / 2;
+            p.y = window.innerHeight / 2;
+          });
+        }, { passive: true });
 
         requestAnimationFrame(animate);
-
-        // Désactivé par défaut sur tactile
-        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-          bubbleEnabled = false;
-          bubbles.forEach((b) => (b.style.display = "none"));
-          iconOn.style.display = "none";
-          iconOff.style.display = "";
-          toggleBtn.classList.add("bubble-toggle--off");
-        }
       })();
     </script>
 
-    <!-- orbital JS supprimé — section about = grille de cartes CSS -->
 
     <header class="navbar">
       <div class="logo">
-        <img
-          src="./images/Logo_moderne_et_digi_min.webp"
-          alt="logo alexis"
-          class="logo-dark"
-        />
-        <img
-          src="./images/Logo_moderne_et_digi_light_min.webp"
-          alt="logo alexis"
-          class="logo-light"
-        />
+        <img src="./images/Logo_moderne_et_digi_min.webp" alt="logo alexis" class="logo-dark" width="120" height="40" />
+        <img src="./images/Logo_moderne_et_digi_light_min.webp" alt="logo alexis" class="logo-light" width="120" height="40" />
       </div>
 
-      <button
-        class="hamburger"
-        id="hamburger"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-      >
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
 
@@ -284,31 +244,10 @@
           <li><a href="#contact">Contact</a></li>
           <li><a href="erreur.html">Erreurs</a></li>
           <li>
-            <a
-              href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
-              target="_blank"
-              aria-label="LinkedIn"
-            >
-              <svg
-                height="26px"
-                width="26px"
-                viewBox="0 0 382 382"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  style="fill: #b453cf"
-                  d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889
-              C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z
-              M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403
-              c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844z
-              M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1
-              s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z
-              M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168
-              c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079
-              c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593
-              c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655
-              c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654z"
-                />
+            <a href="https://www.linkedin.com/in/alexis-deloisy-53b911281/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <!-- <use> pointe vers #icon-linkedin défini dans le sprite -->
+              <svg width="26" height="26" aria-hidden="true" class="linkedin-icon" style="fill: #b453cf; color: #b453cf;">
+                <use href="#icon-linkedin" style="fill: #b453cf;" />
               </svg>
             </a>
           </li>
@@ -316,75 +255,69 @@
       </nav>
     </header>
 
+
     <!-- ══ HERO ══════════════════════════════════════════ -->
     <section id="hero" class="hero">
       <div class="hero-content">
         <h1>DELOISY ALEXIS</h1>
         <h2>Développeur Web - Front Dev</h2>
         <p class="hero-subtext">
-          Ma passion du web nourrit mes études, et mes études nourrissent ma
-          créativité.
+          Ma passion du web nourrit mes études, et mes études nourrissent ma créativité.
         </p>
 
-        <!-- Stacks -->
         <div class="stacks-wrapper">
           <p class="stacks-label">Stack principale</p>
           <div class="stacks-row">
             <div class="stack-card">
-              <img src="./images/docker.svg" alt="Docker" />
+              <img src="./images/docker.svg" alt="Docker" width="40" height="40" />
               <span>Docker</span>
             </div>
             <div class="stack-card">
-              <img src="./images/PHP.svg" alt="PHP" />
+              <img src="./images/PHP.svg" alt="PHP" width="40" height="40" />
               <span>PHP</span>
             </div>
             <div class="stack-card">
-              <img src="./images/mysql-logo-pure.svg" alt="MySQL" />
+              <img src="./images/mysql-logo-pure.svg" alt="MySQL" width="40" height="40" />
               <span>MySQL</span>
             </div>
             <div class="stack-card">
-              <img src="./images/html-1.svg" alt="HTML" />
+              <img src="./images/html-1.svg" alt="HTML" width="40" height="40" />
               <span>HTML</span>
             </div>
             <div class="stack-card">
-              <img src="./images/css-3.svg" alt="CSS" />
+              <img src="./images/css-3.svg" alt="CSS" width="40" height="40" />
               <span>CSS</span>
             </div>
             <div class="stack-card">
-              <img src="./images/javascript-r.svg" alt="JavaScript" />
+              <img src="./images/javascript-r.svg" alt="JavaScript" width="40" height="40" />
               <span>JavaScript</span>
             </div>
             <div class="stack-card">
-              <img src="./images/claude-logo.svg" alt="Claude" />
+              <img src="./images/claude-logo.svg" alt="Claude" width="40" height="40" />
               <span>Claude</span>
             </div>
           </div>
 
-          <p class="stacks-label stacks-label--secondary">
-            Outils &amp; création
-          </p>
+          <p class="stacks-label stacks-label--secondary">Outils &amp; création</p>
           <div class="stacks-row stacks-row--secondary">
             <div class="stack-card stack-card--secondary">
-              <img src="./images/wordpress-2.svg" alt="WordPress" />
+              <img src="./images/wordpress-2.svg" alt="WordPress" width="40" height="40" />
               <span>WordPress</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/adobe-photoshop-2.svg" alt="Photoshop" />
+              <img src="./images/adobe-photoshop-2.svg" alt="Photoshop" width="40" height="40" />
               <span>Photoshop</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/after-effects-1.svg" alt="After Effects" />
+              <img src="./images/after-effects-1.svg" alt="After Effects" width="40" height="40" />
               <span>After Effects</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img
-                src="./images/adobe-illustrator-cc-3.svg"
-                alt="Illustrator"
-              />
+              <img src="./images/adobe-illustrator-cc-3.svg" alt="Illustrator" width="40" height="40" />
               <span>Illustrator</span>
             </div>
             <div class="stack-card stack-card--secondary">
-              <img src="./images/premiere-pro-cc.svg" alt="Premiere Pro" />
+              <img src="./images/premiere-pro-cc.svg" alt="Premiere Pro" width="40" height="40" />
               <span>Premiere Pro</span>
             </div>
           </div>
@@ -394,117 +327,89 @@
       </div>
     </section>
 
+
     <!-- ══ PROJECTS ══════════════════════════════════════ -->
     <section id="projects" class="projects">
       <div class="section-inner">
         <h2>Mes Projets</h2>
         <div class="project-grid">
+
           <a href="detail-hellenism.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>HELLENISM PALLAS</h3>
               <p>site vitrine de vente de chapelets paîens en ligne</p>
-              <img
-                src="./images/Capture-d_écran-2025-12-04-200011.webp"
-                alt="Aperçu Hellenism Pallas"
-              />
+              <!-- width/height évitent le layout shift ; loading=lazy évite le chargement immédiat -->
+              <img src="./images/Capture-d_écran-2025-12-04-200011.webp" alt="Aperçu Hellenism Pallas" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-rainbow.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>UMAMI RAINBOW SHOP</h3>
               <p>site vitrine de vente de goodies importé du japon</p>
-              <img
-                src="./images/Capture-d_écran-2025-12-04-200049.webp"
-                alt="Aperçu Umami Rainbow Shop"
-              />
+              <img src="./images/Capture-d_écran-2025-12-04-200049.webp" alt="Aperçu Umami Rainbow Shop" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-cv.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>CV SIMPLE</h3>
-              <p>
-                re création de mon cv en html5 css (entrainement div et ul, li)
-              </p>
-              <img
-                src="./images/Capture-d_écran-2025-12-04-210244.webp"
-                alt="Aperçu CV Simple"
-              />
+              <p>re création de mon cv en html5 css (entrainement div et ul, li)</p>
+              <img src="./images/Capture-d_écran-2025-12-04-210244.webp" alt="Aperçu CV Simple" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-zestia.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>SITE FICTIF ZESTIA</h3>
-              <p>
-                site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une
-                SAÉ
-              </p>
-              <img
-                src="./images/Capture-d_écran-2026-01-09-090734.webp"
-                alt="Aperçu Zestia"
-              />
+              <p>site vitrine d'eau gazeuse aromatisé fictif dans le cadre d'une SAÉ</p>
+              <img src="./images/Capture-d_écran-2026-01-09-090734.webp" alt="Aperçu Zestia" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-kintsugi.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>KINTSUGI CARS IMPORT</h3>
-              <p>
-                site d'importation de porsche du japon pour la vente en France
-              </p>
-              <img
-                src="./images/Capture-d_écran-2026-01-09-103515.webp"
-                alt="Aperçu Kintsugi Car Import"
-              />
+              <p>site d'importation de porsche du japon pour la vente en France</p>
+              <img src="./images/Capture-d_écran-2026-01-09-103515.webp" alt="Aperçu Kintsugi Car Import" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-linda.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>SITE LINDA CONVERT</h3>
-              <p>
-                site vitrine d'une practicienne indépendante en reflexologie
-              </p>
-              <img
-                src="./images/Capture-d_écran-2026-03-22-185657.webp"
-                alt="Aperçu site Linda Convert"
-              />
+              <p>site vitrine d'une practicienne indépendante en reflexologie</p>
+              <img src="./images/Capture-d_écran-2026-03-22-185657.webp" alt="Aperçu site Linda Convert" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-todo.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>TASKFLOW</h3>
               <p>application de gestion de tâches</p>
-              <img
-                src="./images/Capture-d_écran-2026-04-03-141534.webp"
-                alt="Aperçu Taskflow"
-              />
+              <img src="./images/Capture-d_écran-2026-04-03-141534.webp" alt="Aperçu Taskflow" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
           <a href="detail-tupac.html" target="_blank" rel="noopener">
             <div class="project-card">
               <h3>TUPAC SHAKUR — OFFICIAL</h3>
-              <p>
-                site fictif de Tupac imaginé si internet avaient existé en 1991
-              </p>
-              <img
-                src="./images/Capture_d-écran2026-05-30_120648_1.webp"
-                alt="Aperçu site Tupac Shakur"
-              />
+              <p>site fictif de Tupac imaginé si internet avaient existé en 1991</p>
+              <img src="./images/Capture_d-écran2026-05-30_120648_1.webp" alt="Aperçu site Tupac Shakur" width="600" height="400" loading="lazy" decoding="async" />
             </div>
           </a>
+
         </div>
       </div>
     </section>
 
+
     <!-- ══ ABOUT ═══════════════════════════════════════ -->
     <section id="about" class="about">
       <div class="about-layout">
-        <!-- Portrait vertical -->
         <div class="about-portrait-col">
           <div class="about-portrait-wrap">
-            <img
-              src="./images/portrait2.webp"
-              alt="Alexis Deloisy"
-              class="about-portrait-img"
-            />
+            <img src="./images/portrait2.webp" alt="Alexis Deloisy" class="about-portrait-img" width="400" height="500" loading="lazy" decoding="async" />
             <div class="about-portrait-badge">
               <span class="about-banner-role">Développeur Front-End</span>
               <div class="about-banner-location">Troyes - France</div>
@@ -512,120 +417,56 @@
           </div>
         </div>
 
-        <!-- Texte -->
         <div class="about-text-col">
           <h2 class="about-banner-name">Deloisy<br /><em>Alexis</em></h2>
-
           <p class="about-chapeau">
-            Je suis un développeur front-end qui croit que coder c'est aussi
-            concevoir - chaque interface que je construis est pensée dans ses
-            moindres détails, parce que la forme et le fond ne font qu'un.
+            Je suis un développeur front-end qui croit que coder c'est aussi concevoir - chaque interface que je construis est pensée dans ses moindres détails, parce que la forme et le fond ne font qu'un.
           </p>
           <blockquote class="about-bq">
-            "Ma passion du web nourrit mes études, et mes études nourrissent ma
-            créativité."
+            "Ma passion du web nourrit mes études, et mes études nourrissent ma créativité."
           </blockquote>
-
           <div class="about-col--body">
-            <p>
-              Ma passion pour le web est née au lycée, là où j'ai compris qu'on
-              pouvait exprimer autant sa logique que sa créativité en
-              construisant des choses sur internet. Depuis, je n'ai pas arrêté.
-            </p>
-            <p>
-              Avant de toucher au code, je structure toujours&nbsp;:
-              arborescence, organisation, palette, typographies. J'ai besoin
-              d'une vision claire pour que le développement soit fluide. Puis je
-              construis avec une approche perfectionniste - tester, ajuster,
-              recommencer - jusqu'à ce que le résultat soit fidèle à ce que
-              j'avais imaginé.
-            </p>
-            <p>
-              Curieux et déterminé, j'intègre l'IA dans mon workflow comme un
-              vrai partenaire de travail. Solide en front-end, je renforce ma
-              maîtrise du back-end pour avoir une vision complète du projet - de
-              la base de données à l'interface.
-            </p>
-            <p>
-              Mon cap&nbsp;: devenir fullstack, décrocher une alternance solide,
-              et construire quelque chose sur la durée.
-            </p>
+            <p>Ma passion pour le web est née au lycée, là où j'ai compris qu'on pouvait exprimer autant sa logique que sa créativité en construisant des choses sur internet. Depuis, je n'ai pas arrêté.</p>
+            <p>Avant de toucher au code, je structure toujours&nbsp;: arborescence, organisation, palette, typographies. J'ai besoin d'une vision claire pour que le développement soit fluide. Puis je construis avec une approche perfectionniste - tester, ajuster, recommencer - jusqu'à ce que le résultat soit fidèle à ce que j'avais imaginé.</p>
+            <p>Curieux et déterminé, j'intègre l'IA dans mon workflow comme un vrai partenaire de travail. Solide en front-end, je renforce ma maîtrise du back-end pour avoir une vision complète du projet - de la base de données à l'interface.</p>
+            <p>Mon cap&nbsp;: devenir fullstack, décrocher une alternance solide, et construire quelque chose sur la durée.</p>
           </div>
         </div>
       </div>
     </section>
+
 
     <!-- ══ CONTACT ════════════════════════════════════════ -->
     <section id="contact" class="contact">
       <div class="section-inner">
         <h2>Contact</h2>
         <div class="contact-grid">
-          <form
-            id="contact-form"
-            class="contact-form"
-            method="POST"
-            action="https://formspree.io/f/mgonbkyp"
-          >
+          <form id="contact-form" class="contact-form" method="POST" action="https://formspree.io/f/mgonbkyp">
             <div class="field">
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder=" "
-              />
+              <input id="name" name="name" type="text" required placeholder=" " />
               <label for="name">Votre nom</label>
               <span class="error"></span>
             </div>
-
             <div class="field">
-              <input
-                id="prenom"
-                name="prenom"
-                type="text"
-                required
-                placeholder=" "
-              />
+              <input id="prenom" name="prenom" type="text" required placeholder=" " />
               <label for="prenom">Votre prénom</label>
               <span class="error"></span>
             </div>
-
             <div class="field">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder=" "
-              />
+              <input id="email" name="email" type="email" required placeholder=" " />
               <label for="email">Email</label>
               <span class="error"></span>
             </div>
-
             <div class="field">
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                required
-                placeholder=" "
-              ></textarea>
+              <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
               <label for="message">Votre message</label>
               <span class="error"></span>
             </div>
-
             <div class="actions">
               <button type="submit" class="btn-primary">
                 <span class="btn-content">Envoyer</span>
-                <svg class="btn-loader" viewBox="0 0 50 50">
-                  <circle
-                    cx="25"
-                    cy="25"
-                    r="20"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="4"
-                  />
+                <svg class="btn-loader" viewBox="0 0 50 50" aria-hidden="true">
+                  <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" />
                 </svg>
               </button>
             </div>
@@ -634,59 +475,31 @@
 
           <div class="contact-aside">
             <p class="aside-title">Besoin d'une collaboration ?</p>
-            <p class="aside-text">
-              Parle-moi de ton projet, je reviens vers toi rapidement.
-            </p>
+            <p class="aside-text">Parle-moi de ton projet, je reviens vers toi rapidement.</p>
             <div class="aside-divider"></div>
             <ul class="aside-infos">
               <li>
-                <span class="icon"
-                  ><img
-                    src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="mail"
-                /></span>
+                <span class="icon"><img src="./images/mail_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="mail" width="24" height="24" /></span>
                 <span class="info-label">Email</span>
-                <span class="info-value"
-                  ><a href="mailto:alexis.deloisydev@gmail.com"
-                    >alexis.deloisydev@gmail.com</a
-                  ></span
-                >
+                <span class="info-value"><a href="mailto:alexis.deloisydev@gmail.com">alexis.deloisydev@gmail.com</a></span>
               </li>
               <li>
-                <span class="icon"
-                  ><img
-                    src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="location"
-                /></span>
+                <span class="icon"><img src="./images/location_on_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="location" width="24" height="24" /></span>
                 <span class="info-label">Localisation</span>
                 <span class="info-value">Troyes / France</span>
               </li>
               <li>
-                <span class="icon"
-                  ><img
-                    src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="disponibilité"
-                /></span>
+                <span class="icon"><img src="./images/check_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="disponibilité" width="24" height="24" /></span>
                 <span class="info-label">Disponibilité</span>
-                <span class="info-value"
-                  >Freelance / Alternance / CDD / CDI</span
-                >
+                <span class="info-value">Freelance / Alternance / CDD / CDI</span>
               </li>
               <li>
-                <span class="icon"
-                  ><img
-                    src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="téléphone"
-                /></span>
+                <span class="icon"><img src="./images/call_24dp_88888A_FILL0_wght400_GRAD0_opsz24.svg" alt="téléphone" width="24" height="24" /></span>
                 <span class="info-label">Téléphone</span>
-                <span class="info-value"
-                  ><a href="tel:+33648582055">+33 6 48 58 20 55</a></span
-                >
+                <span class="info-value"><a href="tel:+33648582055">+33 6 48 58 20 55</a></span>
               </li>
             </ul>
-            <a href="mailto:alexis.deloisydev@gmail.com" class="aside-cta"
-              >Me contacter</a
-            >
+            <a href="mailto:alexis.deloisydev@gmail.com" class="aside-cta">Me contacter</a>
           </div>
         </div>
       </div>
@@ -696,60 +509,46 @@
       <p>© DELOISY ALEXIS - Tous droits réservés</p>
     </footer>
 
-    <script
-      data-cfasync="false"
-      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
       // ── Form validation + Formspree AJAX ─────────────────────────
       (function () {
-        const form = document.getElementById("contact-form");
+        const form  = document.getElementById("contact-form");
         const toast = document.getElementById("form-toast");
-        const btn = form.querySelector(".btn-primary");
+        const btn   = form.querySelector(".btn-primary");
 
         function checkField(field) {
           const input = field.querySelector("input, textarea");
           const error = field.querySelector(".error");
-          if (!input.checkValidity()) {
-            error.textContent = input.validationMessage;
-            return false;
-          }
+          if (!input.checkValidity()) { error.textContent = input.validationMessage; return false; }
           error.textContent = "";
           return true;
         }
 
         function validateAll() {
-          return [...document.querySelectorAll(".field")]
-            .map(checkField)
-            .every(Boolean);
+          return [...document.querySelectorAll(".field")].map(checkField).every(Boolean);
         }
 
         function showToast(message, isError) {
           toast.textContent = message;
           toast.classList.toggle("toast--error", !!isError);
           toast.classList.add("show");
-          setTimeout(
-            () => {
-              toast.classList.remove("show", "toast--error");
-              toast.textContent = "Message envoyé ✓";
-            },
-            isError ? 3500 : 2500,
-          );
+          setTimeout(() => {
+            toast.classList.remove("show", "toast--error");
+            toast.textContent = "Message envoyé ✓";
+          }, isError ? 3500 : 2500);
         }
 
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
           if (!validateAll()) return;
-
           btn.classList.add("sending");
-
           try {
             const response = await fetch("https://formspree.io/f/mgonbkyp", {
               method: "POST",
               headers: { Accept: "application/json" },
               body: new FormData(form),
             });
-
             if (response.ok) {
               btn.classList.remove("sending");
               form.reset();
@@ -757,10 +556,7 @@
             } else {
               const data = await response.json();
               btn.classList.remove("sending");
-              const msg =
-                data?.errors?.map((err) => err.message).join(", ") ||
-                "Erreur lors de l'envoi.";
-              showToast(msg, true);
+              showToast(data?.errors?.map((err) => err.message).join(", ") || "Erreur lors de l'envoi.", true);
             }
           } catch (_) {
             btn.classList.remove("sending");
@@ -783,7 +579,7 @@
             nav.classList.remove("nav--open");
             btn.classList.remove("hamburger--open");
             btn.setAttribute("aria-expanded", false);
-          }),
+          })
         );
       })();
 
@@ -799,11 +595,7 @@
         if (!el) return;
         const navbar = document.querySelector(".navbar");
         const start = window.pageYOffset;
-        const end =
-          el.getBoundingClientRect().top +
-          window.pageYOffset -
-          (navbar ? navbar.offsetHeight : 0) -
-          12;
+        const end = el.getBoundingClientRect().top + window.pageYOffset - (navbar ? navbar.offsetHeight : 0) - 12;
         const dist = end - start;
         let startTime = null;
         function step(now) {
@@ -831,16 +623,20 @@
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
+              if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
             });
           },
-          { threshold: 0.15 },
+          { threshold: 0.15 }
         );
         els.forEach((el) => observer.observe(el));
       })();
     </script>
+
+    <!-- Pour la couleur du SVG LinkedIn via CSS :
+         Ajoute dans style.css :
+         .linkedin-icon { fill: #b453cf; }
+         .navbar a:hover .linkedin-icon { fill: #9a3ab5; }
+    -->
+
   </body>
 </html>
