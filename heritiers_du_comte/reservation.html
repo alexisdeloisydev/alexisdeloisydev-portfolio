@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réservation — Château de Montfaucon</title>
+  <meta name="description" content="Réservez votre soirée escape game nocturne. Choisissez votre date, votre formule et le nombre d'héritiers. Confirmation immédiate.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/reservation.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="Château de Montfaucon — accueil">
+    Château de Montfaucon
+    <span>Le domaine vivant</span>
+  </a>
+  <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="index.html">L'Expérience</a>
+    <a href="index.html#timeline">Le Scénario</a>
+    <a href="index.html#salles">Les Salles</a>
+    <a href="index.html#tarifs">Tarifs</a>
+    <a href="reservation.html" class="nav-cta" aria-current="page">Réserver</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="container">
+    <p class="page-hero-eyebrow">Réservation</p>
+    <h1>Réclamez votre héritage</h1>
+    <p>Sélectionnez votre date, votre formule et le nombre d'héritiers. La nuit commence à l'heure de votre arrivée.</p>
+  </div>
+</header>
+
+<!-- BOOKING -->
+<section class="booking-section">
+  <div class="container">
+    <div class="booking-grid">
+
+      <!-- FORM -->
+      <div>
+        <form id="booking-form" novalidate>
+
+          <!-- ÉTAPE 1 : Date -->
+          <div class="booking-form" style="margin-bottom:var(--s-4)">
+            <h2 class="form-section-title">I. Choisissez votre nuit</h2>
+
+            <div class="form-group">
+              <span class="form-label">Dates disponibles</span>
+              <div id="date-slots" class="date-slots" role="group" aria-label="Sélection de date">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 2 : Formule -->
+          <div class="booking-form" style="margin-bottom:var(--s-4)">
+            <h2 class="form-section-title">II. Votre formule</h2>
+
+            <div class="form-group">
+              <span class="form-label">Sélectionnez une formule</span>
+              <div class="formule-cards" role="group" aria-label="Formules">
+
+                <label class="formule-card">
+                  <input type="radio" name="formule" value="standard" checked>
+                  <div class="formule-card-check" aria-hidden="true"></div>
+                  <p class="formule-card-name">L'Héritier</p>
+                  <p class="formule-card-price">289 €</p>
+                  <p class="formule-card-sub">Standard · Repas 4 services</p>
+                </label>
+
+                <label class="formule-card">
+                  <input type="radio" name="formule" value="prestige">
+                  <div class="formule-card-check" aria-hidden="true"></div>
+                  <p class="formule-card-name">Le Descendant</p>
+                  <p class="formule-card-price">339 €</p>
+                  <p class="formule-card-sub">Prestige · Acteurs + 6 services</p>
+                </label>
+
+                <label class="formule-card">
+                  <input type="radio" name="formule" value="immersif">
+                  <div class="formule-card-check" aria-hidden="true"></div>
+                  <p class="formule-card-name">Le Comte</p>
+                  <p class="formule-card-price">399 €</p>
+                  <p class="formule-card-sub">Immersif · Cave secrète</p>
+                </label>
+
+              </div>
+            </div>
+
+            <div class="form-separator"></div>
+
+            <!-- Nombre de joueurs -->
+            <div class="form-group">
+              <label class="form-label" for="guests-display">Nombre d'héritiers (4 à 14)</label>
+              <div style="display:flex;align-items:center;gap:var(--s-4);margin-top:var(--s-2)">
+                <button type="button" id="guests-minus" class="btn-secondary" style="padding:var(--s-2) var(--s-4);min-width:44px" aria-label="Moins de joueurs">−</button>
+                <span id="guests-display" style="font-family:'Cinzel Decorative',serif;font-size:var(--t-xl);color:var(--c-gold);min-width:60px;text-align:center;line-height:1" aria-live="polite">4</span>
+                <button type="button" id="guests-plus" class="btn-secondary" style="padding:var(--s-2) var(--s-4);min-width:44px" aria-label="Plus de joueurs">+</button>
+                <span style="font-style:italic;color:var(--c-text-muted);font-size:var(--t-xs)">héritiers</span>
+              </div>
+              <input type="hidden" id="guests" name="guests" value="4">
+            </div>
+          </div>
+
+          <!-- ÉTAPE 3 : Coordonnées -->
+          <div class="booking-form" style="margin-bottom:var(--s-4)">
+            <h2 class="form-section-title">III. Vos coordonnées</h2>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="prenom">Prénom *</label>
+                <input class="form-input" type="text" id="prenom" name="prenom" placeholder="Votre prénom" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="nom">Nom *</label>
+                <input class="form-input" type="text" id="nom" name="nom" placeholder="Votre nom de famille" required autocomplete="family-name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email *</label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="votre@email.fr" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="telephone">Téléphone</label>
+                <input class="form-input" type="tel" id="telephone" name="telephone" placeholder="+33 6 XX XX XX XX" autocomplete="tel">
+              </div>
+              <div class="form-group span-2">
+                <label class="form-label" for="message">Message ou demande particulière</label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Allergies alimentaires, occasion spéciale, questions sur le parcours…"></textarea>
+              </div>
+            </div>
+
+            <!-- Mentions -->
+            <div style="margin-top:var(--s-4)">
+              <label style="display:flex;align-items:flex-start;gap:var(--s-3);cursor:pointer">
+                <input type="checkbox" name="cgu" required style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--c-gold)">
+                <span style="font-size:var(--t-xs);color:var(--c-text-muted);font-style:italic;line-height:1.6">
+                  J'accepte les <a href="#" style="color:var(--c-gold)">conditions générales de vente</a> et la
+                  <a href="#" style="color:var(--c-gold)">politique de confidentialité</a>.
+                  Je comprends que ma réservation sera confirmée sous 24h par email.
+                </span>
+              </label>
+            </div>
+
+            <div class="form-separator"></div>
+
+            <div class="form-submit">
+              <div>
+                <p class="form-total-label">Total estimé</p>
+                <p id="form-total-value" class="form-total-value">1202f156 €</p>
+              </div>
+              <div class="form-loading" aria-live="polite">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <span style="font-size:var(--t-xs);color:var(--c-text-muted);font-style:italic">Envoi en cours…</span>
+              </div>
+              <button type="submit" class="btn-primary btn-submit">
+                Confirmer la réservation
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- SUCCESS STATE -->
+        <div id="booking-success" class="booking-success" aria-live="polite">
+          <div class="success-seal" aria-hidden="true">✦</div>
+          <h2 class="success-title">Réservation enregistrée</h2>
+          <p class="success-text">
+            Votre demande a bien été reçue. Vous recevrez une confirmation à l'adresse
+            <strong id="success-email" style="color:var(--c-gold)"></strong>
+            dans les 24 heures suivantes avec tous les détails pratiques.
+          </p>
+          <p style="font-family:'Cinzel',serif;font-size:var(--t-xs);letter-spacing:0.15em;color:var(--c-gold-dim);margin-bottom:var(--s-8)">
+            Référence : <span id="success-id"></span>
+          </p>
+          <div style="display:flex;gap:var(--s-4);justify-content:center;flex-wrap:wrap">
+            <a href="index.html" class="btn-secondary">Retour à l'accueil</a>
+            <a href="reservation.html" class="btn-primary">Nouvelle réservation</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="booking-sidebar" aria-label="Récapitulatif">
+        <div class="sidebar-recap">
+          <p class="sidebar-recap-title">Récapitulatif</p>
+
+          <div class="recap-item">
+            <span class="recap-item-label">Date sélectionnée</span>
+            <span class="recap-item-value" id="recap-date">— à choisir —</span>
+          </div>
+          <div class="recap-item">
+            <span class="recap-item-label">Formule</span>
+            <span class="recap-item-value" id="recap-formule">Formule Standard</span>
+          </div>
+          <div class="recap-item">
+            <span class="recap-item-label">Nombre de joueurs</span>
+            <span class="recap-item-value" id="recap-guests">4 héritiers</span>
+          </div>
+
+          <div style="height:1px;background:linear-gradient(to right,transparent,oklch(0.75 0.14 75 / 0.2),transparent);margin:var(--s-4) 0"></div>
+
+          <div class="recap-item" style="border:none">
+            <span class="recap-item-label" style="font-family:'Cinzel',serif;text-transform:uppercase;letter-spacing:0.1em">Total estimé</span>
+            <span class="recap-item-value" id="recap-total" style="font-family:'Cinzel Decorative',serif;font-size:var(--t-base);color:var(--c-gold)">1202f156 €</span>
+          </div>
+        </div>
+
+        <div class="sidebar-info">
+          <div class="sidebar-info-item">
+            <span class="sidebar-info-icon" aria-hidden="true">🕯</span>
+            <p class="sidebar-info-text">
+              <strong style="color:var(--c-text);font-style:normal">Privatisation complète</strong><br>
+              Le château est réservé exclusivement pour votre groupe pendant toute la soirée.
+            </p>
+          </div>
+          <div class="sidebar-info-item">
+            <span class="sidebar-info-icon" aria-hidden="true">🍽</span>
+            <p class="sidebar-info-text">
+              <strong style="color:var(--c-text);font-style:normal">Repas inclus</strong><br>
+              Banquet gastronomique, boissons et petit-déjeuner compris dans tous les tarifs.
+            </p>
+          </div>
+          <div class="sidebar-info-item">
+            <span class="sidebar-info-icon" aria-hidden="true">🏰</span>
+            <p class="sidebar-info-text">
+              <strong style="color:var(--c-text);font-style:normal">Nuitée incluse</strong><br>
+              Chambres de caractère dans le château pour tous les participants.
+            </p>
+          </div>
+          <div class="sidebar-info-item">
+            <span class="sidebar-info-icon" aria-hidden="true">↩</span>
+            <p class="sidebar-info-text">
+              <strong style="color:var(--c-text);font-style:normal">Annulation gratuite</strong><br>
+              Remboursement intégral jusqu'à 30 jours avant la soirée.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:var(--s-4);padding:var(--s-6);border:1px solid oklch(0.75 0.14 75 / 0.1);background:var(--c-surface)">
+          <p style="font-family:'Cinzel',serif;font-size:var(--t-xs);letter-spacing:0.15em;color:var(--c-gold);margin-bottom:var(--s-3)">Besoin d'aide ?</p>
+          <p style="font-size:var(--t-xs);color:var(--c-text-muted);font-style:italic;line-height:1.6;margin-bottom:var(--s-3)">
+            Pour les groupes de plus de 14 personnes ou les demandes sur mesure, contactez-nous directement.
+          </p>
+          <a href="mailto:contact@chateau-montfaucon.fr" class="btn-secondary" style="font-size:0.65rem;padding:var(--s-2) var(--s-4)">
+            contact@chateau-montfaucon.fr
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          Château de Montfaucon
+          <span>Le domaine vivant</span>
+        </a>
+        <p>Un escape game nocturne et immersif dans un château historique. De la lecture du testament au lever du soleil.</p>
+      </div>
+      <div class="footer-col">
+        <h4>L'expérience</h4>
+        <ul>
+          <li><a href="index.html#experience">Le concept</a></li>
+          <li><a href="index.html#timeline">Le scénario</a></li>
+          <li><a href="index.html#salles">Les deux salles</a></li>
+          <li><a href="index.html#tarifs">Les formules</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Réservation</h4>
+        <ul>
+          <li><a href="reservation.html">Réserver en ligne</a></li>
+          <li><a href="mailto:contact@chateau-montfaucon.fr">Devis groupe</a></li>
+          <li><a href="mailto:contact@chateau-montfaucon.fr">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pratique</h4>
+        <ul>
+          <li><a href="#">Accès & parking</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">CGV</a></li>
+          <li><a href="#">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Château de Montfaucon · Tous droits réservés</p>
+      <p style="font-style:italic">contact@chateau-montfaucon.fr · +33 (0)3 26 XX XX XX</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/reservation.js"></script>
+</body>
+</html>

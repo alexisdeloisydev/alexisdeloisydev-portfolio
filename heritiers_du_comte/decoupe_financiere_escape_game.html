@@ -1,0 +1,229 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-size: 14px; }
+  h2 { font-size: 18px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary); }
+  .sub { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 1.5rem; }
+  .controls { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: flex-end; }
+  .ctrl { display: flex; flex-direction: column; gap: 6px; }
+  .ctrl label { font-size: 12px; color: var(--color-text-secondary); }
+  .ctrl-row { display: flex; align-items: center; gap: 10px; }
+  .ctrl-row span { font-size: 15px; font-weight: 500; min-width: 36px; color: var(--color-text-primary); }
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; }
+  .metric-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .metric-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .metric-val.green { color: #3B6D11; }
+  .metric-val.red { color: #A32D2D; }
+  .section { margin-bottom: 1.5rem; }
+  .section-title { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; }
+  .row:last-child { border-bottom: none; }
+  .row-label { color: var(--color-text-secondary); display: flex; align-items: center; gap: 8px; }
+  .row-val { font-weight: 500; color: var(--color-text-primary); }
+  .row-val.neg { color: #A32D2D; }
+  .row-val.pos { color: #3B6D11; }
+  .row-val.neutral { color: var(--color-text-secondary); font-weight: 400; font-size: 12px; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+  .tag-fixed { background: #E6F1FB; color: #185FA5; }
+  .tag-var { background: #EAF3DE; color: #3B6D11; }
+  .tag-rev { background: #FAEEDA; color: #854F0B; }
+  .total-row { display: flex; justify-content: space-between; padding: 10px 0 0; font-size: 15px; font-weight: 500; border-top: 1.5px solid var(--color-border-primary); margin-top: 4px; }
+  .note { font-size: 12px; color: var(--color-text-secondary); font-style: italic; margin-top: 1rem; }
+  .season { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; margin-top: 1rem; }
+  .season-title { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .season-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .season-item { font-size: 12px; }
+  .season-item .s-label { color: var(--color-text-secondary); }
+  .season-item .s-val { font-weight: 500; color: var(--color-text-primary); }
+  .bar-wrap { margin-top: 1.5rem; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px; }
+  .bar-label { width: 110px; color: var(--color-text-secondary); flex-shrink: 0; }
+  .bar-track { flex: 1; height: 20px; background: var(--color-background-secondary); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width .4s; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 500; color: #fff; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+</style>
+
+<div class="wrap">
+  <h2>Découpage financier — une soirée</h2>
+  <p class="sub">Ajuste le nombre de joueurs et la formule pour voir la rentabilité en temps réel.</p>
+
+  <div class="controls">
+    <div class="ctrl">
+      <label>Nombre de joueurs</label>
+      <div class="ctrl-row">
+        <input type="range" min="4" max="14" value="10" step="1" id="sl-joueurs" style="width:160px">
+        <span id="out-joueurs">10</span>
+      </div>
+    </div>
+    <div class="ctrl">
+      <label>Formule dominante</label>
+      <select id="sel-formule" style="height:36px; padding: 0 10px; font-size:13px;">
+        <option value="149">L'Héritier — 149 €</option>
+        <option value="189" selected>Le Descendant — 189 €</option>
+        <option value="229">Le Comte — 229 €</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="metrics" id="metrics"></div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+
+    <div class="section">
+      <div class="section-title">Charges fixes — par soirée</div>
+      <div id="charges-fixes"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Charges variables — par joueur</div>
+      <div id="charges-var"></div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <div class="section-title">Synthèse de la soirée</div>
+    <div id="synthese"></div>
+  </div>
+
+  <div class="bar-wrap">
+    <div class="section-title" style="margin-bottom:10px">Répartition du prix par joueur</div>
+    <div id="bars"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="season">
+    <div class="season-title">Projection saison complète (3 mois · 1 soirée/semaine)</div>
+    <div class="season-grid" id="season-grid"></div>
+  </div>
+
+  <p class="note">* Location château estimée à 2 500 €/nuit (fourchette basse Champagne-Ardenne). Repas thématique buffet traiteur local estimé à 35 €/pers. Acteurs / animateurs 2 personnes à 250 €/soir.</p>
+</div>
+
+<script>
+const CHARGES_FIXES = [
+  { label: "Location château", montant: 2500 },
+  { label: "Acteurs / animateurs (×2)", montant: 500 },
+  { label: "Décors, consommables, props", montant: 150 },
+  { label: "Assurance événementielle", montant: 80 },
+  { label: "Communication & frais divers", montant: 70 },
+];
+
+const CHARGES_VAR_BASE = [
+  { label: "Repas thématique traiteur", montant: 35 },
+  { label: "Nuitée (chambre partagée)", montant: 40 },
+  { label: "Petit-déjeuner", montant: 8 },
+];
+
+const SUPP_FORMULE = {
+  149: [],
+  189: [{ label: "Acteur extra + scènes surprise", montant: 10 }, { label: "Surclassement chambre", montant: 12 }],
+  229: [{ label: "Photographe soirée", montant: 15 }, { label: "Coffret souvenir + diplôme", montant: 18 }, { label: "Vidéo personnalisée", montant: 12 }],
+};
+
+const COLORS = { fixed: "#378ADD", var: "#639922", marge: "#3B6D11", rouge: "#A32D2D" };
+
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+function pct(a, b) { return b === 0 ? '0%' : Math.round(a / b * 100) + '%'; }
+
+function render() {
+  const joueurs = +document.getElementById('sl-joueurs').value;
+  const prix = +document.getElementById('sel-formule').value;
+  document.getElementById('out-joueurs').textContent = joueurs;
+
+  const totalFixes = CHARGES_FIXES.reduce((s, c) => s + c.montant, 0);
+  const varBase = CHARGES_VAR_BASE.reduce((s, c) => s + c.montant, 0);
+  const varSupp = (SUPP_FORMULE[prix] || []).reduce((s, c) => s + c.montant, 0);
+  const totalVar = (varBase + varSupp) * joueurs;
+  const totalCharges = totalFixes + totalVar;
+  const CA = prix * joueurs;
+  const marge = CA - totalCharges;
+  const tauxMarge = CA > 0 ? Math.round(marge / CA * 100) : 0;
+  const seuilRentabilite = Math.ceil(totalFixes / (prix - varBase - varSupp));
+
+  // METRICS
+  const mClass = marge >= 0 ? 'green' : 'red';
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric"><div class="metric-label">Chiffre d'affaires</div><div class="metric-val">${fmt(CA)}</div></div>
+    <div class="metric"><div class="metric-label">Total charges</div><div class="metric-val">${fmt(totalCharges)}</div></div>
+    <div class="metric"><div class="metric-label">Marge nette</div><div class="metric-val ${mClass}">${fmt(marge)}</div></div>
+    <div class="metric"><div class="metric-label">Taux de marge</div><div class="metric-val ${mClass}">${tauxMarge} %</div></div>
+    <div class="metric"><div class="metric-label">Seuil rentabilité</div><div class="metric-val">${seuilRentabilite} joueurs</div></div>
+  `;
+
+  // CHARGES FIXES
+  document.getElementById('charges-fixes').innerHTML =
+    CHARGES_FIXES.map(c => `
+      <div class="row">
+        <span class="row-label"><span class="tag tag-fixed">Fixe</span>${c.label}</span>
+        <span class="row-val neg">${fmt(c.montant)}</span>
+      </div>`).join('') +
+    `<div class="total-row"><span>Total fixes</span><span class="neg">${fmt(totalFixes)}</span></div>`;
+
+  // CHARGES VARIABLES
+  const allVar = [...CHARGES_VAR_BASE, ...(SUPP_FORMULE[prix] || [])];
+  document.getElementById('charges-var').innerHTML =
+    allVar.map(c => `
+      <div class="row">
+        <span class="row-label"><span class="tag tag-var">Variable</span>${c.label}</span>
+        <span class="row-val neutral">${fmt(c.montant)} / pers.</span>
+      </div>`).join('') +
+    `<div class="total-row"><span>Total variable (${joueurs} joueurs)</span><span class="neg">${fmt(totalVar)}</span></div>`;
+
+  // SYNTHESE
+  document.getElementById('synthese').innerHTML = `
+    <div class="row"><span class="row-label">Recettes (${joueurs} × ${prix} €)</span><span class="row-val pos">${fmt(CA)}</span></div>
+    <div class="row"><span class="row-label">Charges fixes</span><span class="row-val neg">− ${fmt(totalFixes)}</span></div>
+    <div class="row"><span class="row-label">Charges variables</span><span class="row-val neg">− ${fmt(totalVar)}</span></div>
+    <div class="total-row"><span>Marge soirée</span><span class="${marge >= 0 ? 'pos' : 'neg'}">${marge >= 0 ? '+' : ''}${fmt(marge)} (${tauxMarge} %)</span></div>
+  `;
+
+  // BARRES
+  const coutParJoueur = Math.round(totalCharges / joueurs);
+  const repas = CHARGES_VAR_BASE.find(c => c.label.includes('Repas')).montant;
+  const nuitee = CHARGES_VAR_BASE.find(c => c.label.includes('Nuitée')).montant + CHARGES_VAR_BASE.find(c => c.label.includes('Petit')).montant;
+  const fixeParJoueur = Math.round(totalFixes / joueurs);
+  const suppParJoueur = varSupp;
+  const margeParJoueur = Math.max(0, prix - coutParJoueur);
+
+  const barItems = [
+    { label: "Repas", val: repas, color: "#1D9E75", max: prix },
+    { label: "Nuitée + PDJ", val: nuitee, color: "#378ADD", max: prix },
+    { label: "Frais fixes (part)", val: fixeParJoueur, color: "#7F77DD", max: prix },
+    { label: "Extras formule", val: suppParJoueur, color: "#D85A30", max: prix },
+    { label: "Marge", val: margeParJoueur, color: "#639922", max: prix },
+  ];
+
+  document.getElementById('bars').innerHTML = barItems.map(b => `
+    <div class="bar-row">
+      <span class="bar-label">${b.label}</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.round(b.val/b.max*100)}%; background:${b.color}; min-width: ${b.val > 0 ? '24px' : '0'}">
+          ${b.val > 0 ? fmt(b.val) : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // SAISON
+  const nbSoirees = 13;
+  const CA_saison = CA * nbSoirees;
+  const charges_saison = totalCharges * nbSoirees;
+  const marge_saison = marge * nbSoirees;
+  const location_saison = 2500 * nbSoirees;
+
+  document.getElementById('season-grid').innerHTML = `
+    <div class="season-item"><div class="s-label">Soirées (1/semaine)</div><div class="s-val">13 soirées</div></div>
+    <div class="season-item"><div class="s-label">CA total saison</div><div class="s-val">${fmt(CA_saison)}</div></div>
+    <div class="season-item"><div class="s-label">Location château (total)</div><div class="s-val">${fmt(location_saison)}</div></div>
+    <div class="season-item"><div class="s-label">Charges totales saison</div><div class="s-val">${fmt(charges_saison)}</div></div>
+    <div class="season-item"><div class="s-label">Marge totale saison</div><div class="s-val ${marge_saison >= 0 ? 'green' : 'red'}">${fmt(marge_saison)}</div></div>
+    <div class="season-item"><div class="s-label">Marge / soirée moyenne</div><div class="s-val ${marge >= 0 ? 'green' : 'red'}">${fmt(marge)}</div></div>
+  `;
+}
+
+document.getElementById('sl-joueurs').addEventListener('input', render);
+document.getElementById('sel-formule').addEventListener('change', render);
+render();
+</script>

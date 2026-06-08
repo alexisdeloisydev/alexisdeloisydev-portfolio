@@ -1,0 +1,139 @@
+/* =========================================
+   LES HÉRITIERS DU COMTE — animations.css
+   Motion philosophy: Ceremonial, weighted, archaeological
+   ========================================= */
+
+/* CANDLE FLICKER — atmospheric particle system */
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scaleY(1) scaleX(1); }
+  15%       { opacity: 0.85; transform: scaleY(1.04) scaleX(0.97); }
+  33%       { opacity: 0.92; transform: scaleY(0.97) scaleX(1.02); }
+  50%       { opacity: 0.88; transform: scaleY(1.02) scaleX(0.98); }
+  66%       { opacity: 0.95; transform: scaleY(0.99) scaleX(1.01); }
+  80%       { opacity: 0.90; transform: scaleY(1.03) scaleX(0.99); }
+}
+
+@keyframes flame-glow {
+  0%, 100% { box-shadow: 0 0 30px 8px oklch(0.75 0.18 65 / 0.4), 0 0 80px 20px oklch(0.65 0.16 50 / 0.15); }
+  33%       { box-shadow: 0 0 40px 12px oklch(0.75 0.18 65 / 0.5), 0 0 100px 28px oklch(0.65 0.16 50 / 0.2); }
+  66%       { box-shadow: 0 0 24px 6px oklch(0.75 0.18 65 / 0.35), 0 0 60px 15px oklch(0.65 0.16 50 / 0.12); }
+}
+
+/* AMBIENT GLOW — background atmospheric breathe */
+@keyframes ambient-breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1) translate(0, 0); }
+  33%       { opacity: 0.8; transform: scale(1.05) translate(-1%, 1%); }
+  66%       { opacity: 0.55; transform: scale(0.97) translate(1%, -0.5%); }
+}
+
+/* DUST PARTICLES — floating */
+@keyframes dust-float {
+  0%   { transform: translateY(0)   translateX(0)   opacity(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-120px) translateX(30px) opacity(0); opacity: 0; }
+}
+
+/* SEAL WAX — drip animation */
+@keyframes wax-drip {
+  0%   { clip-path: circle(0% at 50% 50%); }
+  100% { clip-path: circle(60% at 50% 50%); }
+}
+
+/* PARCHMENT UNFURL */
+@keyframes unfurl {
+  from { clip-path: inset(50% 0 50% 0); opacity: 0; }
+  to   { clip-path: inset(0% 0 0% 0); opacity: 1; }
+}
+
+/* COUNT TIMER */
+@keyframes count-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.02); }
+}
+
+/* STEP CONNECTOR LINE DRAW */
+@keyframes line-draw {
+  from { transform: scaleY(0); transform-origin: top; }
+  to   { transform: scaleY(1); transform-origin: top; }
+}
+
+/* BADGE STAMP */
+@keyframes stamp-in {
+  0%   { transform: scale(2) rotate(-15deg); opacity: 0; }
+  60%  { transform: scale(0.95) rotate(2deg); opacity: 1; }
+  80%  { transform: scale(1.03) rotate(-0.5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+/* SCROLL INDICATOR */
+@keyframes scroll-hint {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(10px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* NOTIFICATION / TOAST */
+@keyframes toast-slide {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* HERO BG ATMOSPHERIC SHIFT */
+@keyframes bg-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* TIMELINE PULSE DOT */
+@keyframes timeline-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.75 0.14 75 / 0.4); }
+  50%       { box-shadow: 0 0 0 8px oklch(0.75 0.14 75 / 0); }
+}
+
+/* INPUT FOCUS UNDERLINE */
+@keyframes input-underline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* PRICE CARD REVEAL */
+@keyframes card-materialize {
+  from { 
+    opacity: 0; 
+    transform: translateY(40px) rotateX(8deg); 
+    filter: blur(4px); 
+  }
+  to   { 
+    opacity: 1; 
+    transform: translateY(0) rotateX(0); 
+    filter: blur(0); 
+  }
+}
+
+/* GOLD SHIMMER — decorative text effect */
+@keyframes gold-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* LETTER BREAK — character animation */
+@keyframes char-rise {
+  from { 
+    opacity: 0; 
+    transform: translateY(0.6em) rotate(3deg); 
+    filter: blur(4px);
+  }
+  to   { 
+    opacity: 1; 
+    transform: translateY(0) rotate(0); 
+    filter: blur(0); 
+  }
+}
+
+/* DOOR CREAK — interactive reveal */
+@keyframes door-open {
+  from { transform: perspective(800px) rotateY(-90deg); transform-origin: left; }
+  to   { transform: perspective(800px) rotateY(0deg); transform-origin: left; }
+}

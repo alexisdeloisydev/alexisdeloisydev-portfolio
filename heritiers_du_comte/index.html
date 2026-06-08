@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Château de Montfaucon — Escape Games, Visites & Événements</title>
+    <meta
+      name="description"
+      content="Un château historique vivant : escape game nocturne immersif, escape familial, visites guidées et locations événementielles. De jour comme de nuit."
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <nav class="nav" role="navigation" aria-label="Navigation principale">
+      <a
+        href="index.html"
+        class="nav-logo"
+        aria-label="Château de Montfaucon — accueil"
+      >
+        Château de Montfaucon
+        <span>Le domaine vivant</span>
+      </a>
+      <button
+        class="nav-toggle"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links">
+        <a href="index.html#offres">Nos offres</a>
+        <a href="index.html#soiree">Soirée immersive</a>
+        <a href="index.html#tarifs">Tarifs</a>
+        <a href="index.html#evenementiel">Événementiel</a>
+        <a href="reservation.html" class="nav-cta">Réserver</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Présentation">
+      <div class="hero-bg">
+        <img
+          src="./images/46e3eda7e389-Untitled-design-8-.webp.webp"
+          alt="Château historique français en pierre claire au crépuscule, vastes ailes symétriques, jardins à la française, ciel doré, format panoramique"
+          class="hero-bg-image img-placeholder"
+          width="1920"
+          height="1080"
+          loading="eager"
+        />
+        <div class="hero-bg-overlay"></div>
+      </div>
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero-content">
+        <div class="hero-main">
+          <p class="hero-eyebrow">Le domaine du Comte de Montfaucon</p>
+          <h1 class="hero-title">
+            <span class="hero-title-small reveal-wrap"
+              ><span class="reveal-line" style="--d: 0.4s"
+                >Un château qui ne dort</span
+              ></span
+            >
+            <span class="hero-title-big reveal-wrap"
+              ><span class="reveal-line" style="--d: 0.7s">jamais</span></span
+            >
+          </h1>
+          <p class="hero-desc">
+            De jour, des visites et un escape game familial. La nuit, une
+            aventure immersive de quinze heures. Et toute l'année, un décor
+            d'exception pour vos événements. Quatre façons de vivre le domaine.
+          </p>
+          <div class="hero-actions">
+            <a href="#offres" class="btn-primary">Découvrir les offres</a>
+            <a href="reservation.html" class="btn-secondary"
+              >Réserver une date</a
+            >
+          </div>
+        </div>
+
+        <aside class="hero-sidebar" aria-label="Aperçu rapide">
+          <div class="hero-sidebar-card">
+            <p class="sidebar-card-title">Le domaine en un coup d'œil</p>
+            <div class="sidebar-stat">
+              <span class="sidebar-stat-label">Visites guidées</span
+              ><span class="sidebar-stat-value">dès 10 €</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="sidebar-stat-label">Escape familial (1-2h)</span
+              ><span class="sidebar-stat-value">49 €</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="sidebar-stat-label">Soirée immersive 18h-9h</span
+              ><span class="sidebar-stat-value">379 €</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="sidebar-stat-label">Privatisation événement</span
+              ><span class="sidebar-stat-value">sur devis</span>
+            </div>
+            <div class="sidebar-divider"></div>
+            <a
+              href="reservation.html"
+              class="btn-primary"
+              style="width: 100%; justify-content: center; margin-top: 0"
+              >Vérifier les disponibilités</a
+            >
+          </div>
+        </aside>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>Découvrir</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- OFFRES -->
+    <section class="offers" id="offres" aria-label="Nos offres">
+      <div class="container">
+        <div class="offers-header fade-up">
+          <span class="section-eyebrow">Quatre expériences</span>
+          <h2>Le domaine, de l'aube à l'aube</h2>
+          <p>
+            Chaque aile du château, chaque heure de la journée, propose une
+            manière différente d'entrer dans l'histoire des Montfaucon.
+          </p>
+        </div>
+
+        <div class="offers-grid">
+          <article class="offer-card fade-up">
+            <div class="offer-num">01</div>
+            <div class="offer-icon" aria-hidden="true">☉</div>
+            <h3 class="offer-title">Visites du domaine</h3>
+            <p class="offer-tag">En journée · Aile Est</p>
+            <p class="offer-desc">
+              Visite libre ou guidée sur les traces du Comte. Salles d'apparat,
+              bibliothèque, jardins et galerie de portraits.
+            </p>
+            <div class="offer-price">
+              <span>dès</span> 10 €<small>/ visiteur</small>
+            </div>
+            <a href="#" class="offer-link">En savoir plus →</a>
+          </article>
+
+          <article class="offer-card fade-up" style="transition-delay: 0.1s">
+            <div class="offer-num">02</div>
+            <div class="offer-icon" aria-hidden="true">⚿</div>
+            <h3 class="offer-title">Escape familial</h3>
+            <p class="offer-tag">En journée · Aile Ouest · 1 à 2h</p>
+            <p class="offer-desc">
+              Une enquête courte et accessible, parfaite en famille ou entre
+              amis. Sessions enchaînées tout au long de la journée.
+            </p>
+            <div class="offer-price">49 €<small>/ personne</small></div>
+            <a href="reservation.html" class="offer-link">Réserver →</a>
+          </article>
+
+          <article
+            class="offer-card featured fade-up"
+            style="transition-delay: 0.2s"
+          >
+            <div class="offer-badge">Signature</div>
+            <div class="offer-num">03</div>
+            <div class="offer-icon" aria-hidden="true">☾</div>
+            <h3 class="offer-title">Soirée immersive</h3>
+            <p class="offer-tag">La nuit · Tout le château · 18h → 9h</p>
+            <p class="offer-desc">
+              L'expérience phare. Quinze heures d'immersion avec repas, énigmes
+              coopératives et nuitée au château.
+            </p>
+            <div class="offer-price">
+              <span>dès</span> 379 €<small>/ personne</small>
+            </div>
+            <a href="#soiree" class="offer-link">Découvrir l'aventure →</a>
+          </article>
+
+          <article class="offer-card fade-up" style="transition-delay: 0.3s">
+            <div class="offer-num">04</div>
+            <div class="offer-icon" aria-hidden="true">❖</div>
+            <h3 class="offer-title">Événementiel</h3>
+            <p class="offer-tag">Sur réservation · Espaces privatisables</p>
+            <p class="offer-desc">
+              Séminaires, mariages, tournages, stands de marques. Un décor
+              d'exception privatisable à la journée.
+            </p>
+            <div class="offer-price">sur devis<small></small></div>
+            <a href="#evenementiel" class="offer-link">Demander un devis →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOIRÉE IMMERSIVE -->
+    <section class="signature" id="soiree" aria-label="La soirée immersive">
+      <div class="signature-grid">
+        <div class="signature-image-wrap fade-up">
+          <img
+            src="./images/Gemini_Generated_Image_wih36owih36owih3.jpg"
+            alt="Scène nocturne dans un château, table de banquet aux chandelles, héritiers en train de résoudre une énigme, lumière chaude et mystérieuse, format portrait"
+            class="img-placeholder"
+            width="900"
+            height="1100"
+            loading="lazy"
+          />
+          <span class="signature-image-label">L'expérience signature</span>
+        </div>
+        <div class="signature-text fade-up">
+          <span class="section-eyebrow">Les Héritiers du Comte</span>
+          <h2>Une nuit pour percer le secret de famille</h2>
+          <p>
+            Le dernier comte de Montfaucon est mort. Son testament dissimule un
+            trésor introuvable. Vous avez jusqu'au lever du soleil pour résoudre
+            l'énigme — séparés en deux équipes, reliés par un interphone et une
+            trappe secrète.
+          </p>
+          <p>
+            Aucune équipe ne possède assez d'indices seule. Pour gagner, il
+            faudra coopérer, partager, devenir une vraie famille. Le repas et la
+            nuitée font partie intégrante du jeu.
+          </p>
+          <div class="signature-meta">
+            <div class="signature-meta-item">
+              <span class="m-label">Durée</span
+              ><span class="m-value">18h → 9h</span>
+            </div>
+            <div class="signature-meta-item">
+              <span class="m-label">Joueurs</span
+              ><span class="m-value">4 à 14</span>
+            </div>
+            <div class="signature-meta-item">
+              <span class="m-label">Inclus</span
+              ><span class="m-value">Repas & nuitée</span>
+            </div>
+          </div>
+          <a href="#tarifs" class="btn-primary" style="margin-top: var(--s-8)"
+            >Voir les formules</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section
+      class="timeline"
+      id="timeline"
+      aria-label="Déroulement de la soirée"
+    >
+      <div class="container">
+        <div class="timeline-header fade-up">
+          <span class="section-eyebrow">Le scénario</span>
+          <h2>Une nuit en cinq actes</h2>
+          <p>
+            De la lecture du testament au lever du soleil, chaque heure compte.
+          </p>
+        </div>
+        <div class="timeline-track">
+          <div class="timeline-line" aria-hidden="true"></div>
+          <div class="timeline-item fade-up">
+            <div class="timeline-item-left">
+              <span class="timeline-time">18:00</span>
+            </div>
+            <div class="timeline-center" aria-hidden="true">
+              <div class="timeline-dot"></div>
+              <div class="timeline-connector"></div>
+            </div>
+            <div class="timeline-item-right">
+              <span class="timeline-acte">Acte I</span>
+              <h3 class="timeline-item-title">Lecture du testament</h3>
+              <p class="timeline-item-desc">
+                Le notaire accueille les héritiers. Première révélation : « La
+                fortune revient à celui qui comprend son histoire. » Les équipes
+                sont séparées.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item fade-up">
+            <div class="timeline-item-left">
+              <span class="timeline-time">20:30</span>
+            </div>
+            <div class="timeline-center" aria-hidden="true">
+              <div class="timeline-dot"></div>
+              <div class="timeline-connector"></div>
+            </div>
+            <div class="timeline-item-right">
+              <span class="timeline-acte">Acte III</span>
+              <h3 class="timeline-item-title">Le banquet des héritiers</h3>
+              <p class="timeline-item-desc">
+                Les deux équipes se retrouvent à table. Mais menus, serviettes
+                et dessous d'assiette cachent tous des indices.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item fade-up">
+            <div class="timeline-item-left">
+              <span class="timeline-time">00:30</span>
+            </div>
+            <div class="timeline-center" aria-hidden="true">
+              <div class="timeline-dot"></div>
+              <div class="timeline-connector"></div>
+            </div>
+            <div class="timeline-item-right">
+              <span class="timeline-acte">La nuitée</span>
+              <h3 class="timeline-item-title">Sous le toit du Comte</h3>
+              <p class="timeline-item-desc">
+                « Le dernier souhait du comte était que ses héritiers passent
+                une nuit sous son toit. » Chaque chambre recèle un secret.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item fade-up">
+            <div class="timeline-item-left">
+              <span class="timeline-time">7:30 – 9:00</span>
+            </div>
+            <div class="timeline-center" aria-hidden="true">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item-right">
+              <span class="timeline-acte">Acte V · Final</span>
+              <h3 class="timeline-item-title">Le trésor des Montfaucon</h3>
+              <p class="timeline-item-desc">
+                Un courrier sous la porte, le sceau intact, le dernier indice.
+                Les héritiers ouvrent enfin le coffre.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARIFS -->
+    <section class="pricing" id="tarifs" aria-label="Tarifs">
+      <div class="container">
+        <div class="pricing-header fade-up">
+          <span class="section-eyebrow">Soirée immersive · Formules</span>
+          <h2>Choisissez votre héritage</h2>
+          <p>
+            Trois niveaux d'immersion pour la grande soirée. Tarif par personne,
+            repas et nuitée inclus.
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card fade-up">
+            <p class="pricing-tag">Standard</p>
+            <h3 class="pricing-name">L'Héritier</h3>
+            <p class="pricing-price">289 € <span>/ pers.</span></p>
+            <p class="pricing-desc">
+              L'expérience complète, du testament au lever du soleil.
+            </p>
+            <div class="pricing-features">
+              <p class="pricing-feature">Escape nocturne complet (18h → 9h)</p>
+              <p class="pricing-feature">Repas thématique 4 services</p>
+              <p class="pricing-feature">Nuitée en chambre partagée</p>
+              <p class="pricing-feature">Petit-déjeuner du domaine</p>
+              <p class="pricing-feature">4 à 14 joueurs</p>
+            </div>
+            <a
+              href="reservation.html"
+              class="btn-secondary"
+              style="width: 100%; justify-content: center"
+              >Réserver</a
+            >
+          </div>
+          <div class="pricing-card featured fade-up">
+            <p class="pricing-tag">Prestige</p>
+            <h3 class="pricing-name">Le Descendant</h3>
+            <p class="pricing-price">339 € <span>/ pers.</span></p>
+            <p class="pricing-desc">
+              Plus d'acteurs, plus de retournements, chambres surclassées.
+            </p>
+            <div class="pricing-features">
+              <p class="pricing-feature">Tout de la formule Standard</p>
+              <p class="pricing-feature">
+                Acteurs supplémentaires & scènes surprises
+              </p>
+              <p class="pricing-feature">Menu thématique 6 services</p>
+              <p class="pricing-feature">Chambre de caractère surclassée</p>
+              <p class="pricing-feature">Médaillon souvenir gravé</p>
+            </div>
+            <a
+              href="reservation.html"
+              class="btn-primary"
+              style="width: 100%; justify-content: center"
+              >Réserver</a
+            >
+          </div>
+          <div class="pricing-card fade-up">
+            <p class="pricing-tag">Immersif</p>
+            <h3 class="pricing-name">Le Comte</h3>
+            <p class="pricing-price">399 € <span>/ pers.</span></p>
+            <p class="pricing-desc">
+              L'expérience ultime — la cave secrète réelle attend les
+              vainqueurs.
+            </p>
+            <div class="pricing-features">
+              <p class="pricing-feature">Tout de la formule Prestige</p>
+              <p class="pricing-feature">Mise en scène cinématographique</p>
+              <p class="pricing-feature">Accès à la cave voûtée réelle</p>
+              <p class="pricing-feature">Photographe de la soirée</p>
+              <p class="pricing-feature">Coffret souvenir & diplôme enluminé</p>
+            </div>
+            <a
+              href="reservation.html"
+              class="btn-secondary"
+              style="width: 100%; justify-content: center"
+              >Réserver</a
+            >
+          </div>
+        </div>
+        <p
+          class="fade-up"
+          style="
+            text-align: center;
+            font-style: italic;
+            color: var(--c-text-muted);
+            font-size: var(--t-sm);
+            max-width: 560px;
+            margin: var(--s-12) auto 0;
+          "
+        >
+          Tarifs dégressifs au-delà de 12 joueurs. Privatisation totale du
+          château sur devis pour plus de 14 personnes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ÉVÉNEMENTIEL -->
+    <section class="evenementiel" id="evenementiel" aria-label="Événementiel">
+      <div class="container">
+        <div class="even-grid">
+          <div class="even-text fade-up">
+            <span class="section-eyebrow">Privatisation & événementiel</span>
+            <h2>Votre événement dans un décor d'exception</h2>
+            <p>
+              Le domaine se privatise à la journée pour vos séminaires,
+              mariages, tournages, lancements de marque et stands événementiels.
+              Des espaces modulables, un cadre historique, une équipe dédiée.
+            </p>
+            <ul class="even-list">
+              <li>Séminaires & team building d'entreprise</li>
+              <li>Mariages & réceptions privées</li>
+              <li>Tournages & shootings photo</li>
+              <li>Stands de marques & événements sponsorisés</li>
+            </ul>
+            <a
+              href="mailto:contact@chateau-montfaucon.fr"
+              class="btn-primary"
+              style="margin-top: var(--s-6)"
+              >Demander un devis</a
+            >
+          </div>
+          <div class="even-cards fade-up">
+            <div class="even-card">
+              <span class="even-card-icon" aria-hidden="true">❖</span>
+              <h4>Espaces privatisables</h4>
+              <p>Grand hall, salle de banquet, jardins, ailes complètes.</p>
+            </div>
+            <div class="even-card">
+              <span class="even-card-icon" aria-hidden="true">✦</span>
+              <h4>Capacité modulable</h4>
+              <p>De la réunion intime à la réception de 200 invités.</p>
+            </div>
+            <div class="even-card">
+              <span class="even-card-icon" aria-hidden="true">☉</span>
+              <h4>Équipe sur place</h4>
+              <p>Régie, accueil, restauration et logistique assurés.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" aria-label="Témoignages">
+      <div class="container">
+        <div class="testimonials-header fade-up">
+          <span class="section-eyebrow">Témoignages</span>
+          <h2>Ce que disent nos visiteurs</h2>
+        </div>
+      </div>
+      <div class="testimonials-track" role="list">
+        <article class="testimonial-card" role="listitem">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Quand le courrier a glissé sous la porte à 7h30, j'avais les larmes
+            aux yeux. Quinze heures d'immersion et on en voulait encore."
+          </p>
+          <p class="testimonial-author">Sophie M.</p>
+          <p class="testimonial-role">Soirée Prestige · Groupe de 8</p>
+        </article>
+        <article class="testimonial-card" role="listitem">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "On a fait l'escape familial l'après-midi avec les enfants, puis on
+            est revenus pour un séminaire. Le lieu est incroyable et l'équipe au
+            top."
+          </p>
+          <p class="testimonial-author">Thibault R.</p>
+          <p class="testimonial-role">Escape familial & séminaire</p>
+        </article>
+        <article class="testimonial-card" role="listitem">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "La trappe d'échange a créé des moments épiques. Envoyer la mauvaise
+            clé à minuit... le suspense était réel. Cadre magnifique."
+          </p>
+          <p class="testimonial-author">Camille & Paul D.</p>
+          <p class="testimonial-role">Soirée Immersif · EVJF · 10 joueurs</p>
+        </article>
+        <article class="testimonial-card" role="listitem">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Nous avons privatisé le domaine pour le lancement de notre marque.
+            Un écrin parfait, des photos somptueuses, une organisation sans
+            faille."
+          </p>
+          <p class="testimonial-author">Marc L.</p>
+          <p class="testimonial-role">Événement de marque · 120 invités</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-label="Appel à l'action">
+      <div class="container">
+        <span class="section-eyebrow" style="justify-content: center"
+          >Le domaine vous attend</span
+        >
+        <h2 class="fade-up">Prêts à entrer dans l'histoire ?</h2>
+        <p class="fade-up">
+          Une visite, une enquête en famille, une nuit entière ou votre plus bel
+          événement. Le château de Montfaucon n'attend que vous.
+        </p>
+        <div class="cta-actions fade-up">
+          <a href="reservation.html" class="btn-primary">Réserver une date</a>
+          <a href="mailto:contact@chateau-montfaucon.fr" class="btn-secondary"
+            >Nous contacter</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo"
+              >Château de Montfaucon<span>Le domaine vivant</span></a
+            >
+            <p>
+              Escape games, visites et événements dans un château historique. De
+              jour comme de nuit.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Les offres</h4>
+            <ul>
+              <li><a href="index.html#offres">Visites du domaine</a></li>
+              <li><a href="reservation.html">Escape familial</a></li>
+              <li><a href="index.html#soiree">Soirée immersive</a></li>
+              <li><a href="index.html#evenementiel">Événementiel</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Réservation</h4>
+            <ul>
+              <li><a href="reservation.html">Réserver en ligne</a></li>
+              <li>
+                <a href="mailto:contact@chateau-montfaucon.fr">Devis groupe</a>
+              </li>
+              <li>
+                <a href="mailto:contact@chateau-montfaucon.fr">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Pratique</h4>
+            <ul>
+              <li><a href="#">Accès & parking</a></li>
+              <li><a href="#">Questions fréquentes</a></li>
+              <li><a href="#">Conditions générales</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Château de Montfaucon · Tous droits réservés</p>
+          <p style="font-style: italic">
+            contact@chateau-montfaucon.fr · +33 (0)3 26 XX XX XX
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
