@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+<rect width="400" height="400" fill="#DCEAE5"/>
+<g transform="rotate(-2 200 200)" opacity="0.55">
+<path d="M120 260C150 190 210 150 290 140" stroke="#241F1D" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M290 140c10-18 28-28 46-28-6 18-16 32-30 42" stroke="#241F1D" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="130" cy="270" r="5" fill="#AF877A"/>
+<circle cx="150" cy="245" r="3" fill="#AF877A"/>
+<path d="M250 300l6-6 6 6-6 6-6-6z" fill="#AF877A"/>
+</g>
+<text x="200" y="380" font-family="sans-serif" font-size="12" fill="#8F6A5E" text-anchor="middle" opacity="0.7">Photo a remplacer — images/</text>
+</svg>

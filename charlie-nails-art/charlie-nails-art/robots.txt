@@ -1,0 +1,6 @@
+# robots.txt — Charlie Nails Art
+# Autorise l'indexation de tout le site par les moteurs de recherche.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.charlienailsart.fr/sitemap.xml

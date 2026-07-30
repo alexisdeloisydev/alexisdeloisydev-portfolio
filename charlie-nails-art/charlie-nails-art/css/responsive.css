@@ -1,0 +1,75 @@
+/* ==========================================================================
+   CHARLIE NAILS ART — responsive.css
+   Points de rupture : Desktop (>1024px) / Tablette (768–1024px) / Mobile (<768px)
+   À partir du format tablette (1024px et en dessous), la navigation devient
+   un menu burger (voir .burger-btn / .mobile-nav dans style.css + animations.css).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   TABLETTE ET EN DESSOUS (<= 1024px) : activation du menu burger
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  :root { --section-pad: 90px; }
+
+  .nav-list { display: none; }
+  .burger-btn { display: flex; }
+  .mobile-nav { display: block; }
+
+  .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+  .hero { padding-top: 150px; text-align: center; }
+  .hero p { margin-inline: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-art { max-width: 460px; margin-inline: auto; }
+
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+}
+
+/* --------------------------------------------------------------------------
+   PETITE TABLETTE (<= 860px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .container { padding-inline: 20px; }
+  .section { padding-block: 70px; }
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE (<= 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .grid--4, .grid--3, .grid--2 { grid-template-columns: 1fr; }
+
+  .hero { padding-top: 130px; padding-bottom: 70px; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn { justify-content: center; }
+
+  .section-title { font-size: 1.9rem; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 34px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .mobile-nav__panel { width: 100vw; padding: 100px 30px 30px; }
+
+  .back-to-top { right: 18px; bottom: 18px; width: 46px; height: 46px; }
+
+  .page-hero { padding-top: 140px; }
+}
+
+/* --------------------------------------------------------------------------
+   TRÈS PETIT MOBILE (<= 380px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .logo-mark { font-size: 1.6rem; }
+  .hero h1 { font-size: 2.2rem; }
+}
+
+/* --------------------------------------------------------------------------
+   GRAND ÉCRAN (>= 1440px) — un peu plus d'air
+   -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+  :root { --container-w: 1280px; }
+}

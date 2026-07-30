@@ -1,0 +1,152 @@
+/* ==========================================================================
+   CHARLIE NAILS ART — animations.css
+   Toutes les animations : apparition au scroll, doodles flottants,
+   ouverture/fermeture du menu mobile, micro-interactions.
+   Les animations sont douces et non agressives, comme demandé dans le brief.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. APPARITION AU SCROLL (Intersection Observer ajoute .is-visible — voir main.js)
+   -------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+}
+[data-reveal="fade"] { transform: translateY(0); }
+[data-reveal="up"] { transform: translateY(36px); }
+[data-reveal="down"] { transform: translateY(-36px); }
+[data-reveal="left"] { transform: translateX(-36px); }
+[data-reveal="right"] { transform: translateX(36px); }
+[data-reveal="scale"] { transform: scale(0.92); }
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Décalage en cascade pour les grilles (voir attribut data-reveal-delay en HTML) */
+[data-reveal-delay="1"] { transition-delay: 0.08s; }
+[data-reveal-delay="2"] { transition-delay: 0.16s; }
+[data-reveal-delay="3"] { transition-delay: 0.24s; }
+[data-reveal-delay="4"] { transition-delay: 0.32s; }
+[data-reveal-delay="5"] { transition-delay: 0.4s; }
+[data-reveal-delay="6"] { transition-delay: 0.48s; }
+
+/* --------------------------------------------------------------------------
+   2. DOODLES / FORMES FLOTTANTES (mouvement ambiant très léger)
+   -------------------------------------------------------------------------- */
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(4deg); }
+}
+@keyframes floatSoftReverse {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-4deg); }
+}
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.deco--float { animation: floatSoft 7s ease-in-out infinite; }
+.deco--float-rev { animation: floatSoftReverse 8s ease-in-out infinite; }
+.deco--sparkle { animation: sparkleTwinkle 3.2s ease-in-out infinite; }
+.deco--sparkle.delay-1 { animation-delay: 0.6s; }
+.deco--sparkle.delay-2 { animation-delay: 1.2s; }
+.deco--sparkle.delay-3 { animation-delay: 1.8s; }
+
+/* Parallaxe légère sur le blob du hero — translation via variable mise à jour en JS */
+.hero-blob {
+  --parallax-y: 0px;
+  transform: translateY(var(--parallax-y));
+  transition: transform 0.1s linear;
+}
+
+/* --------------------------------------------------------------------------
+   3. MENU MOBILE — ouverture / fermeture fluide
+   -------------------------------------------------------------------------- */
+.mobile-nav {
+  visibility: hidden;
+}
+.mobile-nav.is-active { visibility: visible; }
+
+.mobile-nav__backdrop {
+  opacity: 0;
+  transition: opacity var(--t-med) var(--ease-soft);
+}
+.mobile-nav.is-active .mobile-nav__backdrop { opacity: 1; }
+
+.mobile-nav__panel {
+  transform: translateX(100%);
+  transition: transform var(--t-med) var(--ease-soft);
+}
+.mobile-nav.is-active .mobile-nav__panel { transform: translateX(0); }
+
+.mobile-nav__panel a {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease-soft), transform 0.5s var(--ease-soft);
+}
+.mobile-nav.is-active .mobile-nav__panel a { opacity: 1; transform: translateY(0); }
+
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(1) { transition-delay: 0.12s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(2) { transition-delay: 0.18s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(3) { transition-delay: 0.24s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(4) { transition-delay: 0.3s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(5) { transition-delay: 0.36s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(6) { transition-delay: 0.42s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(7) { transition-delay: 0.48s; }
+.mobile-nav.is-active .mobile-nav__panel a:nth-child(8) { transition-delay: 0.54s; }
+
+/* Blocage du scroll du body quand le menu est ouvert (classe posée en JS) */
+body.nav-open { overflow: hidden; }
+
+/* --------------------------------------------------------------------------
+   4. GALERIE — zoom + filtre au survol
+   -------------------------------------------------------------------------- */
+.gallery-item { overflow: hidden; border-radius: var(--radius-md); cursor: pointer; }
+.gallery-item img {
+  transition: transform 0.7s var(--ease-soft), filter 0.5s;
+  filter: saturate(0.96);
+}
+.gallery-item:hover img { transform: scale(1.08); filter: saturate(1.1); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(36,31,29,0.85);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t-med) var(--ease-soft), visibility var(--t-med);
+}
+.lightbox.is-active { opacity: 1; visibility: visible; }
+.lightbox img {
+  max-width: 88vw;
+  max-height: 82vh;
+  border-radius: var(--radius-md);
+  transform: scale(0.94);
+  transition: transform var(--t-med) var(--ease-soft);
+}
+.lightbox.is-active img { transform: scale(1); }
+
+/* --------------------------------------------------------------------------
+   5. MICRO-INTERACTIONS BOUTONS / LIENS déjà gérées en transition dans style.css
+   -------------------------------------------------------------------------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-grid > * { animation: fadeInUp 0.9s var(--ease-soft) both; }
+.hero-grid > *:nth-child(2) { animation-delay: 0.1s; }
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+.toast-cart { animation: popIn 0.35s var(--ease-soft) both; }
