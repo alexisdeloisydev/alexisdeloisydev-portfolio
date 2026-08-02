@@ -15,6 +15,7 @@
   /* --rose (#EFCBD2) devient la texture "alu" : grands aplats, blobs, fonds de section */
   --alu: url('../images/alu.jpg') center/cover no-repeat #C7CBCE;
   --alu-ink: #D4D7D9;       /* équivalent uni de l'alu, utilisé uniquement pour du texte (color) */
+  --rose: #EFCBD2;         /* rose doux, pour fonds larges */
   --rose-tint: #FFB0C9;     /* teinte vive du rose, pour fonds larges */
   --rose-deep: #E3AEB8;     /* rose plus soutenu, hover / accents */
   /* --sauge devient la texture "zebra" : badges, cartes, boutons secondaires */
@@ -385,7 +386,7 @@ select:focus-visible,
 .hero-blob {
   position: absolute;
   inset: 6% 10%;
-  background: var(--alu);
+  background: var(--rose);
   border-radius: 62% 38% 55% 45% / 48% 42% 58% 52%;
 }
 
