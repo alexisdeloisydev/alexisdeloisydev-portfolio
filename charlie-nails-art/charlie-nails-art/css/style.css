@@ -24,7 +24,7 @@
   --zebra-ink: #E5E5E5;     /* équivalent uni du zebra, utilisé uniquement pour du texte (color) */
   --terracotta: #AF877A;    /* terracotta doux — traits, icônes, étoiles, séparateurs */
   --terracotta-deep: #8F6A5E; /* terracotta soutenu — hover, focus */
-  --noir: #241F1D;          /* noir chaud utilisé pour le texte (pas de noir pur) */
+  --noir: #0B0B0B;          /* noir chaud utilisé pour le texte (pas de noir pur) */
   --blanc: #FFFFFF;
 
   /* Typographies */
