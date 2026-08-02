@@ -11,12 +11,16 @@
    1. VARIABLES GLOBALES (design tokens)
    -------------------------------------------------------------------------- */
 :root {
-  /* Couleurs — répartition imposée : rose 55-60% / sauge 25-30% / terracotta 10-15% */
-  --rose: #EFCBD2;          /* rose poudré — grands aplats, blobs, fonds de section */
-  --rose-tint: #FAEEF0;     /* teinte très claire du rose, pour fonds larges */
+  /* Couleurs — répartition imposée : alu 55-60% / zebra 25-30% / terracotta 10-15% */
+  /* --rose (#EFCBD2) devient la texture "alu" : grands aplats, blobs, fonds de section */
+  --alu: url('../images/alu.jpg') center/cover no-repeat #C7CBCE;
+  --alu-ink: #D4D7D9;       /* équivalent uni de l'alu, utilisé uniquement pour du texte (color) */
+  --rose-tint: #FFB0C9;     /* teinte vive du rose, pour fonds larges */
   --rose-deep: #E3AEB8;     /* rose plus soutenu, hover / accents */
-  --sauge: #C8E0DA;         /* vert sauge pastel — badges, cartes, boutons secondaires */
-  --sauge-deep: #A9C9C0;    /* sauge plus soutenu — hover */
+  /* --sauge devient la texture "zebra" : badges, cartes, boutons secondaires */
+  --zebra: url('../images/zebra.jpg') center/cover no-repeat #E4DFD8;
+  --zebra-deep: linear-gradient(rgba(11,11,11,.3), rgba(11,11,11,.3)), url('../images/zebra.jpg') center/cover no-repeat #E4DFD8;
+  --zebra-ink: #E5E5E5;     /* équivalent uni du zebra, utilisé uniquement pour du texte (color) */
   --terracotta: #AF877A;    /* terracotta doux — traits, icônes, étoiles, séparateurs */
   --terracotta-deep: #8F6A5E; /* terracotta soutenu — hover, focus */
   --noir: #241F1D;          /* noir chaud utilisé pour le texte (pas de noir pur) */
@@ -185,10 +189,10 @@ select:focus-visible,
 .btn--primary:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(175,135,122,0.28); }
 
 .btn--secondary {
-  background: var(--sauge);
+  background: var(--zebra);
   color: var(--noir);
 }
-.btn--secondary:hover { background: var(--sauge-deep); transform: translateY(-3px); }
+.btn--secondary:hover { background: var(--zebra-deep); transform: translateY(-3px); }
 
 .btn--outline {
   background: transparent;
@@ -197,7 +201,7 @@ select:focus-visible,
 }
 .btn--outline:hover { background: var(--terracotta); color: var(--blanc); transform: translateY(-3px); }
 
-.btn--ghost { background: var(--rose); color: var(--noir); }
+.btn--ghost { background: var(--alu); color: var(--noir); }
 .btn--ghost:hover { background: var(--rose-deep); transform: translateY(-3px); }
 
 /* Bouton de filtre actif (galerie) */
@@ -272,7 +276,7 @@ select:focus-visible,
   display: none;
   width: 46px; height: 46px;
   border-radius: 50%;
-  background: var(--rose);
+  background: var(--alu);
   align-items: center;
   justify-content: center;
   position: relative;
@@ -381,7 +385,7 @@ select:focus-visible,
 .hero-blob {
   position: absolute;
   inset: 6% 10%;
-  background: var(--rose);
+  background: var(--alu);
   border-radius: 62% 38% 55% 45% / 48% 42% 58% 52%;
 }
 
@@ -432,14 +436,14 @@ select:focus-visible,
   content: "";
   position: absolute;
   inset: 14px 0 0 10px;
-  background: var(--sauge);
+  background: var(--zebra);
   border-radius: var(--radius-lg);
   transition: transform var(--t-med) var(--ease-soft), background var(--t-med);
   z-index: 0;
 }
 
-.card--rose::before { background: var(--rose); }
-.card--terracotta::before { background: var(--terracotta); }
+.card--rose::before { background: var(--alu); }
+.card--terracotta::before { background: var(--noir); }
 
 .card-face {
   position: relative;
@@ -449,11 +453,46 @@ select:focus-visible,
   padding: 30px;
   height: 100%;
   box-shadow: var(--shadow-soft);
-  transition: transform var(--t-med) var(--ease-soft);
+  transition: transform var(--t-med) var(--ease-soft), background-color var(--t-med) var(--ease-soft), color var(--t-fast);
+  overflow: hidden;
 }
 
 .card:hover .card-face { transform: translate(-6px, -6px); }
 .card:hover::before { transform: translate(4px, 4px); }
+
+/* --------------------------------------------------------------------------
+   Hover personnalisé — section "Pourquoi me choisir" (accueil, id="pourquoi")
+   Le hover s'applique au RECTANGLE ARRIÈRE (::before), pas à la carte blanche du dessus.
+   1ère carte (Écoute & douceur)      -> images/zebra.jpg
+   2ème carte (Hygiène rigoureuse)    -> images/alu.jpg
+   3ème carte (Créativité sur-mesure) -> couleur unie #0B0B0B
+   4ème carte (Tenue longue durée)    -> couleur unie #FFE0EA
+   -------------------------------------------------------------------------- */
+#pourquoi .grid > .card:nth-child(1):hover::before {
+  background-color: #E4DFD8; /* couleur de secours si zebra.png ne se charge pas */
+  background-image: url('../images/zebra.jpg');
+  background-size: cover;
+  background-position: center;
+}
+#pourquoi .grid > .card:nth-child(2):hover::before {
+  background-color: #C7CBCE; /* couleur de secours si alu.png ne se charge pas */
+  background-image: url('../images/alu.jpg');
+  background-size: cover;
+  background-position: center;
+}
+#pourquoi .grid > .card:nth-child(3):hover::before {
+  background-image: none;
+  background-color: #0B0B0B;
+}
+#pourquoi .grid > .card:nth-child(4):hover::before {
+  background-image: none;
+  background-color: #FFE0EA;
+}
+
+/* 4ème carte : couleur identique au repos et au survol (comme la carte 3) */
+#pourquoi .grid > .card:nth-child(4)::before {
+  background-color: #FFE0EA;
+}
 
 .card-icon {
   width: 52px; height: 52px;
@@ -472,6 +511,11 @@ select:focus-visible,
   margin-bottom: 18px;
   aspect-ratio: 4/3;
   object-fit: cover;
+  transition: transform var(--t-med) var(--ease-soft), opacity var(--t-med) var(--ease-soft);
+}
+.card:hover .card-face img {
+  transform: scale(1.03);
+  opacity: 0.96;
 }
 
 /* Grille de cartes générique */
@@ -490,8 +534,8 @@ select:focus-visible,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--sauge);
-  color: var(--noir);
+  background: var(--noir);
+  color: var(--blanc);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -533,13 +577,13 @@ select:focus-visible,
   font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--sauge);
+  color: var(--zebra-ink);
   margin-bottom: 18px;
 }
 
 .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
 .footer-col a, .footer-col p { color: #ecdedb; font-size: 0.92rem; }
-.footer-col a:hover { color: var(--rose); }
+.footer-col a:hover { color: var(--alu-ink); }
 
 .footer-social { display: flex; gap: 14px; margin-top: 18px; }
 .footer-social a {
@@ -562,7 +606,7 @@ select:focus-visible,
   font-size: 0.82rem;
   color: #c9b9b5;
 }
-.footer-bottom a:hover { color: var(--rose); }
+.footer-bottom a:hover { color: var(--alu-ink); }
 .footer-bottom-links { display: flex; gap: 22px; flex-wrap: wrap; }
 
 /* --------------------------------------------------------------------------
@@ -700,7 +744,7 @@ body.page-boutique .header-actions [data-cart-toggle] { display: inline-flex !im
 .cart-item__actions { display: flex; align-items: center; gap: 8px; }
 .cart-qty-btn {
   width: 26px; height: 26px; border-radius: 50%;
-  background: var(--sauge); font-weight: 700;
+  background: var(--zebra); font-weight: 700;
 }
 .cart-remove-btn { color: var(--terracotta-deep); font-size: 0.9rem; margin-left: 6px; }
 
