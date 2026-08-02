@@ -443,8 +443,8 @@ select:focus-visible,
   z-index: 0;
 }
 
-.card--rose::before { background: var(--alu); }
-.card--terracotta::before { background: var(--noir); }
+.card--rose::before { background: var(--zebra); }
+.card--terracotta::before { background: var(--zebra); }
 
 .card-face {
   position: relative;
@@ -470,29 +470,30 @@ select:focus-visible,
    4ème carte (Tenue longue durée)    -> couleur unie #FFE0EA
    -------------------------------------------------------------------------- */
 #pourquoi .grid > .card:nth-child(1):hover::before {
-  background-color: #E4DFD8; /* couleur de secours si zebra.png ne se charge pas */
   background-image: url('../images/zebra.jpg');
   background-size: cover;
   background-position: center;
 }
 #pourquoi .grid > .card:nth-child(2):hover::before {
-  background-color: #C7CBCE; /* couleur de secours si alu.png ne se charge pas */
-  background-image: url('../images/alu.jpg');
+  background-image: url('../images/zebra.jpg');
   background-size: cover;
   background-position: center;
 }
 #pourquoi .grid > .card:nth-child(3):hover::before {
-  background-image: none;
-  background-color: #0B0B0B;
+  background-image: url('../images/zebra.jpg');
+  background-size: cover;
+  background-position: center;
 }
 #pourquoi .grid > .card:nth-child(4):hover::before {
-  background-image: none;
-  background-color: #FFE0EA;
+  background-image: url('../images/zebra.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-/* 4ème carte : couleur identique au repos et au survol (comme la carte 3) */
 #pourquoi .grid > .card:nth-child(4)::before {
-  background-color: #FFE0EA;
+  background-image: url('../images/zebra.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .card-icon {
