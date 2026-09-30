@@ -7,7 +7,13 @@
       name="description"
       content="Portfolio de Deloisy Alexis, développeur web front-end."
     />
-    <title>Portfolio — DELOISY ALEXIS</title>
+    <title>Portfolio · DELOISY ALEXIS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="./images/favicon.ico" />
     <meta
@@ -429,10 +435,10 @@
         if (!logoEl) return;
         logoEl.src =
           theme === "dark"
-            ? "./images/Logo_moderne_et_digi_min.webp"
-            : "./images/Logo_moderne_et_digi_light_min.webp";
+            ? "./images/Logo_moderne_et_digi (1).webp"
+            : "./images/Logo_moderne_et_digi_light.webp";
       }
-      applyLogo();
+      document.addEventListener("DOMContentLoaded", applyLogo);
 
       (function () {
         const isTouch =
@@ -522,7 +528,7 @@
       <div class="logo">
         <img
           id="navbar-logo"
-          src="./images/Logo_moderne_et_digi_min.webp"
+          src="./images/Logo_moderne_et_digi (1).webp"
           alt="logo alexis"
           width="120"
           height="40"
@@ -566,107 +572,123 @@
     </header>
 
     <section id="hero" class="hero">
-      <div class="hero-content">
-        <h1>DELOISY ALEXIS</h1>
-        <h2>Developpeur Web - Front Dev</h2>
-        <p class="hero-subtext">
-          Ma passion du web nourrit mes etudes, et mes etudes nourrissent ma
-          creativite.
-        </p>
-        <div class="stacks-wrapper">
-          <p class="stacks-label">Stack principale</p>
-          <div class="stacks-row">
-            <div class="stack-card">
-              <img
-                src="./images/docker.svg"
-                alt="Docker"
-                width="40"
-                height="40"
-              />
-              <span>Docker</span>
-            </div>
-            <div class="stack-card">
-              <svg width="40" height="40" aria-label="PHP" role="img">
-                <use href="#icon-php" />
-              </svg>
-              <span>PHP</span>
-            </div>
-            <div class="stack-card">
-              <svg width="40" height="40" aria-label="MySQL" role="img">
-                <use href="#icon-mysql" />
-              </svg>
-              <span>MySQL</span>
-            </div>
-            <div class="stack-card">
-              <svg width="40" height="40" aria-label="HTML" role="img">
-                <use href="#icon-html" />
-              </svg>
-              <span>HTML</span>
-            </div>
-            <div class="stack-card">
-              <svg width="40" height="40" aria-label="CSS" role="img">
-                <use href="#icon-css" />
-              </svg>
-              <span>CSS</span>
-            </div>
-            <div class="stack-card">
-              <svg width="40" height="40" aria-label="JavaScript" role="img">
-                <use href="#icon-js" />
-              </svg>
-              <span>JavaScript</span>
-            </div>
-            <div class="stack-card">
-              <svg width="40" height="40" aria-label="Claude" role="img">
-                <use href="#icon-claude" />
-              </svg>
-              <span>Claude</span>
-            </div>
-          </div>
-          <p class="stacks-label stacks-label--secondary">
-            Outils &amp; creation
+      <div class="hero-inner">
+        <div class="hero-content fade-in-stagger">
+          <span class="eyebrow">Developpeur Front-End</span>
+          <h1>DELOISY<span class="accent-word">Alexis</span></h1>
+          <h2>Developpeur Web - Front Dev</h2>
+          <p class="hero-subtext">
+            Ma passion du web nourrit mes etudes, et mes etudes nourrissent ma
+            creativite.
           </p>
-          <div class="stacks-row stacks-row--secondary">
-            <div class="stack-card stack-card--secondary">
-              <svg width="40" height="40" aria-label="WordPress" role="img">
-                <use href="#icon-wordpress" />
-              </svg>
-              <span>WordPress</span>
+          <a href="#projects" class="cta-btn">Voir mes projets</a>
+        </div>
+        <div class="hero-stacks-col">
+          <div class="stacks-wrapper">
+            <p class="stacks-label">Stack principale</p>
+            <div class="stacks-row">
+              <div class="stack-card">
+                <img
+                  src="./images/docker.svg"
+                  alt="Docker"
+                  width="40"
+                  height="40"
+                />
+                <span>Docker</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="PHP" role="img">
+                  <use href="#icon-php" />
+                </svg>
+                <span>PHP</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="MySQL" role="img">
+                  <use href="#icon-mysql" />
+                </svg>
+                <span>MySQL</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="HTML" role="img">
+                  <use href="#icon-html" />
+                </svg>
+                <span>HTML</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="CSS" role="img">
+                  <use href="#icon-css" />
+                </svg>
+                <span>CSS</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="JavaScript" role="img">
+                  <use href="#icon-js" />
+                </svg>
+                <span>JavaScript</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="Claude" role="img">
+                  <use href="#icon-claude" />
+                </svg>
+                <span>Claude</span>
+              </div>
             </div>
-            <div class="stack-card stack-card--secondary">
-              <svg width="40" height="40" aria-label="Photoshop" role="img">
-                <use href="#icon-photoshop" />
-              </svg>
-              <span>Photoshop</span>
-            </div>
-            <div class="stack-card stack-card--secondary">
-              <svg width="40" height="40" aria-label="After Effects" role="img">
-                <use href="#icon-aftereffects" />
-              </svg>
-              <span>After Effects</span>
-            </div>
-            <div class="stack-card stack-card--secondary">
-              <svg width="40" height="40" aria-label="Illustrator" role="img">
-                <use href="#icon-illustrator" />
-              </svg>
-              <span>Illustrator</span>
-            </div>
-            <div class="stack-card stack-card--secondary">
-              <svg width="40" height="40" aria-label="Premiere Pro" role="img">
-                <use href="#icon-premiere" />
-              </svg>
-              <span>Premiere Pro</span>
+            <p class="stacks-label stacks-label--secondary">
+              Outils &amp; creation
+            </p>
+            <div class="stacks-row stacks-row--secondary">
+              <div class="stack-card stack-card--secondary">
+                <svg width="40" height="40" aria-label="WordPress" role="img">
+                  <use href="#icon-wordpress" />
+                </svg>
+                <span>WordPress</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg width="40" height="40" aria-label="Photoshop" role="img">
+                  <use href="#icon-photoshop" />
+                </svg>
+                <span>Photoshop</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg
+                  width="40"
+                  height="40"
+                  aria-label="After Effects"
+                  role="img"
+                >
+                  <use href="#icon-aftereffects" />
+                </svg>
+                <span>After Effects</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg width="40" height="40" aria-label="Illustrator" role="img">
+                  <use href="#icon-illustrator" />
+                </svg>
+                <span>Illustrator</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg
+                  width="40"
+                  height="40"
+                  aria-label="Premiere Pro"
+                  role="img"
+                >
+                  <use href="#icon-premiere" />
+                </svg>
+                <span>Premiere Pro</span>
+              </div>
             </div>
           </div>
         </div>
-        <a href="#projects" class="cta-btn">Voir mes projets</a>
       </div>
     </section>
 
     <section id="projects" class="projects">
       <div class="section-inner">
-        <h2>Mes Projets</h2>
+        <span class="eyebrow fade-in">Selection</span>
+        <h2 class="fade-in">Mes Projets</h2>
         <div class="project-grid">
-          <a href="detail-hellenism.html" target="_blank" rel="noopener">
+          <a href="detail-hellenism.html" class="fade-in">
             <div class="project-card">
               <h3>HELLENISM PALLAS</h3>
               <p>site vitrine de vente de chapelets paiens en ligne</p>
@@ -680,7 +702,7 @@
               />
             </div>
           </a>
-          <a href="detail-rainbow.html" target="_blank" rel="noopener">
+          <a href="detail-rainbow.html" class="fade-in">
             <div class="project-card">
               <h3>UMAMI RAINBOW SHOP</h3>
               <p>site vitrine de vente de goodies importe du japon</p>
@@ -694,7 +716,7 @@
               />
             </div>
           </a>
-          <a href="detail-cv.html" target="_blank" rel="noopener">
+          <a href="detail-cv.html" class="fade-in">
             <div class="project-card">
               <h3>CV SIMPLE</h3>
               <p>re creation de mon cv en html5 css</p>
@@ -708,7 +730,7 @@
               />
             </div>
           </a>
-          <a href="detail-zestia.html" target="_blank" rel="noopener">
+          <a href="detail-zestia.html" class="fade-in">
             <div class="project-card">
               <h3>SITE FICTIF ZESTIA</h3>
               <p>
@@ -725,7 +747,7 @@
               />
             </div>
           </a>
-          <a href="detail-kintsugi.html" target="_blank" rel="noopener">
+          <a href="detail-kintsugi.html" class="fade-in">
             <div class="project-card">
               <h3>KINTSUGI CARS IMPORT</h3>
               <p>
@@ -741,7 +763,7 @@
               />
             </div>
           </a>
-          <a href="detail-linda.html" target="_blank" rel="noopener">
+          <a href="detail-linda.html" class="fade-in">
             <div class="project-card">
               <h3>SITE LINDA CONVERT</h3>
               <p>
@@ -757,7 +779,7 @@
               />
             </div>
           </a>
-          <a href="detail-todo.html" target="_blank" rel="noopener">
+          <a href="detail-todo.html" class="fade-in">
             <div class="project-card">
               <h3>TASKFLOW</h3>
               <p>application de gestion de taches</p>
@@ -771,7 +793,7 @@
               />
             </div>
           </a>
-          <a href="detail-tupac.html" target="_blank" rel="noopener">
+          <a href="detail-tupac.html" class="fade-in">
             <div class="project-card">
               <h3>TUPAC SHAKUR - OFFICIAL</h3>
               <p>
@@ -787,13 +809,27 @@
               />
             </div>
           </a>
+          <a href="detail_quokka.html" class="fade-in">
+            <div class="project-card">
+              <h3>TRANSPORT QUOKKA</h3>
+              <p>site web de transport et de logistique</p>
+              <img
+                src="./images/quokka.png"
+                alt="Apercu du site Transport Quokka"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
     <section id="about" class="about">
       <div class="about-layout">
-        <div class="about-portrait-col">
+        <div class="about-portrait-col fade-in">
           <div class="about-portrait-wrap">
             <img
               src="./images/portrait2.webp"
@@ -810,7 +846,7 @@
             </div>
           </div>
         </div>
-        <div class="about-text-col">
+        <div class="about-text-col fade-in">
           <h2 class="about-banner-name">Deloisy<br /><em>Alexis</em></h2>
           <p class="about-chapeau">
             Je suis un developpeur front-end qui croit que coder c'est aussi
@@ -856,7 +892,7 @@
         <div class="contact-grid">
           <form
             id="contact-form"
-            class="contact-form"
+            class="contact-form fade-in"
             method="POST"
             action="https://formspree.io/f/mgonbkyp"
           >
@@ -919,7 +955,7 @@
             </div>
             <div id="form-toast" class="form-toast">Message envoye</div>
           </form>
-          <div class="contact-aside">
+          <div class="contact-aside fade-in">
             <p class="aside-title">Besoin d'une collaboration ?</p>
             <p class="aside-text">
               Parle-moi de ton projet, je reviens vers toi rapidement.
@@ -996,13 +1032,71 @@
     </section>
 
     <footer class="footer">
-      <p>&#169; DELOISY ALEXIS - Tous droits reserves</p>
+      <div class="footer-inner section-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="footer-logo"
+              >DELOISY<span class="accent-word">.</span>Alexis</span
+            >
+            <p class="footer-tagline">
+              Developpeur Web Front-End, base a Troyes. Toujours partant pour un
+              nouveau projet.
+            </p>
+            <a
+              href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+              class="footer-social"
+            >
+              <svg width="20" height="20" aria-hidden="true">
+                <use href="#icon-linkedin" />
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-col-title">Navigation</p>
+            <ul class="footer-links">
+              <li><a href="#hero">Accueil</a></li>
+              <li><a href="#projects">Projets</a></li>
+              <li><a href="#about">A propos</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="erreur.html">Erreurs</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-col-title">Contact</p>
+            <ul class="footer-links">
+              <li>
+                <a href="mailto:alexis.deloisydev@gmail.com"
+                  >alexis.deloisydev@gmail.com</a
+                >
+              </li>
+              <li><a href="tel:+33648582055">+33 6 48 58 20 55</a></li>
+              <li><span>Troyes / France</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-col-title">Disponibilite</p>
+            <p class="footer-status">
+              <span class="footer-status-dot"></span>
+              Freelance / Alternance / CDD / CDI
+            </p>
+            <a href="#contact" class="footer-cta">Me contacter</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&#169; 2026 DELOISY ALEXIS - Tous droits reserves</p>
+          <p>Concu &amp; developpe par Alexis Deloisy</p>
+        </div>
+      </div>
     </footer>
 
-    <script
-      data-cfasync="false"
-      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
     <script>
       (function () {
         const form = document.getElementById("contact-form");
@@ -1116,7 +1210,7 @@
         });
       });
       (function () {
-        const els = document.querySelectorAll(".fade-in");
+        const els = document.querySelectorAll(".fade-in, .fade-in-stagger");
         if (!els.length) return;
         const observer = new IntersectionObserver(
           (entries) => {
