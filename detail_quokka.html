@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transport Quokka — Détail Projet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styledetail.css" />
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme");
+        if (saved) document.documentElement.setAttribute("data-theme", saved);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Changer de thème"
+    >
+      <svg
+        id="theme-icon-sun"
+        xmlns="http://www.w3.org/2000/svg"
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
+      <svg
+        id="theme-icon-moon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        style="display: none"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+      <span id="theme-label">Mode clair</span>
+    </button>
+
+    <button
+      id="bubble-toggle"
+      class="bubble-toggle"
+      aria-label="Désactiver l'effet curseur"
+    >
+      <svg
+        id="bubble-icon-on"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="4" />
+      </svg>
+      <svg
+        id="bubble-icon-off"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        style="display: none"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+      </svg>
+      <span>Curseur</span>
+    </button>
+
+    <header class="navbar">
+      <div class="logo">
+        <img
+          src="./images/Logo_moderne_et_digi (1).webp"
+          alt="logo alexis"
+          class="logo-dark"
+        />
+        <img
+          src="./images/Logo_moderne_et_digi_light.webp"
+          alt="logo alexis"
+          class="logo-light"
+        />
+      </div>
+      <nav>
+        <ul style="list-style: none; display: flex">
+          <li>
+            <a href="index.html" class="back-btn">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M19 12H5M12 5l-7 7 7 7" />
+              </svg>
+              Retour au portfolio
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="project-hero">
+      <div class="hero-meta">
+        <span class="project-type">Site vitrine · Transport</span>
+        <span class="meta-dot"></span>
+        <span class="project-year">2026</span>
+      </div>
+      <h1>TRANSPORT QUOKKA</h1>
+      <p class="project-tagline">
+        Un site one-page conçu pour présenter les services de Transport Quokka
+        aux futurs clients, valoriser ses partenaires et faciliter les demandes
+        de devis.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">PHP</span>
+        <span class="tag">Site vitrine</span>
+      </div>
+    </section>
+
+    <div class="preview-strip">
+      <div class="preview-frame">
+        <div class="browser-bar">
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <div class="browser-url">transport-quokka.fr</div>
+        </div>
+        <img
+          class="preview-img"
+          src="./images/quokka.png"
+          alt="Aperçu du projet Transport Quokka"
+        />
+      </div>
+    </div>
+
+    <main class="detail-body">
+      <section class="context-grid reveal">
+        <div class="context-text">
+          <p class="section-label">Contexte du projet</p>
+          <h2>Présenter l'offre et faciliter le premier contact</h2>
+          <p>
+            Transport Quokka est un site one-page destiné aux clients
+            potentiels. Il rassemble les informations utiles à la découverte de
+            l'entreprise et guide les visiteurs vers une demande de devis.
+          </p>
+          <p>
+            La page met également en avant les partenaires et les avis Google,
+            et propose un appel à l'action vers les offres d'emploi de
+            chauffeur.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-item">
+            <span class="info-item-label">Type</span>
+            <span class="info-item-value">Site vitrine one-page</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Domaine</span>
+            <span class="info-item-value">transport-quokka.fr</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Année</span>
+            <span class="info-item-value">2026</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Statut</span>
+            <span class="info-item-value">Projet terminé</span>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Rôle</span>
+            <span class="info-item-value"
+              >Développement · Hébergement · Sécurité · Mailing PHP</span
+            >
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <span class="info-item-label">Durée</span>
+            <span class="info-item-value">Environ 20 heures</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-section reveal">
+        <p class="section-label">Le site propose</p>
+        <h2>Fonctionnalités clés</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Présentation des services</h3>
+            <p>
+              Une page d'accueil pensée pour faire découvrir l'entreprise et ses
+              services aux futurs clients.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Partenaires</h3>
+            <p>Une section dédiée aux partenaires de Transport Quokka.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Avis Google</h3>
+            <p>Les avis Google contribuent à présenter les retours clients.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Demande de devis</h3>
+            <p>
+              Le formulaire organise les réponses dans l'ordre et génère avec
+              PHP un e-mail de demande de devis prérempli.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Recrutement chauffeur</h3>
+            <p>
+              Un appel à l'action oriente les candidats vers les offres d'emploi
+              de chauffeur.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="stack-section reveal">
+        <p class="section-label">Technologies utilisées</p>
+        <h2>Stack technique</h2>
+        <div class="stack-list">
+          <div class="stack-item">
+            <img src="./images/html-1.svg" alt="HTML5" />
+            <span class="stack-card-span">HTML5</span>
+          </div>
+          <div class="stack-item">
+            <img src="./images/css-3.svg" alt="CSS3" />
+            <span class="stack-card-span">CSS3</span>
+          </div>
+          <div class="stack-item">
+            <img src="./images/javascript-r.svg" alt="JavaScript" />
+            <span class="stack-card-span">JavaScript</span>
+          </div>
+          <div class="stack-item">
+            <span class="stack-card-span">PHP</span>
+          </div>
+          <div class="stack-item">
+            <span class="stack-card-span">JSON</span>
+          </div>
+          <div class="stack-item">
+            <span class="stack-card-span">.htaccess</span>
+          </div>
+        </div>
+        <p>
+          Fichiers de configuration et de dépôt mentionnés :
+          <code>.htaccess</code>, JSON et <code>.gitkeep</code>.
+        </p>
+      </section>
+
+      <section class="lessons-section reveal">
+        <p class="section-label">Parcours client</p>
+        <h2>Un point d'entrée vers les services et le contact</h2>
+        <p>
+          Le site réunit la présentation de l'entreprise, les éléments de
+          confiance, le formulaire de devis et l'accès aux offres d'emploi sur
+          une seule page. Les visiteurs peuvent ainsi choisir rapidement le
+          parcours correspondant à leur besoin.
+        </p>
+      </section>
+
+      <section class="cta-section reveal">
+        <h2>Découvrir Transport Quokka</h2>
+        <p>Visitez le site de Transport Quokka.</p>
+        <div class="cta-buttons">
+          <a
+            href="https://transport-quokka.fr"
+            target="_blank"
+            rel="noopener"
+            class="btn-visit"
+          >
+            Visiter le site
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+          <a href="index.html" class="btn-back">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Retour au portfolio
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© DELOISY ALEXIS — Tous droits réservés</p>
+    </footer>
+
+    <script>
+      (function () {
+        const html = document.documentElement;
+        const button = document.getElementById("theme-toggle");
+        const sun = document.getElementById("theme-icon-sun");
+        const moon = document.getElementById("theme-icon-moon");
+        const label = document.getElementById("theme-label");
+
+        function currentTheme() {
+          const saved = html.getAttribute("data-theme");
+          if (saved) return saved;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        function applyTheme(theme) {
+          sun.style.display = theme === "dark" ? "" : "none";
+          moon.style.display = theme === "dark" ? "none" : "";
+          label.textContent = theme === "dark" ? "Mode clair" : "Mode sombre";
+        }
+
+        applyTheme(currentTheme());
+        button.addEventListener("click", () => {
+          const next = currentTheme() === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("theme", next);
+          applyTheme(next);
+        });
+      })();
+
+      (function () {
+        const bubbles = Array.from(document.querySelectorAll(".bubble"));
+        const button = document.getElementById("bubble-toggle");
+        const iconOn = document.getElementById("bubble-icon-on");
+        const iconOff = document.getElementById("bubble-icon-off");
+        const positions = bubbles.map(() => ({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+        }));
+        const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let enabled = true;
+
+        document.addEventListener(
+          "mousemove",
+          (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+          },
+          { passive: true },
+        );
+
+        button.addEventListener("click", () => {
+          enabled = !enabled;
+          bubbles.forEach((bubble) => {
+            bubble.style.display = enabled ? "" : "none";
+          });
+          iconOn.style.display = enabled ? "" : "none";
+          iconOff.style.display = enabled ? "none" : "";
+          button.classList.toggle("bubble-toggle--off", !enabled);
+        });
+
+        function animate() {
+          if (enabled && positions.length) {
+            positions[0].x += (mouse.x - positions[0].x) * 0.22;
+            positions[0].y += (mouse.y - positions[0].y) * 0.22;
+            for (let index = 1; index < positions.length; index++) {
+              positions[index].x +=
+                (positions[index - 1].x - positions[index].x) *
+                (0.22 - index * 0.02);
+              positions[index].y +=
+                (positions[index - 1].y - positions[index].y) *
+                (0.22 - index * 0.02);
+            }
+            bubbles.forEach((bubble, index) => {
+              bubble.style.setProperty("--x", positions[index].x);
+              bubble.style.setProperty("--y", positions[index].y);
+              bubble.style.opacity = Math.max(0.08, 1 - index * 0.18);
+            });
+          }
+          requestAnimationFrame(animate);
+        }
+
+        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+          enabled = false;
+          bubbles.forEach((bubble) => {
+            bubble.style.display = "none";
+          });
+          iconOn.style.display = "none";
+          iconOff.style.display = "";
+          button.classList.add("bubble-toggle--off");
+        }
+        requestAnimationFrame(animate);
+      })();
+
+      (function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.12 },
+        );
+        document.querySelectorAll(".reveal").forEach((element) => {
+          observer.observe(element);
+        });
+      })();
+    </script>
+  </body>
+</html>

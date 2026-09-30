@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Créer un compte - Umami Rainbow Shop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Quicksand", sans-serif;
+        background: #fff5fb;
+        color: #444;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        opacity: 0; /* fade-in */
+        overflow-x: hidden; /* Empêche le défilement horizontal */
+      }
+
+      body.loaded {
+        opacity: 1;
+        animation: fadeIn 1s ease-in-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .header {
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        max-width: 1000px;
+        height: auto;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+        background: #ffecf9;
+        padding: 10px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar a {
+        margin: 0 20px;
+        text-decoration: none;
+        color: #ff5ac8;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .navbar a.active {
+        color: #d63d9d;
+        border-bottom: 2px solid #d63d9d;
+      }
+
+      .create-account {
+        padding: 50px 20px;
+        background: #f0fcff;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .create-account h1 {
+        font-family: "Pacifico", cursive;
+        font-size: 48px;
+        color: #ff5ac8;
+        text-align: center;
+        margin-bottom: 20px;
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      .create-account h1.animate {
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideInTop 0.8s ease-out forwards;
+      }
+
+      .create-account p {
+        font-size: 20px;
+        color: #444;
+        text-align: center;
+        margin-bottom: 30px;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .create-account p.animate {
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideInBottom 0.8s ease-out forwards 0.2s;
+      }
+
+      @keyframes slideInTop {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInBottom {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .create-account form {
+        max-width: 400px;
+        width: 100%;
+        background: #fff;
+        border: 2px solid #ffb6f9;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      .create-account form.animate {
+        opacity: 1;
+        transform: scale(1);
+        animation: popIn 0.5s ease-out forwards;
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .create-account input {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 2px solid #ffb6f9;
+        border-radius: 15px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .create-account input:focus {
+        border-color: #ff5ac8;
+      }
+
+      .create-account button {
+        width: 100%;
+        background: #ff5ac8;
+        border: none;
+        color: white;
+        padding: 12px;
+        border-radius: 25px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .create-account button:hover {
+        background: #d63d9d;
+      }
+
+      .error-message {
+        color: #d63d9d;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+
+      .footer {
+        background: #f896f0;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        font-size: 16px;
+      }
+
+      @media (max-width: 600px) {
+        .create-account h1 {
+          font-size: 36px;
+        }
+
+        .create-account p {
+          font-size: 16px;
+        }
+
+        .create-account form {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <img
+        src="./images/umamilogo.jpg"
+        alt="Umami Rainbow Shop Logo"
+        class="logo"
+      />
+    </header>
+
+    <nav class="navbar">
+      <a href="umami.html#accueil">Accueil</a>
+      <a href="umami.html#produits">Produits</a>
+      <a href="umami.html#a-propos">À propos</a>
+      <a href="umami.html#gallery">Galerie</a>
+      <a href="compte.html" class="active">Mon compte</a>
+      <a href="panier.html">Panier</a>
+    </nav>
+
+    <section class="create-account">
+      <h1>Crée ton compte kawaii ! 🌸</h1>
+      <p>
+        Rejoins la famille Umami Rainbow pour des aventures pleines de couleurs
+        !
+      </p>
+      <form id="create-account-form">
+        <input type="text" id="name" placeholder="Ton nom" required />
+        <input type="text" id="surname" placeholder="Ton prenom" required />
+        <input type="email" id="email" placeholder="Ton email" required />
+        <input
+          type="password"
+          id="password"
+          placeholder="Ton mot de passe"
+          required
+        />
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Confirme ton mot de passe"
+          required
+        />
+        <button type="submit">Créer mon compte</button>
+        <div class="error-message" id="error-message"></div>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>© 2025 Umami Rainbow Shop. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+      // animation chargement de la page
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("loaded");
+        document.querySelector(".create-account h1").classList.add("animate");
+        document.querySelector(".create-account p").classList.add("animate");
+        document.querySelector(".create-account form").classList.add("animate");
+      });
+
+      const form = document.getElementById("create-account-form");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Empêche l'envoi réel du formulaire
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirm-password").value;
+
+        // Réinitialiser le message d'erreur
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+        // Validation
+        if (!name) {
+          errorMessage.textContent = "Le nom est requis !";
+          errorMessage.style.display = "block";
+          return;
+        }
+
+        if (!email) {
+          errorMessage.textContent = "L’email est requis !";
+          errorMessage.style.display = "block";
+          return;
+        }
+
+        if (!password) {
+          errorMessage.textContent = "Le mot de passe est requis !";
+          errorMessage.style.display = "block";
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          errorMessage.textContent = "Les mots de passe ne correspondent pas !";
+          errorMessage.style.display = "block";
+          return;
+        }
+
+        // Si tout est valide, simuler une création de compte
+        alert("Compte créé avec succès ! Bienvenue chez Umami Rainbow 🌸");
+        form.reset(); // Réinitialiser le formulaire
+      });
+    </script>
+  </body>
+</html>

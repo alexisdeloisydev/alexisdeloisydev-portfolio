@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="icon" href="./image/favicon-48x48.png" type="image/png" sizes="32x32">
+
+    <style>
+        /* Commentaire : Applique la police Arial au corps de la page et configure le fond */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: purple;
+            background-image: url('https://img.freepik.com/free-photo/liquid-marbling-paint-texture-background-fluid-painting-abstract-texture-intensive-color-mix-wallpaper_1258-82940.jpg?t=st=1740518892~exp=1740522492~hmac=2cfffe0b24bf49a0dc9c7cac78ea86aca0e2635a50dfa0b40a982b040c7529b9&w=1380');
+            background-size: 112%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Commentaire : Stylise l'en-tête avec un fond semi-transparent et une animation de transition */
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 3em 0;
+            position: relative;
+            transition: padding 0.3s ease, font-size 0.3s ease;
+        }
+
+        /* Commentaire : Réduit l'en-tête lorsqu'on fait défiler la page */
+        header.shrink {
+            padding: 1em 0;
+            font-size: 0.8em;
+        }
+
+        /* Commentaire : Stylise l'image de profil */
+        .profile-image {
+            width: 10vw;
+            max-width: 100px;
+            height: auto;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            top: 50px;
+            left: 2vw;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Commentaire : Cache l'image de profil lorsque l'en-tête est réduit */
+        header.shrink .profile-image {
+            opacity: 0;
+        }
+
+        /* Commentaire : Crée un menu de navigation fixe */
+        nav {
+            margin: 0;
+            padding: 1em;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        /* Commentaire : Stylise les liens de navigation */
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* Commentaire : Ajoute un padding au contenu principal pour laisser de l'espace sous le menu */
+        main {
+            padding-top: 80px;
+            color: #fff;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Commentaire : Stylise les liens avec des effets de survol */
+        a {
+            color: lightblue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: rgb(170, 0, 255);
+        }
+
+        /* Commentaire : Crée des sections avec un effet de survol */
+        #about, #home-section {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgb(170, 0, 255);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        /* Commentaire : Agrandit légèrement la section au survol */
+        #about:hover, #home-section:hover {
+            transform: scale(1.025);
+        }
+
+        /* Commentaire : Stylise les éléments d'information */
+        .info {
+            flex: 1 1 60%;
+            padding-right: 20px;
+        }
+
+        /* Commentaire : Ajoute un effet de survol aux titres d'information */
+        .info h3 {
+            margin-top: 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .info h3:hover {
+            color: rgb(170, 0, 255);
+        }
+
+        /* Commentaire : Stylise le contenu d'information masqué */
+        .info-content {
+            max-height: 0;
+            overflow-y: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        /* Commentaire : Stylise l'image de la section "À propos" */
+        .about-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            position: relative;
+            margin-right: 20px;
+        }
+
+        /* Commentaire : Stylise la section principale avec un effet de survol */
+        #Home, .new-home-section {
+            flex: 1 1 60%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgb(170, 0, 255);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        /* Commentaire : Agrandit légèrement la section au survol */
+        #Home:hover, .new-home-section:hover {
+            transform: scale(1.025);
+        }
+
+        /* Commentaire : Stylise le conteneur de l'image dans la section "À propos" */
+        .about-image-wrapper {
+            flex: 1 1 30%;
+            padding-left: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image-wrapper a {
+            display: block;
+            width: 100%;
+        }
+
+        /* Commentaire : Stylise la section de contact */
+        #contact-discord {
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Commentaire : Agrandit légèrement la section de contact au survol */
+        #contact-discord:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Commentaire : Stylise l'image de Discord */
+        .discord-image {
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Commentaire : Agrandit l'image de Discord au survol */
+        .discord-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Commentaire : Stylise le bouton de la chaîne YouTube */
+        a.youtube-button {
+            display: inline-block;
+            background-color: #FF0000;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.5vw;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Commentaire : Change l'apparence du bouton au survol */
+        a.youtube-button:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        footer {
+            position: relative;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 1rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            margin-top: auto; /* Pour pousser le footer en bas */
+        }
+        /* Commentaire : Adaptation des tailles pour les écrans moyens */
+        @media (max-width: 1024px) {
+            .profile-image {
+                width: 15vw;
+            }
+            .about-image {
+                max-width: 80%;
+            }
+            .discord-image {
+                max-width: 250px;
+            }
+            a.youtube-button {
+                font-size: 2vw;
+            }
+        }
+
+        /* Commentaire : Adaptation des tailles pour les écrans petits */
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 20vw;
+            }
+            .about-image {
+                max-width: 100%;
+            }
+            .discord-image {
+                max-width: 200px;
+            }
+            a.youtube-button {
+                font-size: 2.5vw;
+            }
+            .info {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+    <script>
+        // La fonction window.onscroll exécute la fonction shrinkHeader lorsque l'utilisateur fait défiler la page.
+        window.onscroll = function() {
+            shrinkHeader();  // Appelle la fonction shrinkHeader lors du défilement.
+        };
+
+        // Fonction qui modifie la taille de l'en-tête lorsque l'utilisateur fait défiler la page.
+        function shrinkHeader() {
+            const header = document.querySelector('header');  // Sélectionne l'élément <header>.
+            if (window.scrollY > 40) {  // Vérifie si la position de défilement dépasse 95 pixels.
+                header.classList.add('shrink');  // Ajoute la classe 'shrink' pour réduire l'en-tête.
+            } else {
+                header.classList.remove('shrink');  // Retire la classe 'shrink' pour réinitialiser l'en-tête.
+            }
+        }
+
+        // Fonction qui permet de basculer l'affichage du contenu d'information.
+        function toggleInfo() {
+            const content = document.getElementById('info-content');  // Sélectionne le contenu d'information.
+            const title = document.getElementById('info-title');  // Sélectionne le titre de l'information.
+            const isOpen = content.style.maxHeight;  // Vérifie si le contenu est déjà visible (maxHeight défini).
+
+            if (isOpen) {  // Si le contenu est déjà ouvert, le masque.
+                content.style.maxHeight = null;  // Réinitialise la hauteur maximale pour cacher le contenu.
+                title.textContent = "Information sur la chaîne Twitch de Tifelime >";  // Change le texte du titre.
+            } else {  // Si le contenu est fermé, l'affiche.
+                content.style.maxHeight = '400px';  // Définit une hauteur maximale pour afficher le contenu.
+                title.textContent = "Information sur la chaîne Twitch de Tifelime ∨";  // Change le texte du titre.
+            }
+        }
+    </script>
+    <title>Tifelime - Site Chaîne Twitch</title>
+</head>
+<body>
+    <header>
+        <img src="https://ih1.redbubble.net/image.3018001322.3194/raf,360x360,075,t,fafafa:ca443f4786.jpg" alt="Image de Profil" class="profile-image">
+        <h1>Bienvenue sur le site de la chaine Twitch de Tifelime</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#contact-discord">Contact</a>
+    </nav>
+
+    <main>
+        <h2 style="margin-left: 30px;">Accueil</h2>
+        <section class="new-home-section" id="home">
+            <p>Bienvenue sur le site consacré à la chaîne Twitch de Tifelime ! Découvrez ses performances en streaming, ses jeux phares et les statistiques qui mettent en valeur ses compétences en speedrun et son humour décalé. Que vous soyez un nouveau spectateur ou un fidèle fan, cette page vous offre un aperçu de ce qui rend la chaîne de Tifelime si unique et divertissante.</p>
+        </section>
+
+        <h2 style="margin-left: 30px;">À propos</h2>
+        <section id="about">
+            <div class="info">
+                <h3 id="info-title" onclick="toggleInfo()">Information sur la chaîne Twitch de Tifelime ></h3>
+                <div id="info-content" class="info-content">
+                    <p>Tifelime est un streamer sur Twitch qui se distingue par ses performances en speedrun (finitions rapides de jeux vidéo) et son goût pour les jeux à thématiques zombies. Il adopte un ton humoristique en se qualifiant de "LordCringe", ajoutant une touche décalée à ses streams. Il se concentre principalement sur des jeux d'action, d'horreur et de survie. Tifelime est souvent accompagné par son meilleur ami, Takaichi, qui est loin d’être considéré comme un pédagogue. Leurs interactions ajoutent une touche comique aux streams. De plus, Tifelime partage régulièrement son temps avec sa petite amie, Lilya4everrrrr. Leur dynamique amène une autre dimension amusante et personnelle à ses diffusions. Ces éléments rendent la chaîne plus qu'un simple lieu de speedrunning et de jeux vidéo, la transformant en une expérience immersive pour les spectateurs. Tifelime est également soutenu par deux spectateurs emblématiques : Pandex et PoulpyLePoulpos. Pandex est l'un des viewers les plus fidèles, souvent présent dans les streams et contribuant activement à la communauté. De son côté, PoulpyLePoulpos détient le titre de Gift Leader de la chaîne, c'est-à-dire qu'il a offert le plus d'abonnements aux autres spectateurs, jouant un rôle crucial dans le soutien de la chaîne. Leur présence régulière et leur engagement renforcent l'ambiance conviviale et solidaire qui règne lors des diffusions de Tifelime.</p>
+                </div>
+            </div>
+            <div class="about-image-wrapper">
+                <a href="https://www.twitch.tv/tifelime" target="_self">
+                    <img src="./image/Capture d’écran 2024-10-20 à 14.13.53.png" alt="Screen acceuil chaine twitch" class="about-image">
+                </a>
+            </div>
+        </section>
+
+        <h2 style="margin-left: 30px;">Contact</h2>
+        <section id="contact-discord">
+            <h2>Contact et Rejoignez notre Discord et Youtube !</h2>
+            <p>Rejoignez la communauté de Tifelime sur Discord pour discuter et rester informé des prochains streams !</p>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <a href="https://discord.gg/Yh5FBBD6" target="_blank" style="text-decoration: none;">
+                    <img src="./image/freepik__modern-style-detailled-illustration-illustrate-a-r__53638.jpeg" width="300px" alt="Logo Discord" class="discord-image">
+                </a>
+                <a href="https://www.youtube.com/@tifelime" class="youtube-button">
+                    Visitez notre chaîne YouTube
+                </a>
+            </div>
+        </section>
+
+    <footer>
+        <p>&copy; TifeLime incorporation</p>
+    </footer>
+    </main>
+</body>
+</html>

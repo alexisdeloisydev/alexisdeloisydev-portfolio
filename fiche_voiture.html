@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Porsche 911 Turbo S - Kintsugi Cars Import</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --noir: #0d0d0d;
+      --or: #c8aa6e;
+      --blanc: #ffffff;
+      --gris: #ccc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--noir);
+      color: var(--blanc);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background-color: rgba(13, 13, 13, 0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: var(--or);
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: var(--blanc);
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 1em;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -3px;
+      left: 0;
+      background-color: var(--or);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--or);
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--blanc);
+      margin: 4px;
+    }
+    
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--blanc);
+      margin: 4px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 3rem 1rem;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+
+    td {
+      padding: 1rem;
+      border: 1px solid #333;
+      color: #ddd;
+    }
+
+    td:first-child {
+      font-weight: bold;
+      color: #c8aa6e;
+      width: 40%;
+    }
+
+    .cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: 2px solid #c8aa6e;
+      color: #c8aa6e;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #c8aa6e;
+      color: #000;
+    }
+    
+    footer {
+      background-color: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9em;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 60px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      } to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 30px;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 70px;
+        right: 30px;
+        width: 200px;
+        padding: 20px;
+        gap: 20px;
+        border: 1px solid var(--or);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+      }
+
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Kintsugi Cars</div>
+  <div class="burger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+  <nav id="nav">
+    <a href="index_kintsugi.html">Accueil</a>
+    <a href="catalogue.html">Catalogue</a>
+    <a href="importation.html">Importation</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Porsche 911 Turbo S 2020</h2>
+
+  <div class="gallery">
+    <img src="https://cdn.pixabay.com/photo/2020/04/22/10/07/porsche-5076461_1280.jpg" alt="Porsche 911 angle 1">
+    <img src="https://cdn.pixabay.com/photo/2021/04/11/15/58/porsche-6169662_1280.jpg" alt="Porsche 911 angle 2">
+    <img src="https://cdn.pixabay.com/photo/2020/04/26/06/41/porsche-5093561_1280.jpg" alt="Porsche 911 intérieur">
+  </div>
+
+  <div class="description">
+    Cette Porsche 911 Turbo S importée du Japon incarne la fusion parfaite entre puissance, design et raffinement. Entièrement homologuée pour la route française, elle offre une expérience de conduite incomparable.
+  </div>
+
+  <table>
+    <tr>
+      <td>Année</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <td>Kilométrage</td>
+      <td>12 500 km</td>
+    </tr>
+    <tr>
+      <td>Transmission</td>
+      <td>Automatique PDK</td>
+    </tr>
+    <tr>
+      <td>Puissance</td>
+      <td>650 ch</td>
+    </tr>
+    <tr>
+      <td>Origine</td>
+      <td>Japon (Tokyo)</td>
+    </tr>
+    <tr>
+      <td>Prix</td>
+      <td>174 900 €</td>
+    </tr>
+  </table>
+
+  <div class="cta">
+    <a href="contact.html" class="btn">Demander cette Porsche</a>
+    <a href="catalogue.html" class="btn">Retour au catalogue</a>
+  </div>
+</main>
+<footer>
+  © 2025 Kintsugi Cars Import — Tous droits réservés.<br>
+  contact@kintsugicars.fr | +33 6 12 34 56 78
+</footer>
+</body>
+</html>

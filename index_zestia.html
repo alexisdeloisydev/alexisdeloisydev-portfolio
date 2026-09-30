@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zestia | L'élégance pétillante</title>
+    <meta name="description" content="Découvrez Zestia, des sodas botaniques artisanaux inspirés par la nature et les voyages. Une élégance pétillante en bouteille de verre pour un voyage sensoriel unique.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bahianita&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..909&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="content-wrapper">
+        <section id="home"></section>
+        <nav>
+            <div class="logo">
+                ZESTIA <span>ゼスティア</span>
+            </div>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#products">Collection</a></li>
+                <li><a href="#about">Notre Histoire</a></li>
+                <li><a href="#">Boutique</a></li>
+            </ul>
+        </nav>
+
+        <header>
+            <div class="hero-content">
+                <h1>Fraîcheur Botanique</h1>
+                <p>Sodas inspirés par la nature et les voyages. Une élégance pétillante en bouteille de verre.</p>
+                <a href="#products" class="btn">Découvrir la gamme</a>
+            </div>
+        </header>
+
+        <section class="products" id="products">
+            <div class="section-title">
+                <h2>Nos Créations</h2>
+                <p>Un voyage sensoriel à chaque gorgée</p>
+            </div>
+            <div class="grid">
+                <a href="francaise.html" class="card-link">
+                    <div class="card fr">
+                        <h3>La Française</h3>
+                        <p>Citron & Tilleul. L'élégance d'un jardin à la française sous une robe jaune citronade.</p>
+                        <img src="./images/officiel2.png" alt="Bouteille La Française">
+                    </div>
+                </a>
+                <a href="japonaise.html" class="card-link">
+                    <div class="card jp">
+                        <h3>La Japonaise</h3>
+                        <p>Pamplemousse & Fleur de cerisier. Un minimalisme floral inspiré par le Japon (Sakura).</p>
+                        <img src="./images/officiel3.png" alt="Bouteille La Japonaise">
+                    </div>
+                </a>
+                <a href="americaine.html" class="card-link">
+                    <div class="card us">
+                        <h3>L'Américaine</h3>
+                        <p>Lime & Elderflower. Un twist pop et pétillant aux saveurs typiques des USA.</p>
+                        <img src="./images/officiel1.png" alt="Bouteille L'Américaine">
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="about-text">
+                <h3>Authenticité & Artisanat</h3>
+                <p>Chez Zestia, nous croyons au pouvoir des plantes. Nos boissons sont conçues de manière artisanale dans des bouteilles en verre recyclables, respectant les cycles de la nature et les traditions culturelles mondiales.</p>
+                <br>
+                <p><em>Zestia (ゼスティア) — Le zeste de vie, l'élégance naturelle.</em></p>
+            </div>
+            <div class="about-image">
+                <img src="./images/officiel4.png" alt="Bouteille artisanale Zestia">
+            </div>
+        </section>
+    </main>
+
+        <!-- ⭐ PREMIUM SMOOTH SCROLL - JAVASCRIPT ⭐ -->
+        <script>
+            // Easing cubique pour un défilement fluide
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            // ID de l'animation en cours (pour annuler si besoin)
+            let currentScrollAnimation = null;
+
+            function smoothScroll(targetSelector, duration = 600) {
+                const element = document.querySelector(targetSelector);
+                if (!element) return;
+
+                const startY = window.pageYOffset || document.documentElement.scrollTop;
+                const targetY = element.getBoundingClientRect().top + startY;
+                const distance = targetY - startY;
+
+                // Utiliser le scroll natif si disponible (meilleure perf/native GPU)
+                if (typeof CSS !== 'undefined' && CSS.supports && CSS.supports('scroll-behavior', 'smooth')) {
+                    // Annule toute animation JS en cours
+                    if (currentScrollAnimation) cancelAnimationFrame(currentScrollAnimation);
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    try { history.pushState(null, '', targetSelector); } catch (err) { /* ignore */ }
+                    return;
+                }
+
+                // Fallback JS animé optimisé
+                if (currentScrollAnimation) cancelAnimationFrame(currentScrollAnimation);
+
+                let startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = easeInOutCubic(progress);
+                    const currentY = Math.round(startY + distance * eased);
+
+                    // Utiliser un seul call à scrollTo par frame
+                    window.scrollTo(0, currentY);
+
+                    if (progress < 1) {
+                        currentScrollAnimation = requestAnimationFrame(step);
+                    } else {
+                        currentScrollAnimation = null;
+                        try { history.pushState(null, '', targetSelector); } catch (err) { /* ignore */ }
+                    }
+                }
+
+                currentScrollAnimation = requestAnimationFrame(step);
+            }
+
+            // Intercepte tous les clics sur les ancres (#) et active le smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const target = this.getAttribute('href');
+                    if (target && target.length > 1) {
+                        e.preventDefault();
+                        smoothScroll(target, 700);
+                    }
+                }, { passive: true });
+            });
+        </script>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-main-grid">
+                <div class="footer-column">
+                    <a href="#">TOUT ACHETER</a>
+                    <a href="#">PACKS DÉCOUVERTE</a>
+                    <a href="#">SAVEURS UNIQUES</a>
+                    <a href="#">MERCH</a>
+                    <a href="#">MON COMPTE</a>
+                </div>
+
+                <div class="footer-column">
+                    <a href="#">POINTS DE VENTE</a><br></br>
+                    <a href="#">PRESSE</a>
+                    <a href="#">À PROPOS</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">CONTACT</a>
+                </div>
+
+                <div class="footer-column contact-info">
+                    <h4 class="footer-title">DES QUESTIONS ?</h4>
+                    <p>ÉCRIVEZ-NOUS À</p>
+                    <p><a href="mailto:HELLO@ZESTIA.COM" class="footer-email">HELLO@ZESTIA.COM</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-legal-links">
+                    <span class="copyright">© 2026, Zestia , Inc.</span>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions & Termes</a>
+                    <a href="#">Accessibilité</a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.instagram.com/cindyybomy?igsh=OWM3M3duaXlveXYw" aria-label="Instagram">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

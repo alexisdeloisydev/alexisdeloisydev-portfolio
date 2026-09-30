@@ -1,0 +1,2030 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brume en Brie — Vape, e-liquides &amp; CBD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --fog: #f3efe3;
+        --parchment: #eae1c8;
+        --night: #1c2620;
+        --deep: #12180f;
+        --sage: #7e9481;
+        --sage-dark: #4f6353;
+        --amber: #c17a3e;
+        --amber-light: #dfa46a;
+        --ink: #22261f;
+        --line: rgba(28, 38, 32, 0.14);
+        --shadow: 0 12px 32px rgba(18, 24, 15, 0.14);
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--fog);
+        color: var(--ink);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--night);
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+      }
+      ::selection {
+        background: var(--amber);
+        color: var(--fog);
+      }
+      :focus-visible {
+        outline: 2px solid var(--amber);
+        outline-offset: 2px;
+      }
+
+      /* ---------- AGE GATE ---------- */
+      #age-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: radial-gradient(
+          circle at 50% 20%,
+          #24312a 0%,
+          var(--deep) 70%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      #age-gate.hidden {
+        display: none;
+      }
+      .age-card {
+        background: var(--fog);
+        border-radius: 20px;
+        max-width: 440px;
+        width: 100%;
+        padding: 44px 36px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .age-card::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle,
+          var(--amber-light) 0%,
+          transparent 70%
+        );
+        opacity: 0.5;
+      }
+      .age-wordmark {
+        font-size: 1.7rem;
+        margin-bottom: 6px;
+        position: relative;
+      }
+      .age-tagline {
+        font-family: "JetBrains Mono";
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sage-dark);
+        margin-bottom: 22px;
+      }
+      .age-question {
+        font-size: 1.15rem;
+        margin-bottom: 28px;
+        color: var(--ink);
+        position: relative;
+      }
+      .age-buttons {
+        display: flex;
+        gap: 12px;
+        position: relative;
+      }
+      .age-buttons button {
+        flex: 1;
+        padding: 14px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition:
+          transform 0.15s ease,
+          background 0.2s ease;
+      }
+      #age-yes {
+        background: var(--night);
+        color: var(--fog);
+      }
+      #age-yes:hover {
+        background: var(--sage-dark);
+        transform: translateY(-2px);
+      }
+      #age-no {
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+      #age-no:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .age-legal {
+        margin-top: 22px;
+        font-size: 0.72rem;
+        color: #6b6b62;
+        position: relative;
+      }
+
+      /* ---------- HEADER ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        background: rgba(243, 239, 227, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 14px 24px;
+      }
+      .logo {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .logo b {
+        font-size: 1.32rem;
+      }
+      .logo span {
+        font-family: "JetBrains Mono";
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--sage-dark);
+        margin-top: 3px;
+      }
+      nav.main-links {
+        display: flex;
+        gap: 22px;
+        flex: 1;
+      }
+      nav.main-links button {
+        background: none;
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--ink);
+        padding: 6px 2px;
+        border-bottom: 2px solid transparent;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      nav.main-links button:hover,
+      nav.main-links button.active {
+        border-color: var(--amber);
+        color: var(--night);
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .search-box {
+        display: flex;
+        align-items: center;
+        background: var(--parchment);
+        border-radius: 20px;
+        padding: 7px 14px;
+        gap: 6px;
+      }
+      .search-box input {
+        background: none;
+        border: none;
+        font-size: 0.85rem;
+        width: 150px;
+        color: var(--ink);
+      }
+      .search-box input:focus {
+        outline: none;
+      }
+      #cart-btn {
+        position: relative;
+        background: var(--night);
+        color: var(--fog);
+        padding: 9px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      #cart-btn:hover {
+        background: var(--sage-dark);
+      }
+      #cart-count {
+        background: var(--amber);
+        color: var(--fog);
+        font-size: 0.68rem;
+        font-weight: 700;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .burger {
+        display: none;
+        background: none;
+        font-size: 1.3rem;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 90px 24px 140px;
+        text-align: center;
+      }
+      .hero-fog {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .fog-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.55;
+        animation: drift 26s ease-in-out infinite;
+      }
+      .fb1 {
+        width: 420px;
+        height: 260px;
+        background: var(--sage);
+        top: -40px;
+        left: -80px;
+        animation-delay: 0s;
+      }
+      .fb2 {
+        width: 520px;
+        height: 300px;
+        background: var(--amber-light);
+        top: 60px;
+        right: -140px;
+        animation-delay: -8s;
+      }
+      .fb3 {
+        width: 360px;
+        height: 220px;
+        background: var(--parchment);
+        bottom: -60px;
+        left: 30%;
+        animation-delay: -15s;
+      }
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(40px, -20px) scale(1.08);
+        }
+      }
+      .hill {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .hero-eyebrow {
+        font-family: "JetBrains Mono";
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--sage-dark);
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        line-height: 1.04;
+        margin-bottom: 20px;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--amber);
+      }
+      .hero p {
+        font-size: 1.08rem;
+        color: #454a40;
+        max-width: 520px;
+        margin: 0 auto 34px;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background: var(--night);
+        color: var(--fog);
+        padding: 14px 28px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition:
+          transform 0.15s ease,
+          background 0.2s ease;
+      }
+      .btn-primary:hover {
+        background: var(--amber);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid var(--ink);
+        padding: 14px 28px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .btn-ghost:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      /* ---------- SECTIONS ---------- */
+      section {
+        padding: 64px 24px;
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .section-head h2 {
+        font-size: 1.9rem;
+      }
+      .section-head .eyebrow {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sage-dark);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .see-all {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--amber);
+        border-bottom: 1px solid var(--amber);
+        padding-bottom: 2px;
+      }
+
+      .cat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .cat-card {
+        background: var(--night);
+        color: var(--fog);
+        border-radius: var(--radius);
+        padding: 30px 26px;
+        position: relative;
+        overflow: hidden;
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: transform 0.2s ease;
+      }
+      .cat-card:hover {
+        transform: translateY(-4px);
+      }
+      .cat-card .icon {
+        position: absolute;
+        top: 22px;
+        right: 24px;
+        opacity: 0.35;
+      }
+      .cat-card h3 {
+        color: var(--fog);
+        font-size: 1.35rem;
+        margin-bottom: 6px;
+      }
+      .cat-card p {
+        font-size: 0.82rem;
+        color: #c9cfc5;
+      }
+      .cat-card.sage {
+        background: var(--sage-dark);
+      }
+      .cat-card.amber {
+        background: #8a4e24;
+      }
+
+      .brand-marquee {
+        overflow: hidden;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 18px 0;
+        margin: 0 auto;
+      }
+      .brand-track {
+        display: flex;
+        gap: 36px;
+        width: max-content;
+        animation: scroll-x 42s linear infinite;
+      }
+      .brand-track span {
+        font-family: "JetBrains Mono";
+        font-size: 0.85rem;
+        color: var(--sage-dark);
+        white-space: nowrap;
+      }
+      @keyframes scroll-x {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .prod-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+      .prod-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          box-shadow 0.2s ease,
+          transform 0.2s ease;
+      }
+      .prod-card:hover {
+        box-shadow: var(--shadow);
+        transform: translateY(-3px);
+      }
+      .prod-visual {
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .prod-info {
+        padding: 14px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+      }
+      .prod-brand {
+        font-family: "JetBrains Mono";
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sage-dark);
+      }
+      .prod-name {
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--night);
+        line-height: 1.25;
+      }
+      .prod-spec {
+        font-size: 0.75rem;
+        color: #71766b;
+      }
+      .prod-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: auto;
+        padding-top: 8px;
+      }
+      .prod-price {
+        font-family: "JetBrains Mono";
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .add-btn {
+        background: var(--night);
+        color: var(--fog);
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .add-btn:hover {
+        background: var(--amber);
+      }
+
+      /* ---------- CATALOGUE VIEW ---------- */
+      #view-catalogue {
+        display: none;
+      }
+      #view-catalogue.active {
+        display: block;
+      }
+      #view-home {
+        display: none;
+      }
+      #view-home.active {
+        display: block;
+      }
+      .catalogue-layout {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+      .filters {
+        position: sticky;
+        top: 90px;
+        background: var(--parchment);
+        border-radius: var(--radius);
+        padding: 22px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .filter-group h4 {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+        color: var(--sage-dark);
+        font-family: "JetBrains Mono";
+        font-weight: 600;
+      }
+      .filter-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        margin-bottom: 7px;
+        cursor: pointer;
+      }
+      .filter-group input[type="checkbox"] {
+        accent-color: var(--night);
+        width: 15px;
+        height: 15px;
+      }
+      .brand-filter-list {
+        max-height: 220px;
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+      #price-range {
+        width: 100%;
+        accent-color: var(--amber);
+      }
+      .reset-filters {
+        font-size: 0.78rem;
+        text-decoration: underline;
+        color: var(--sage-dark);
+        align-self: flex-start;
+      }
+      .catalogue-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      #results-count {
+        font-size: 0.85rem;
+        color: #5a5f52;
+      }
+      #sort-select {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 0.82rem;
+      }
+      #catalogue-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      #no-results {
+        padding: 60px 0;
+        text-align: center;
+        color: #6b6b62;
+        display: none;
+      }
+
+      footer {
+        background: var(--night);
+        color: #d6dad1;
+        padding: 56px 24px 30px;
+        margin-top: 60px;
+      }
+      .footer-wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 34px;
+      }
+      footer h4 {
+        color: var(--fog);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 14px;
+        font-family: "JetBrains Mono";
+      }
+      footer p,
+      footer li {
+        font-size: 0.85rem;
+        color: #aab2a2;
+        margin-bottom: 8px;
+        list-style: none;
+      }
+      footer a:hover {
+        color: var(--amber-light);
+      }
+      .legal-strip {
+        max-width: 1240px;
+        margin: 40px auto 0;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.72rem;
+        color: #8b927f;
+        text-align: center;
+        line-height: 1.7;
+      }
+
+      /* ---------- CART DRAWER ---------- */
+      #overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(18, 24, 15, 0.45);
+        z-index: 400;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      #overlay.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #cart-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 400px;
+        max-width: 92vw;
+        background: var(--fog);
+        z-index: 401;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+      }
+      #cart-drawer.show {
+        transform: translateX(0);
+      }
+      .cart-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .cart-head button {
+        background: none;
+        font-size: 1.3rem;
+      }
+      #cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .cart-item {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 14px;
+      }
+      .ci-visual {
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ci-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .ci-name {
+        font-size: 0.87rem;
+        font-weight: 600;
+      }
+      .ci-brand {
+        font-size: 0.7rem;
+        color: var(--sage-dark);
+        font-family: "JetBrains Mono";
+      }
+      .ci-qty {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .ci-qty button {
+        background: var(--parchment);
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+      }
+      .ci-remove {
+        font-size: 0.7rem;
+        color: #a34c3a;
+        text-decoration: underline;
+        margin-top: 6px;
+      }
+      #cart-empty {
+        text-align: center;
+        color: #7a7f70;
+        padding: 60px 20px;
+        font-size: 0.9rem;
+      }
+      .cart-foot {
+        padding: 20px 22px;
+        border-top: 1px solid var(--line);
+      }
+      .cart-subtotal {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      #checkout-btn {
+        width: 100%;
+        background: var(--night);
+        color: var(--fog);
+        padding: 14px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+      #checkout-btn:hover {
+        background: var(--amber);
+      }
+      .cart-note {
+        font-size: 0.7rem;
+        color: #8b9080;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      /* ---------- PRODUCT MODAL ---------- */
+      #product-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(18, 24, 15, 0.5);
+        padding: 20px;
+      }
+      #product-modal.show {
+        display: flex;
+      }
+      .modal-card {
+        background: var(--fog);
+        border-radius: 18px;
+        max-width: 640px;
+        width: 100%;
+        max-height: 88vh;
+        overflow-y: auto;
+        padding: 34px;
+        position: relative;
+      }
+      .modal-close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: none;
+        font-size: 1.3rem;
+      }
+      .modal-visual {
+        width: 100%;
+        height: 220px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+      .modal-card .prod-brand {
+        margin-bottom: 6px;
+      }
+      .modal-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      .modal-desc {
+        font-size: 0.9rem;
+        color: #54594a;
+        margin-bottom: 18px;
+      }
+      .modal-specs {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+      .spec-pill {
+        background: var(--parchment);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-family: "JetBrains Mono";
+      }
+      .modal-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      @media (max-width: 900px) {
+        nav.main-links,
+        .search-box {
+          display: none;
+        }
+        .burger {
+          display: block;
+        }
+        .cat-grid {
+          grid-template-columns: 1fr;
+        }
+        .prod-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .catalogue-layout {
+          grid-template-columns: 1fr;
+        }
+        #catalogue-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-wrap {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 520px) {
+        .prod-grid,
+        #catalogue-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-wrap {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .fog-blob,
+        .brand-track {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- AGE GATE -->
+    <div id="age-gate">
+      <div class="age-card">
+        <div class="age-wordmark">🌫️ Brume en Brie</div>
+        <div class="age-tagline">Vape · E-liquides · CBD</div>
+        <p class="age-question">
+          La vente de nos produits est strictement réservée aux personnes
+          majeures. Avez-vous 18 ans ou plus&nbsp;?
+        </p>
+        <div class="age-buttons">
+          <button id="age-yes">Oui, j'ai 18 ans ou plus</button>
+          <button id="age-no">Non, quitter le site</button>
+        </div>
+        <p class="age-legal">
+          La cigarette électronique n'est pas un produit sans risque, elle
+          contient de la nicotine qui crée une forte dépendance. Interdite aux
+          mineurs.
+        </p>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="nav-wrap">
+        <div class="logo">
+          <b>Brume en Brie</b>
+          <span>Vape &amp; CBD Shop</span>
+        </div>
+        <nav class="main-links">
+          <button data-route="home" class="active">Accueil</button>
+          <button data-route="eliquides">E-liquides</button>
+          <button data-route="materiel">Matériel</button>
+          <button data-route="cbd">CBD &amp; Résine</button>
+          <button data-route="marques">Marques</button>
+        </nav>
+        <div class="header-actions">
+          <div class="search-box">
+            <span>
+              <img
+                src="./images/search-svgrepo-com.svg"
+                width="25"
+                height="25"
+              />
+            </span>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Rechercher un produit, une marque…"
+            />
+          </div>
+          <button id="cart-btn">
+            <img
+              src="./images/cart-shopping-svgrepo-com.svg"
+              width="25"
+              height="25"
+            />
+            Panier <span id="cart-count">0</span>
+          </button>
+          <button class="burger" id="burger-btn">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HOME VIEW -->
+    <div id="view-home" class="active">
+      <div class="hero">
+        <div class="hero-fog">
+          <div class="fog-blob fb1"></div>
+          <div class="fog-blob fb2"></div>
+          <div class="fog-blob fb3"></div>
+        </div>
+        <svg class="hill" viewBox="0 0 1440 160" preserveAspectRatio="none">
+          <path
+            d="M0,90 C240,20 340,140 620,80 C900,20 1040,120 1440,60 L1440,160 L0,160 Z"
+            fill="#E7DFC7"
+            opacity="0.9"
+          />
+          <path
+            d="M0,120 C260,80 420,160 700,110 C980,60 1140,150 1440,100 L1440,160 L0,160 Z"
+            fill="#F3EFE3"
+          />
+        </svg>
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            Seine-et-Marne — Livraison dans toute la France
+          </div>
+          <h1>Votre référence <em> vape & CBD.</em></h1>
+          <p>
+            Geekvape, Vaporesso, Uwell, Lost Vape, V Pure pour le matériel - et
+            près de trente marques d'e-liquides français, des fruités givrés aux
+            gourmands, sans oublier notre gamme CBD &amp; résine.
+          </p>
+          <div class="hero-ctas">
+            <button class="btn-primary" data-route="eliquides">
+              Voir les e-liquides
+            </button>
+            <button class="btn-ghost" data-route="materiel">
+              Découvrir le matériel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Nos univers</span>
+            <h2>Trois rayons, une seule brume</h2>
+          </div>
+        </div>
+        <div class="cat-grid">
+          <div class="cat-card" data-route="eliquides">
+            <div class="icon">🧪</div>
+            <h3>E-liquides</h3>
+            <p>
+              29 marques françaises, fruités, gourmands, mentholés &amp; tabacs.
+            </p>
+          </div>
+          <div class="cat-card sage" data-route="materiel">
+            <div class="icon">🔋</div>
+            <h3>Matériel</h3>
+            <p>
+              Kits, box mods, clearomiseurs &amp; pods — Geekvape, Vaporesso,
+              Uwell, Lost Vape, V Pure.
+            </p>
+          </div>
+          <div class="cat-card amber" data-route="cbd">
+            <div class="icon">🌿</div>
+            <h3>CBD &amp; Résine</h3>
+            <p>Fleurs, résines, huiles et infusions cultivées et contrôlées.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="brand-marquee">
+        <div class="brand-track" id="brand-track"></div>
+      </div>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Sélection de la semaine</span>
+            <h2>Nos coups de cœur e-liquides</h2>
+          </div>
+          <button class="see-all" data-route="eliquides">
+            Tout le rayon e-liquides →
+          </button>
+        </div>
+        <div class="prod-grid" id="featured-eliquides"></div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Matériel du moment</span>
+            <h2>Kits &amp; box les plus demandés</h2>
+          </div>
+          <button class="see-all" data-route="materiel">
+            Tout le rayon matériel →
+          </button>
+        </div>
+        <div class="prod-grid" id="featured-materiel"></div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Rayon CBD</span>
+            <h2>Fleurs, résines &amp; huiles</h2>
+          </div>
+          <button class="see-all" data-route="cbd">Tout le rayon CBD →</button>
+        </div>
+        <div class="prod-grid" id="featured-cbd"></div>
+      </section>
+    </div>
+
+    <!-- CATALOGUE VIEW -->
+    <div id="view-catalogue">
+      <section>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" id="cat-eyebrow">Catalogue</span>
+            <h2 id="cat-title">Tous les produits</h2>
+          </div>
+        </div>
+        <div class="catalogue-layout">
+          <aside class="filters">
+            <div class="filter-group">
+              <h4>Catégorie</h4>
+              <div id="filter-categories"></div>
+            </div>
+            <div class="filter-group">
+              <h4>Marque</h4>
+              <div class="brand-filter-list" id="filter-brands"></div>
+            </div>
+            <div class="filter-group">
+              <h4>Prix max - <span id="price-value" class="mono">40€</span></h4>
+              <input
+                type="range"
+                id="price-range"
+                min="3"
+                max="40"
+                value="40"
+              />
+            </div>
+            <button class="reset-filters" id="reset-filters">
+              Réinitialiser les filtres
+            </button>
+          </aside>
+          <div>
+            <div class="catalogue-toolbar">
+              <span id="results-count" class="mono"></span>
+              <select id="sort-select">
+                <option value="pertinence">Trier par pertinence</option>
+                <option value="price-asc">Prix croissant</option>
+                <option value="price-desc">Prix décroissant</option>
+                <option value="name">Nom A→Z</option>
+              </select>
+            </div>
+            <div id="catalogue-grid"></div>
+            <p id="no-results">
+              Aucun produit ne correspond à ces filtres. Essayez d'élargir votre
+              recherche.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-wrap">
+        <div>
+          <div class="logo">
+            <b
+              style="
+                color: var(--fog);
+                font-family: &quot;Fraunces&quot;, serif;
+                font-size: 1.2rem;
+              "
+              >Brume en Brie</b
+            >
+          </div>
+          <p style="margin-top: 14px; max-width: 280px">
+            Boutique de vape et CBD basée en Seine-et-Marne, entre Troyes et la
+            Brie. E-liquides français, matériel des plus grandes marques et
+            gamme CBD contrôlée.
+          </p>
+        </div>
+        <div>
+          <h4>Boutique</h4>
+          <ul>
+            <li><a href="#" data-route="eliquides">E-liquides</a></li>
+            <li><a href="#" data-route="materiel">Matériel</a></li>
+            <li><a href="#" data-route="cbd">CBD &amp; Résine</a></li>
+            <li><a href="#" data-route="marques">Toutes les marques</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Informations</h4>
+          <ul>
+            <li>Livraison &amp; retours</li>
+            <li>Paiement sécurisé</li>
+            <li>Mentions légales</li>
+            <li>CGV</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>Boutique - seine-et-marne, France</li>
+            <li>contact@brume-en-brie.fr</li>
+            <li>Lun–Sam, 10h–19h</li>
+          </ul>
+        </div>
+      </div>
+      <p class="legal-strip">
+        Brume en Brie - vente réservée aux personnes majeures (18 ans et plus).
+        Fumer tue. La cigarette électronique n'est pas un produit sans risque ;
+        elle contient de la nicotine, substance créant une forte dépendance. Les
+        produits CBD proposés respectent le taux légal de THC en vigueur en
+        France et ne sont pas des médicaments. Ce site est un projet de
+        démonstration.
+      </p>
+    </footer>
+
+    <!-- CART DRAWER -->
+    <div id="overlay"></div>
+    <div id="cart-drawer">
+      <div class="cart-head">
+        <h3 style="font-size: 1.2rem">Votre panier</h3>
+        <button id="cart-close">✕</button>
+      </div>
+      <div id="cart-items"></div>
+      <div id="cart-empty">
+        Votre panier est vide pour l'instant. La brume attendra vos e-liquides
+        préférés.
+      </div>
+      <div class="cart-foot" id="cart-foot" style="display: none">
+        <div class="cart-subtotal">
+          <span>Sous-total</span
+          ><span class="mono" id="cart-subtotal">0,00€</span>
+        </div>
+        <button id="checkout-btn">Passer commande</button>
+        <p class="cart-note">
+          Paiement à connecter - démonstration front-end uniquement.
+        </p>
+      </div>
+    </div>
+
+    <!-- PRODUCT MODAL -->
+    <div id="product-modal">
+      <div class="modal-card">
+        <button class="modal-close" id="modal-close">✕</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        /* ============ DATA ============ */
+        const eliquidBrands = [
+          "Enfer",
+          "Lips",
+          "California",
+          "Big Papa",
+          "Religion",
+          "La Fine Équipe",
+          "Curieux",
+          "Fighter Fuel",
+          "Monster Slim",
+          "Mexican Cartel",
+          "Chido",
+          "Saiyen",
+          "Pêche Gourmande",
+          "Liquideo",
+          "Fruizee",
+          "Battle Juice",
+          "Kung Fruits",
+          "A&L",
+          "Swoke",
+          "Seum",
+          "Bobble",
+          "Kyandy",
+          "Dilligaf",
+          "Secret Garden",
+          "Call of Vape",
+          "Taste & Furious",
+          "Fresh & Furious",
+          "Secret's Keys",
+          "Tribal Force",
+        ];
+
+        const hardwareBrands = [
+          "Geekvape",
+          "V Pure",
+          "Uwell",
+          "Lost Vape",
+          "Vaporesso",
+        ];
+
+        const flavours = [
+          "Fruits Rouges Givrés",
+          "Mangue Passion",
+          "Anis Réglisse",
+          "Tabac Blond Vanillé",
+          "Menthe Glaciale",
+          "Cookie Caramel Beurre Salé",
+          "Citron Meringué",
+          "Fruits Exotiques",
+          "Pastèque Fraîche",
+          "Cassis Mûr",
+          "Fraise Kiwi",
+          "Ananas Coco",
+          "Poire Williams",
+          "Myrtille Sauvage",
+          "Orange Sanguine",
+          "Pomme Verte Acidulée",
+          "Rhubarbe Fraise",
+          "Pêche Blanche",
+          "Litchi Framboise",
+          "Banane Flambée",
+          "Café Noisette",
+          "Chewing-gum Fruité",
+          "Cerise Amande",
+          "Melon Glacé",
+          "Abricot Miel",
+          "Groseille Mentholée",
+          "Fruit du Dragon",
+          "Barbe à Papa",
+          "Cola Cerise",
+          "Mojito Citron Vert",
+        ];
+
+        const hwModels = {
+          Geekvape: [
+            ["Nova X", "Kit box + clearomiseur", "18650, 5–80W"],
+            ["Solo Air", "Pod rechargeable", "1000mAh, 2ml"],
+            ["Ranger Mesh", "Clearomiseur mesh", "0.2Ω, 5ml"],
+          ],
+          "V Pure": [
+            ["Aero Kit", "Kit débutant tout-en-un", "1500mAh, 2ml"],
+            ["Mist Pod", "Pod nomade", "800mAh, 2ml"],
+            ["Clarity Tank", "Clearomiseur transparent", "0.4Ω, 4ml"],
+          ],
+          Uwell: [
+            ["Crown Air", "Clearomiseur sub-ohm", "0.2Ω, 5ml"],
+            ["Caliburn Mini", "Pod compact", "750mAh, 2ml"],
+            ["Valyrian Box", "Box mod double batterie", "2×18650, 5–150W"],
+          ],
+          "Lost Vape": [
+            ["Thelema Mini", "Box mod compacte", "18650, 5–80W"],
+            ["Orion Bar", "Pod jetable rechargeable", "950mAh, 2ml"],
+            ["Ursa Nano", "Pod premium cuir", "1200mAh, 2.5ml"],
+          ],
+          Vaporesso: [
+            ["Luxe X2", "Kit pod tout-en-un", "1500mAh, 5ml"],
+            ["Gen 200", "Box mod double batterie", "2×18650, 5–220W"],
+            ["Target PM100", "Kit pod mod", "2000mAh, 4ml"],
+          ],
+        };
+
+        const cbdTypes = [
+          {
+            name: "Fleur CBD Amnesia",
+            type: "Fleur CBD",
+            spec: "CBD 12% · sachet 5g",
+          },
+          {
+            name: "Fleur CBD Gorilla",
+            type: "Fleur CBD",
+            spec: "CBD 15% · sachet 5g",
+          },
+          {
+            name: "Fleur CBD OG Kush",
+            type: "Fleur CBD",
+            spec: "CBD 10% · sachet 5g",
+          },
+          {
+            name: "Résine CBD Marocaine",
+            type: "Résine CBD",
+            spec: "CBD 20% · barrette 2g",
+          },
+          {
+            name: "Résine CBD Afghane",
+            type: "Résine CBD",
+            spec: "CBD 18% · barrette 2g",
+          },
+          {
+            name: "Huile CBD Full Spectrum 10%",
+            type: "Huile CBD",
+            spec: "Flacon 10ml",
+          },
+          {
+            name: "Huile CBD Broad Spectrum 20%",
+            type: "Huile CBD",
+            spec: "Flacon 10ml",
+          },
+          {
+            name: "Infusion CBD Camomille",
+            type: "Infusion CBD",
+            spec: "Boîte de 20 sachets",
+          },
+        ];
+
+        const catMeta = {
+          eliquides: {
+            label: "E-liquides",
+            eyebrow: "29 marques françaises",
+            color1: "#7E9481",
+            color2: "#4F6353",
+          },
+          materiel: {
+            label: "Matériel",
+            eyebrow: "Geekvape · V Pure · Uwell · Lost Vape · Vaporesso",
+            color1: "#C17A3E",
+            color2: "#8A4E24",
+          },
+          cbd: {
+            label: "CBD & Résine",
+            eyebrow: "Fleurs, résines & huiles contrôlées",
+            color1: "#8FAE7A",
+            color2: "#5C7A4A",
+          },
+        };
+
+        function hash(s) {
+          let h = 0;
+          for (let i = 0; i < s.length; i++) {
+            h = (h * 31 + s.charCodeAt(i)) >>> 0;
+          }
+          return h;
+        }
+        function pick(arr, seed) {
+          return arr[seed % arr.length];
+        }
+
+        let idCounter = 1;
+        const products = [];
+
+        // E-liquides: 2 par marque (10ml + 50ml)
+        eliquidBrands.forEach((brand, bi) => {
+          [10, 50].forEach((vol, vi) => {
+            const seed = hash(brand + vol);
+            const flavour = pick(flavours, seed + vi * 7);
+            const price =
+              vol === 10
+                ? (3.9 + (seed % 30) / 10).toFixed(2)
+                : (13.9 + (seed % 60) / 10).toFixed(2);
+            products.push({
+              id: idCounter++,
+              category: "eliquides",
+              brand,
+              name: flavour,
+              spec: vol + "ml · " + ["0mg", "3mg", "6mg", "11mg"][seed % 4],
+              price: parseFloat(price),
+              desc:
+                "E-liquide " +
+                flavour.toLowerCase() +
+                " signé " +
+                brand +
+                ", fabriqué en France. Flacon de " +
+                vol +
+                "ml, disponible en plusieurs taux de nicotine.",
+              hue: seed % 360,
+            });
+          });
+        });
+
+        // Matériel: 3 par marque
+        hardwareBrands.forEach((brand) => {
+          hwModels[brand].forEach(([model, kind, spec]) => {
+            const seed = hash(brand + model);
+            const price = (19.9 + (seed % 80)).toFixed(2);
+            products.push({
+              id: idCounter++,
+              category: "materiel",
+              brand,
+              name: brand + " " + model,
+              spec: kind + " · " + spec,
+              price: parseFloat(price),
+              desc:
+                kind +
+                " " +
+                brand +
+                " " +
+                model +
+                ". " +
+                spec +
+                ". Livré avec câble USB-C et guide de démarrage.",
+              hue: seed % 360,
+            });
+          });
+        });
+
+        // CBD
+        cbdTypes.forEach((item) => {
+          const seed = hash(item.name);
+          const price = (8.9 + (seed % 25)).toFixed(2);
+          products.push({
+            id: idCounter++,
+            category: "cbd",
+            brand: "Brume Botanique",
+            name: item.name,
+            spec: item.type + " · " + item.spec,
+            price: parseFloat(price),
+            desc:
+              item.name +
+              ", cultivé et contrôlé, taux de THC conforme à la législation française en vigueur. Ne pas consommer par fumaison.",
+            hue: seed % 360,
+          });
+        });
+
+        /* ============ STATE ============ */
+        const state = {
+          route: "home",
+          cart: [], // {id, qty}
+          filters: {
+            categories: new Set(),
+            brands: new Set(),
+            maxPrice: 40,
+            search: "",
+          },
+          sort: "pertinence",
+        };
+
+        /* ============ HELPERS ============ */
+        function euro(n) {
+          return n.toFixed(2).replace(".", ",") + "€";
+        }
+
+        function visualFor(p) {
+          const bg = "hsl(" + p.hue + ", 32%, 90%)";
+          const fg = "hsl(" + p.hue + ", 38%, 42%)";
+          let icon = "🧪";
+          if (p.category === "materiel") icon = "🔋";
+          if (p.category === "cbd") icon = "🌿";
+          return (
+            '<div style="width:100%;height:100%;background:' +
+            bg +
+            ";display:flex;align-items:center;justify-content:center;color:" +
+            fg +
+            ';font-size:2.4rem;">' +
+            icon +
+            "</div>"
+          );
+        }
+
+        function productCard(p) {
+          return (
+            '<div class="prod-card" data-id="' +
+            p.id +
+            '">' +
+            '<div class="prod-visual">' +
+            visualFor(p) +
+            "</div>" +
+            '<div class="prod-info">' +
+            '<span class="prod-brand">' +
+            p.brand +
+            "</span>" +
+            '<span class="prod-name">' +
+            p.name +
+            "</span>" +
+            '<span class="prod-spec mono">' +
+            p.spec +
+            "</span>" +
+            '<div class="prod-bottom">' +
+            '<span class="prod-price">' +
+            euro(p.price) +
+            "</span>" +
+            '<button class="add-btn" data-add="' +
+            p.id +
+            '">Ajouter</button>' +
+            "</div>" +
+            "</div>" +
+            "</div>"
+          );
+        }
+
+        function findProduct(id) {
+          return products.find((p) => p.id === Number(id));
+        }
+
+        /* ============ RENDER: HOME ============ */
+        function renderBrandMarquee() {
+          const all = eliquidBrands.concat(hardwareBrands);
+          const doubled = all.concat(all);
+          document.getElementById("brand-track").innerHTML = doubled
+            .map((b) => "<span>" + b + "</span>")
+            .join("<span>·</span>");
+        }
+
+        function renderFeatured() {
+          const eliq = products
+            .filter((p) => p.category === "eliquides")
+            .slice(0, 8);
+          const hw = products
+            .filter((p) => p.category === "materiel")
+            .slice(0, 8);
+          const cbd = products.filter((p) => p.category === "cbd").slice(0, 8);
+          document.getElementById("featured-eliquides").innerHTML = eliq
+            .map(productCard)
+            .join("");
+          document.getElementById("featured-materiel").innerHTML = hw
+            .map(productCard)
+            .join("");
+          document.getElementById("featured-cbd").innerHTML = cbd
+            .map(productCard)
+            .join("");
+        }
+
+        /* ============ RENDER: CATALOGUE ============ */
+        function currentBrandList() {
+          if (state.filters.categories.size === 1) {
+            if (state.filters.categories.has("eliquides")) return eliquidBrands;
+            if (state.filters.categories.has("materiel")) return hardwareBrands;
+            if (state.filters.categories.has("cbd")) return ["Brume Botanique"];
+          }
+          return eliquidBrands
+            .concat(hardwareBrands)
+            .concat(["Brume Botanique"]);
+        }
+
+        function renderFilterPanel() {
+          const catBox = document.getElementById("filter-categories");
+          catBox.innerHTML = Object.keys(catMeta)
+            .map((key) => {
+              const checked = state.filters.categories.has(key)
+                ? "checked"
+                : "";
+              return (
+                '<label><input type="checkbox" data-cat="' +
+                key +
+                '" ' +
+                checked +
+                "> " +
+                catMeta[key].label +
+                "</label>"
+              );
+            })
+            .join("");
+
+          const brandBox = document.getElementById("filter-brands");
+          brandBox.innerHTML = currentBrandList()
+            .map((b) => {
+              const checked = state.filters.brands.has(b) ? "checked" : "";
+              return (
+                '<label><input type="checkbox" data-brand="' +
+                b +
+                '" ' +
+                checked +
+                "> " +
+                b +
+                "</label>"
+              );
+            })
+            .join("");
+        }
+
+        function applyFiltersAndRender() {
+          let list = products.slice();
+          if (state.filters.categories.size > 0) {
+            list = list.filter((p) => state.filters.categories.has(p.category));
+          }
+          if (state.filters.brands.size > 0) {
+            list = list.filter((p) => state.filters.brands.has(p.brand));
+          }
+          list = list.filter((p) => p.price <= state.filters.maxPrice);
+          if (state.filters.search.trim() !== "") {
+            const q = state.filters.search.trim().toLowerCase();
+            list = list.filter((p) =>
+              (p.name + " " + p.brand).toLowerCase().includes(q),
+            );
+          }
+          if (state.sort === "price-asc")
+            list.sort((a, b) => a.price - b.price);
+          if (state.sort === "price-desc")
+            list.sort((a, b) => b.price - a.price);
+          if (state.sort === "name")
+            list.sort((a, b) => a.name.localeCompare(b.name));
+
+          const grid = document.getElementById("catalogue-grid");
+          const noRes = document.getElementById("no-results");
+          document.getElementById("results-count").textContent =
+            list.length + " produit" + (list.length > 1 ? "s" : "");
+          if (list.length === 0) {
+            grid.innerHTML = "";
+            noRes.style.display = "block";
+          } else {
+            noRes.style.display = "none";
+            grid.innerHTML = list.map(productCard).join("");
+          }
+
+          // titre dynamique
+          const cats = Array.from(state.filters.categories);
+          const title =
+            cats.length === 1 ? catMeta[cats[0]].label : "Tous les produits";
+          const eyebrow =
+            cats.length === 1
+              ? catMeta[cats[0]].eyebrow
+              : "E-liquides · Matériel · CBD & Résine";
+          document.getElementById("cat-title").textContent = title;
+          document.getElementById("cat-eyebrow").textContent = eyebrow;
+        }
+
+        /* ============ ROUTING ============ */
+        function goRoute(route) {
+          state.route = route;
+          document.querySelectorAll("nav.main-links button").forEach((b) => {
+            b.classList.toggle("active", b.dataset.route === route);
+          });
+
+          if (route === "home") {
+            document.getElementById("view-home").classList.add("active");
+            document
+              .getElementById("view-catalogue")
+              .classList.remove("active");
+          } else {
+            document.getElementById("view-home").classList.remove("active");
+            document.getElementById("view-catalogue").classList.add("active");
+            state.filters.categories = new Set();
+            state.filters.brands = new Set();
+            if (route === "eliquides")
+              state.filters.categories.add("eliquides");
+            if (route === "materiel") state.filters.categories.add("materiel");
+            if (route === "cbd") state.filters.categories.add("cbd");
+            // "marques" => pas de filtre catégorie, tout affiché
+            renderFilterPanel();
+            applyFiltersAndRender();
+          }
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.querySelectorAll("[data-route]").forEach((el) => {
+          el.addEventListener("click", () => goRoute(el.dataset.route));
+        });
+
+        /* ============ FILTER EVENTS ============ */
+        document
+          .getElementById("filter-categories")
+          .addEventListener("change", (e) => {
+            const cat = e.target.dataset.cat;
+            if (!cat) return;
+            if (e.target.checked) state.filters.categories.add(cat);
+            else state.filters.categories.delete(cat);
+            state.filters.brands = new Set();
+            renderFilterPanel();
+            applyFiltersAndRender();
+          });
+
+        document
+          .getElementById("filter-brands")
+          .addEventListener("change", (e) => {
+            const b = e.target.dataset.brand;
+            if (!b) return;
+            if (e.target.checked) state.filters.brands.add(b);
+            else state.filters.brands.delete(b);
+            applyFiltersAndRender();
+          });
+
+        document
+          .getElementById("price-range")
+          .addEventListener("input", (e) => {
+            state.filters.maxPrice = Number(e.target.value);
+            document.getElementById("price-value").textContent =
+              state.filters.maxPrice + "€";
+            applyFiltersAndRender();
+          });
+
+        document
+          .getElementById("reset-filters")
+          .addEventListener("click", () => {
+            state.filters.brands = new Set();
+            state.filters.maxPrice = 40;
+            document.getElementById("price-range").value = 40;
+            document.getElementById("price-value").textContent = "40€";
+            renderFilterPanel();
+            applyFiltersAndRender();
+          });
+
+        document
+          .getElementById("sort-select")
+          .addEventListener("change", (e) => {
+            state.sort = e.target.value;
+            applyFiltersAndRender();
+          });
+
+        document
+          .getElementById("search-input")
+          .addEventListener("input", (e) => {
+            state.filters.search = e.target.value;
+            if (state.route === "home" && e.target.value.trim() !== "") {
+              goRoute("marques");
+            }
+            applyFiltersAndRender();
+          });
+
+        /* ============ PRODUCT CLICKS (delegation) ============ */
+        document.body.addEventListener("click", (e) => {
+          const addBtn = e.target.closest("[data-add]");
+          if (addBtn) {
+            addToCart(Number(addBtn.dataset.add));
+            e.stopPropagation();
+            return;
+          }
+          const card = e.target.closest(".prod-card");
+          if (card) {
+            openModal(Number(card.dataset.id));
+          }
+        });
+
+        /* ============ CART ============ */
+        function addToCart(id) {
+          const line = state.cart.find((l) => l.id === id);
+          if (line) line.qty++;
+          else state.cart.push({ id, qty: 1 });
+          renderCart();
+          openCart();
+        }
+        function changeQty(id, delta) {
+          const line = state.cart.find((l) => l.id === id);
+          if (!line) return;
+          line.qty += delta;
+          if (line.qty <= 0) state.cart = state.cart.filter((l) => l.id !== id);
+          renderCart();
+        }
+        function removeFromCart(id) {
+          state.cart = state.cart.filter((l) => l.id !== id);
+          renderCart();
+        }
+        function renderCart() {
+          const wrap = document.getElementById("cart-items");
+          const empty = document.getElementById("cart-empty");
+          const foot = document.getElementById("cart-foot");
+          const count = state.cart.reduce((s, l) => s + l.qty, 0);
+          document.getElementById("cart-count").textContent = count;
+
+          if (state.cart.length === 0) {
+            wrap.innerHTML = "";
+            empty.style.display = "block";
+            foot.style.display = "none";
+            return;
+          }
+          empty.style.display = "none";
+          foot.style.display = "block";
+          let subtotal = 0;
+          wrap.innerHTML = state.cart
+            .map((line) => {
+              const p = findProduct(line.id);
+              subtotal += p.price * line.qty;
+              return (
+                '<div class="cart-item">' +
+                '<div class="ci-visual">' +
+                visualFor(p) +
+                "</div>" +
+                '<div class="ci-info">' +
+                '<div class="ci-brand">' +
+                p.brand +
+                "</div>" +
+                '<div class="ci-name">' +
+                p.name +
+                "</div>" +
+                '<div class="ci-qty">' +
+                '<button data-qty="' +
+                p.id +
+                '" data-delta="-1">−</button>' +
+                '<span class="mono">' +
+                line.qty +
+                "</span>" +
+                '<button data-qty="' +
+                p.id +
+                '" data-delta="1">+</button>' +
+                '<span class="mono" style="margin-left:auto;">' +
+                euro(p.price * line.qty) +
+                "</span>" +
+                "</div>" +
+                '<div class="ci-remove" data-remove="' +
+                p.id +
+                '">Retirer</div>' +
+                "</div>" +
+                "</div>"
+              );
+            })
+            .join("");
+          document.getElementById("cart-subtotal").textContent = euro(subtotal);
+        }
+
+        document.getElementById("cart-items").addEventListener("click", (e) => {
+          const qtyBtn = e.target.closest("[data-qty]");
+          if (qtyBtn) {
+            changeQty(Number(qtyBtn.dataset.qty), Number(qtyBtn.dataset.delta));
+            return;
+          }
+          const rem = e.target.closest("[data-remove]");
+          if (rem) {
+            removeFromCart(Number(rem.dataset.remove));
+          }
+        });
+
+        function openCart() {
+          document.getElementById("cart-drawer").classList.add("show");
+          document.getElementById("overlay").classList.add("show");
+        }
+        function closeCart() {
+          document.getElementById("cart-drawer").classList.remove("show");
+          if (
+            !document.getElementById("product-modal").classList.contains("show")
+          ) {
+            document.getElementById("overlay").classList.remove("show");
+          }
+        }
+        document.getElementById("cart-btn").addEventListener("click", openCart);
+        document
+          .getElementById("cart-close")
+          .addEventListener("click", closeCart);
+        document.getElementById("overlay").addEventListener("click", () => {
+          closeCart();
+          closeModal();
+        });
+        document
+          .getElementById("checkout-btn")
+          .addEventListener("click", () => {
+            alert(
+              "Fonctionnalité de paiement à connecter — ceci est une démonstration front-end.",
+            );
+          });
+
+        /* ============ PRODUCT MODAL ============ */
+        function openModal(id) {
+          const p = findProduct(id);
+          document.getElementById("modal-body").innerHTML =
+            '<div class="modal-visual">' +
+            visualFor(p) +
+            "</div>" +
+            '<span class="prod-brand">' +
+            p.brand +
+            "</span>" +
+            "<h3>" +
+            p.name +
+            "</h3>" +
+            '<p class="modal-desc">' +
+            p.desc +
+            "</p>" +
+            '<div class="modal-specs"><span class="spec-pill">' +
+            p.spec +
+            '</span><span class="spec-pill">' +
+            catMeta[p.category].label +
+            "</span></div>" +
+            '<div class="modal-bottom"><span class="prod-price" style="font-size:1.3rem;">' +
+            euro(p.price) +
+            '</span><button class="add-btn" style="padding:12px 22px;" data-add="' +
+            p.id +
+            '">Ajouter au panier</button></div>';
+          document.getElementById("product-modal").classList.add("show");
+          document.getElementById("overlay").classList.add("show");
+        }
+        function closeModal() {
+          document.getElementById("product-modal").classList.remove("show");
+          if (
+            !document.getElementById("cart-drawer").classList.contains("show")
+          ) {
+            document.getElementById("overlay").classList.remove("show");
+          }
+        }
+        document
+          .getElementById("modal-close")
+          .addEventListener("click", closeModal);
+
+        /* ============ AGE GATE ============ */
+        document.getElementById("age-yes").addEventListener("click", () => {
+          document.getElementById("age-gate").classList.add("hidden");
+        });
+        document.getElementById("age-no").addEventListener("click", () => {
+          document.body.innerHTML =
+            '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;text-align:center;padding:24px;"><p>L&#39;accès à ce site est réservé aux personnes majeures.</p></div>';
+        });
+
+        /* ============ MOBILE BURGER (simple toggle) ============ */
+        document.getElementById("burger-btn").addEventListener("click", () => {
+          const nav = document.querySelector("nav.main-links");
+          nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+          nav.style.position = "absolute";
+          nav.style.top = "64px";
+          nav.style.left = "0";
+          nav.style.right = "0";
+          nav.style.background = "var(--fog)";
+          nav.style.flexDirection = "column";
+          nav.style.padding = "16px 24px";
+          nav.style.borderBottom = "1px solid var(--line)";
+        });
+
+        /* ============ INIT ============ */
+        renderBrandMarquee();
+        renderFeatured();
+        renderCart();
+        goRoute("home");
+      })();
+    </script>
+  </body>
+</html>

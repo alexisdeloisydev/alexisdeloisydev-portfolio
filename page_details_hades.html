@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image et Détails</title>
+    <!-- Import Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=New+Rocker&family=Pirata+One&display=swap" rel="stylesheet">
+    <style>
+        /* Style global pour la page */
+        body {
+            margin: 0;
+            font-family: 'New Rocker', cursive; /* Application des polices globalement */
+            background: url(https://www.laboiteverte.fr/wp-content/uploads/2012/09/foret-allemagne-Michael-Lange-02.jpg) no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Bouton Retour */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #dd985c;
+            color: #1e1e1e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'New Rocker', cursive; /* Spécifie une police différente pour ce bouton */
+        }
+
+        .back-btn:hover {
+            background-color: #e5a46b;
+        }
+
+        /* Container principal pour l'image et les détails */
+        .content-container {
+            display: flex; /* Dispose l'image et les détails côte à côte */
+            align-items: flex-start; /* Alignement en haut */
+            background-color: #dda15c;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 550px;
+            width: 100%;
+            box-sizing: border-box;
+            top: 50%;
+            margin-left: 25%; /* Laissez de l'espace pour l'image à gauche */
+        }
+
+        /* Image avec bordure fine */
+        .image-container {
+            position: absolute;
+            left: 25%; /* Décalage de l'image vers la gauche */
+            top: 50%;
+            transform: translateY(-50%); /* Centrer l'image verticalement */
+            border: 1px solid #dd985c; /* Bordure orange fine */
+            border-radius: 8px;
+            flex-shrink: 0; /* Empêche l'image de se réduire si l'espace manque */
+        }
+
+        .image-container img {
+            width: 200px; /* Largeur fixe pour l'image */
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Détails de l'image */
+        .details-container {
+            font-size: 1.2rem;
+            color: black;
+            word-wrap: break-word; /* Coupe les mots longs */
+            overflow-wrap: break-word; /* Compatibilité avec les navigateurs modernes */
+            max-width: 500px; /* Limite la largeur du texte */
+        }
+
+        .details-container p {
+            margin: 0 0 0.5rem; /* Espacement entre paragraphes */
+            line-height: 1.5; /* Améliore la lisibilité */
+            word-break: break-word; /* Coupe les mots trop longs */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="site2.html" class="back-btn">← Retour</a>
+    </header>
+
+    <!-- Container principal -->
+    <div class="content-container">
+        <!-- Détails de l'image -->
+        <div class="details-container">
+            <p><strong>Nom :</strong> Chapelet Hadès et Perséphone</p>
+            <p><strong>Description : Les chapelets Hadès et Perséphone symbolisent l’union éternelle des deux divinités. Le chapelet d'Hadès, aux perles noires, grises et blanches, représente l'obscurité et la mort, tandis que celui de Perséphone, aux perles rouges et oranges, évoque la fertilité et la vie. Les deux chapelets se terminent par une main de squelette, symbolisant leur lien indestructible entre le monde des morts et la régénération.</strong> </p>
+            <p><strong>Prix :</strong> 45€</p>
+        </div>
+    </div>
+
+    <!-- Image avec bordure fine -->
+    <div class="image-container">
+        <img src="images/hades_persephone.JPG" alt="Image locale">
+    </div>
+</body>
+</html>

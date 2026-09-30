@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CV Alexis Deloisy</title>
+<style>
+  /* A4 fixed layout */
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+  }
+  .page {
+    width: 794px;
+    height: 1123px;
+    background: #ffffff;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+  }
+  /* Top header */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .photo img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .head-info h1 {
+    font-size: 48px;
+    margin: 0;
+    font-weight: 800;
+  }
+  .head-info h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 6px;
+  }
+  /* Contact bar */
+  .contact-bar {
+    margin-top: 25px;
+    background: #2f3b52;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+  }
+  /* Two columns */
+  .cols {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+  .section {
+    margin-bottom: 28px;
+  }
+  .section h3 {
+    background: #2f3b52;
+    color: white;
+    padding: 8px 14px;
+    font-size: 18px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  ul {
+    padding-left: 16px;
+    margin: 0;
+  }
+  li {
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="photo"><img src="./images/tpportrait_tpC_alexis_deloisy-1.jpg"></div>
+    <div class="head-info">
+      <h1>Alexis<br>Deloisy</h1>
+      <h2>Étudiant en Informatique – Développement Web & Multimédia</h2>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <div><img src="./images/call_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"> +33 6 48 58 20 55</div>
+    <div><img src="./images/mail_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"> alexis.deloisy@icloud.com</div>
+    <div><img src="./images/location_on_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"> Rosières-Près-Troyes 10430</div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="section"><h3>Outils</h3>
+        <ul>
+          <li>Suite Microsoft Office</li>
+          <li>HTML5</li>
+          <li>CSS</li>
+          <li>Adobe Photoshop</li>
+          <li>Adobe Illustrator</li>
+          <li>Audio / Visuel</li>
+          <li>PHP</li>
+        </ul>
+      </div>
+      <div class="section"><h3>Études</h3>
+        <ul>
+          <li>IUT de Troyes (2025 - aujourd'hui)</li>
+          <li>Institution Sainte-Céline (2022 - 2025)</li>
+          <li>Institution Sainte-Foy (2009 - 2022)</li>
+        </ul>
+      </div>
+      <div class="section"><h3>Certifications</h3>
+        <ul>
+          <li>Épreuves anticipées de français</li>
+          <li>Baccalauréat Maths/NSI</li>
+          <li>Certificat d'Aptitude Théorique ULM</li>
+        </ul>
+      </div>
+      <div class="section"><h3>Langues</h3>
+        <ul>
+          <li>Français</li>
+          <li>Anglais (B2)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="section"><h3>Compétences</h3>
+        <ul>
+          <li>Maîtrise des logiciels de bureautique</li>
+          <li>Intégration web responsive</li>
+          <li>Mise en page et stylisation d'interfaces</li>
+          <li>Création de visuels web & print</li>
+          <li>Initiation à la programmation serveur</li>
+        </ul>
+      </div>
+      <div class="section"><h3>Stages</h3>
+        <ul>
+          <li>Stage de découverte SNCF Paris (2023)</li>
+          <li>Stage de découverte B2 Aviation (2024)</li>
+        </ul>
+      </div>
+      <div class="section"><h3>Hobbies / Passions</h3>
+        <ul>
+          <li>Aviation légère</li>
+          <li>Création de sites vitrines</li>
+          <li>Jeux vidéo</li>
+          <li>Visionnage de documentaires</li>
+          <li>Interviews de personnalités publiques</li>
+          <li>Culture générale</li>
+          <li>Sports</li>
+        </ul>
+      </div>
+      <div class="section"><h3>Projets divers</h3>
+        <ul>
+          <li>Maquettes de site de ventes</li>
+          <li>Reproduction de ce CV en HTML/CSS</li>
+          <li>Site statique de vente de chapelet</li>
+          <li>Site de goodies japonais</li>
+          <li>Site d'importation Porsche</li>
+          <li>Site type Blog</li>
+          <li>Portfolio</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

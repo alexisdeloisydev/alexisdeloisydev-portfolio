@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zestia | Détail Produit</title>
+    <meta name="description" content="Découvrez les détails complets de nos sodas botaniques artisanaux Zestia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bahianita&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..909&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style_product.css">
+</head>
+<body>
+
+    <main class="content-wrapper">
+        <nav>
+            <div class="logo">
+                ZESTIA <span>ゼスティア</span>
+            </div>
+            <ul>
+                <li><a href="index.html#home">Accueil</a></li>
+                <li><a href="index.html#products">Collection</a></li>
+                <li><a href="index.html#about">Notre Histoire</a></li>
+                <li><a href="#">Boutique</a></li>
+            </ul>
+        </nav>
+
+        <section class="product-detail">
+            <div class="product-container">
+                <div class="product-image">
+                    <img id="productImage" src="./images/officiel2.png" alt="Bouteille Zestia">
+                </div>
+                <div class="product-info">
+                    <h1 id="productName">La Française</h1>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">(24 avis)</span>
+                    </div>
+                    
+                    <div class="product-price">
+                        <span class="price" id="price">3,99 €</span>
+                        <span class="stock">En stock</span>
+                    </div>
+
+                    <div class="buy-options">
+                        <label><input type="radio" name="buyType" value="unit" checked> À l'unité</label>
+                        <label><input type="radio" name="buyType" value="pack"> Pack de 6 <span class="pack-label">(-15%)</span></label>
+                        <label><input type="radio" name="buyType" value="can"> Canette</label>
+                        <label><input type="radio" name="buyType" value="packCan"> Pack de 24 Canettes <span class="pack-label">(-20%)</span></label>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>Description</h3>
+                        <p id="productDesc">Citron & Tilleul. L'élégance d'un jardin à la française sous une robe jaune citronade.</p>
+                    </div>
+
+                    <div class="product-details">
+                        <h3>Caractéristiques</h3>
+                        <ul>
+                            <li><strong>Volume:</strong> 330ml</li>
+                            <li><strong>Ingrédients:</strong> Eau, citron, tilleul, CO2</li>
+                            <li><strong>Emballage:</strong> Bouteille en verre recyclable</li>
+                            <li><strong>Saveur:</strong> Douce et rafraîchissante</li>
+                            <li><strong>Origine:</strong> Produit français</li>
+                        </ul>
+                    </div>
+
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button id="decreaseQty">−</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                            <button id="increaseQty">+</button>
+                        </div>
+                        <button class="btn btn-large" id="addToCart">Ajouter au panier</button>
+                    </div>
+
+                    <div class="product-extra">
+                        <p>✓ Livraison gratuite à partir de 50€</p>
+                        <p>✓ Satisfait ou remboursé 30 jours</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-products">
+                <h2>Autres saveurs</h2>
+                <div class="grid">
+                    <a href="japonaise.html?id=japonaise" class="card-link">
+                        <div class="card jp">
+                            <h3>La Japonaise</h3>
+                            <p>Pamplemousse & Fleur de cerisier</p>
+                        </div>
+                    </a>
+                    <a href="americaine.html?id=americaine" class="card-link">
+                        <div class="card us">
+                            <h3>L'Américaine</h3>
+                            <p>Lime & Elderflower</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="product.js"></script>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-main-grid">
+                <div class="footer-column">
+                    <a href="#">TOUT ACHETER</a>
+                    <a href="#">PACKS DÉCOUVERTE</a>
+                    <a href="#">SAVEURS UNIQUES</a>
+                    <a href="#">MERCH</a>
+                    <a href="#">MON COMPTE</a>
+                </div>
+
+                <div class="footer-column">
+                    <a href="#">POINTS DE VENTE</a>
+                    <a href="#">PRESSE</a>
+                    <a href="#">À PROPOS</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">CONTACT</a>
+                </div>
+
+                <div class="footer-column contact-info">
+                    <h4 class="footer-title">DES QUESTIONS ?</h4>
+                    <p>ÉCRIVEZ-NOUS À</p>
+                    <p><a href="mailto:HELLO@ZESTIA.COM" class="footer-email">HELLO@ZESTIA.COM</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-legal-links">
+                    <span class="copyright">© 2026, Zestia , Inc.</span>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions & Termes</a>
+                    <a href="#">Accessibilité</a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.instagram.com/cindyybomy?igsh=OWM3M3duaXlveXYw" aria-label="Instagram">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

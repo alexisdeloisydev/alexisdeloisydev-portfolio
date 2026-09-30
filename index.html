@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Deloisy Alexis, développeur web front-end."
+    />
+    <title>Portfolio · DELOISY ALEXIS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta
+      name="theme-color"
+      content="#0f0f0f"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme");
+        if (saved) document.documentElement.setAttribute("data-theme", saved);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- SPRITE SVG — 0 requete HTTP, tout est inline -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: none"
+      aria-hidden="true"
+    >
+      <symbol
+        id="icon-sun"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </symbol>
+
+      <symbol
+        id="icon-moon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </symbol>
+
+      <symbol
+        id="icon-bubble-on"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="4" />
+      </symbol>
+
+      <symbol
+        id="icon-bubble-off"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+      </symbol>
+
+      <symbol id="icon-linkedin" viewBox="0 0 382 382">
+        <path
+          fill="currentColor"
+          d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0zM118.207,329.844c0,5.554-4.502,10.056-10.056,10.056H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806c5.554,0,10.056,4.502,10.056,10.056V329.844zM86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432zM341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472L341.91,330.654z"
+        />
+      </symbol>
+
+      <symbol
+        id="icon-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </symbol>
+
+      <symbol
+        id="icon-location"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+        />
+        <circle cx="12" cy="9" r="2.5" />
+      </symbol>
+
+      <symbol
+        id="icon-check"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+
+      <symbol
+        id="icon-phone"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+        />
+      </symbol>
+
+      <symbol id="icon-html" viewBox="0 0 124 141.53">
+        <path
+          d="M10.383 126.894L0 0l124 .255-10.979 126.639-50.553 14.638z"
+          fill="#e34f26"
+        />
+        <path
+          d="M62.468 129.277V12.085l51.064.17-9.106 104.851z"
+          fill="#ef652a"
+        />
+        <path
+          d="M99.49 41.362l1.446-15.49H22.383l4.34 47.49h54.213L78.81 93.617l-17.362 4.68-17.617-5.106-.936-12.085H27.319l2.128 24.681 32 8.936 32.255-8.936 4.34-48.17H41.107L39.49 41.362z"
+          fill="#fff"
+        />
+      </symbol>
+
+      <symbol id="icon-css" viewBox="0 0 124 141.53">
+        <path
+          d="M10.383 126.892L0 0l124 .255-10.979 126.637-50.553 14.638z"
+          fill="#1b73ba"
+        />
+        <path
+          d="M62.468 129.275V12.085l51.064.17-9.106 104.85z"
+          fill="#1c88c7"
+        />
+        <path
+          d="M100.851 27.064H22.298l2.128 15.318h37.276l-36.68 15.745 2.127 14.808h54.043l-1.958 20.68-18.298 3.575-16.595-4.255-1.277-11.745H27.83l2.042 24.426 32.681 9.106 31.32-9.957 4-47.745H64.765l36.085-14.978z"
+          fill="#fff"
+        />
+      </symbol>
+
+      <symbol id="icon-js" viewBox="0 0 124 141.53">
+        <path
+          d="M10.383 126.894L0 0l124 .255-10.979 126.639-50.553 14.638z"
+          fill="#e9ca32"
+        />
+        <path
+          d="M62.468 129.277V12.085l51.064.17-9.106 104.851z"
+          fill="#ffde25"
+        />
+        <path
+          d="M57 26H43.5v78L33 102V91.5l-12.5-2V113l36.5 9.5zm10.127 0H104.5L102 40.95H81.394v24.533H102L99.5 115l-32.373 7.5V107L89 99.5 90.263 79l-23.136 3.35z"
+          fill="#fff"
+        />
+      </symbol>
+
+      <symbol id="icon-photoshop" viewBox="0 0 240 234">
+        <path
+          d="M42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0z"
+          fill="#001e36"
+        />
+        <g fill="#31a8ff">
+          <path
+            d="M54 164.1V61.2c0-.7.3-1.1 1-1.1 1.7 0 3.3 0 5.6-.1 2.4-.1 4.9-.1 7.6-.2s5.6-.1 8.7-.2 6.1-.1 9.1-.1c8.2 0 15 1 20.6 3.1 5 1.7 9.6 4.5 13.4 8.2 3.2 3.2 5.7 7.1 7.3 11.4 1.5 4.2 2.3 8.5 2.3 13 0 8.6-2 15.7-6 21.3s-9.6 9.8-16.1 12.2c-6.8 2.5-14.3 3.4-22.5 3.4-2.4 0-4 0-5-.1s-2.4-.1-4.3-.1V164c.1.7-.4 1.3-1.1 1.4H55.2c-.8 0-1.2-.4-1.2-1.3zm21.8-84.7V113c1.4.1 2.7.2 3.9.2H85c3.9 0 7.8-.6 11.5-1.8 3.2-.9 6-2.8 8.2-5.3 2.1-2.5 3.1-5.9 3.1-10.3.1-3.1-.7-6.2-2.3-8.9-1.7-2.6-4.1-4.6-7-5.7-3.7-1.5-7.7-2.1-11.8-2-2.6 0-4.9 0-6.8.1-2-.1-3.4 0-4.1.1zM192 106.9c-3-1.6-6.2-2.7-9.6-3.4-3.7-.8-7.4-1.3-11.2-1.3-2-.1-4.1.2-6 .7-1.3.3-2.4 1-3.1 2-.5.8-.8 1.8-.8 2.7s.4 1.8 1 2.6c.9 1.1 2.1 2 3.4 2.7 2.3 1.2 4.7 2.3 7.1 3.3 5.4 1.8 10.6 4.3 15.4 7.3 3.3 2.1 6 4.9 7.9 8.3 1.6 3.2 2.4 6.7 2.3 10.3.1 4.7-1.3 9.4-3.9 13.3-2.8 4-6.7 7.1-11.2 8.9-4.9 2.1-10.9 3.2-18.1 3.2-4.6 0-9.1-.4-13.6-1.3-3.5-.6-7-1.7-10.2-3.2-.7-.4-1.2-1.1-1.1-1.9v-17.4c0-.3.1-.7.4-.9s.6-.1.9.1c3.9 2.3 8 3.9 12.4 4.9 3.8 1 7.8 1.5 11.8 1.5 3.8 0 6.5-.5 8.3-1.4 1.6-.7 2.7-2.4 2.7-4.2 0-1.4-.8-2.7-2.4-4s-4.9-2.8-9.8-4.7c-5.1-1.8-9.8-4.2-14.2-7.2-3.1-2.2-5.7-5.1-7.6-8.5-1.6-3.2-2.4-6.7-2.3-10.2 0-4.3 1.2-8.4 3.4-12.1 2.5-4 6.2-7.2 10.5-9.2 4.7-2.4 10.6-3.5 17.7-3.5 4.1 0 8.3.3 12.4.9 3 .4 5.9 1.2 8.6 2.3.4.1.8.5 1 .9.1.4.2.8.2 1.2v16.3c0 .4-.2.8-.5 1-.9.2-1.4.2-1.8 0z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-aftereffects" viewBox="0 0 2500 2437.5">
+        <path
+          d="M442.71 0h1614.58C2302.08 0 2500 197.92 2500 442.71v1552.08c0 244.79-197.92 442.71-442.71 442.71H442.71C197.92 2437.5 0 2239.58 0 1994.79V442.71C0 197.92 197.92 0 442.71 0z"
+          fill="#00005b"
+        />
+        <g fill="#99f">
+          <path
+            d="M1004.17 1458.33h-387.5l-79.17 245.83c-2.08 9.37-10.42 15.62-19.79 14.58H321.88c-11.46 0-14.58-6.25-11.46-18.75l335.42-961.46c3.12-10.42 6.25-19.79 10.42-32.29 4.17-21.87 6.25-44.79 6.25-67.71-1.04-5.21 3.12-10.42 8.33-11.46h269.79c7.29 0 12.5 3.12 13.54 8.33l380.21 1062.5c3.13 11.46 0 16.67-10.42 16.67h-217.71c-7.29 1.04-14.58-4.17-16.67-11.46l-85.42-250v5.21zm-327.08-207.29h264.58c-6.25-21.87-14.58-47.92-23.96-75-9.38-28.12-18.75-58.33-28.12-89.58-10.42-32.29-19.79-63.54-30.21-95.83s-19.79-62.5-28.12-92.71c-8.33-29.17-15.62-56.25-22.92-81.25h-2.08c-9.38 44.79-20.83 89.58-35.42 134.38-15.62 50-31.25 102.08-47.92 154.17-13.54 53.12-30.21 102.08-45.83 145.83zM1947.92 1364.58h-330.21c4.17 32.29 14.58 64.58 32.29 92.71 18.75 28.12 44.79 50 76.04 62.5 41.67 17.71 87.5 27.08 133.33 26.04 36.46-1.04 72.92-4.17 108.33-11.46 32.29-4.17 63.54-12.5 92.71-23.96 5.21-4.17 8.33-2.08 8.33 8.33v159.38c0 4.17-1.04 8.33-2.08 12.5-2.08 3.13-4.17 5.21-7.29 7.29-33.33 14.58-67.71 25-104.17 31.25-48.96 9.37-97.92 13.54-147.92 12.5-79.17 0-145.83-12.5-200-36.46-51.04-21.88-95.83-56.25-131.25-98.96-33.33-40.62-57.29-86.46-71.87-136.46-14.58-48.96-21.88-100-21.88-152.08 0-56.25 8.33-111.46 26.04-165.63 16.67-52.08 42.71-100 78.12-142.71 34.38-41.67 77.08-75 126.04-98.96s107.29-32.29 173.96-32.29c55.21-1.04 110.42 9.38 161.46 32.29 42.71 18.75 80.21 46.88 109.38 83.33 27.08 35.42 48.96 75 62.5 118.75 13.54 41.67 19.79 84.37 19.79 127.08 0 25-1.04 46.88-2.08 66.67-2.08 19.79-3.13 34.38-4.17 43.75-1.04 7.29-7.29 13.54-14.58 13.54-6.25 0-17.71 1.04-34.38 2.08-16.67 2.08-36.46 3.13-60.42 3.13s-48.96-4.17-76.04-4.17zm-330.21-152.08h219.79c27.08 0 46.88 0 59.37-1.04 8.33-1.04 16.67-3.13 23.96-8.33v-10.42c0-13.54-2.08-26.04-6.25-38.54-18.75-58.33-73.96-97.92-135.42-95.83-57.29-3.13-111.46 27.08-138.54 79.17-12.5 23.96-19.79 48.96-22.92 75z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-illustrator" viewBox="0 0 240 234">
+        <path
+          d="M42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0z"
+          fill="#300"
+        />
+        <g fill="#ff9a00">
+          <path
+            d="M116.3 140.4H79.1l-7.6 23.5c-.2.9-1 1.5-1.9 1.4H50.8c-1.1 0-1.4-.6-1.1-1.8l32.2-92.7c.3-1 .6-2.1 1-3.3.4-2.1.6-4.3.6-6.5-.1-.5.3-1 .8-1.1H110.2c.8 0 1.2.3 1.3.8l36.5 103c.3 1.1 0 1.6-1 1.6h-20.9c-.7.1-1.4-.4-1.6-1.1zm-31.4-20.3h25.4c-.6-2.1-1.4-4.6-2.3-7.2-.9-2.7-1.8-5.6-2.7-8.6-1-3.1-1.9-6.1-2.9-9.2s-1.9-6-2.7-8.9c-.8-2.8-1.5-5.4-2.2-7.8h-.2c-.9 4.3-2 8.6-3.4 12.9-1.5 4.8-3 9.8-4.6 14.8-1.4 5.1-2.9 9.8-4.4 14zM169.8 77c-3.3.1-6.5-1.2-8.9-3.5-2.3-2.5-3.5-5.8-3.4-9.2-.1-3.4 1.2-6.6 3.6-8.9s5.6-3.5 8.9-3.5c3.9 0 6.9 1.2 9.1 3.5 2.2 2.4 3.4 5.6 3.3 8.9.1 3.4-1.1 6.7-3.5 9.2-2.3 2.4-5.7 3.7-9.1 3.5zm-11.2 86.8v-77c0-1 .4-1.4 1.3-1.4h19.8c.9 0 1.3.5 1.3 1.4v77c0 1.1-.4 1.6-1.3 1.6h-19.6c-1 0-1.5-.6-1.5-1.6z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-premiere" viewBox="0 0 240 234">
+        <path
+          d="M42.5 0h155C221 0 240 19 240 42.5v149c0 23.5-19 42.5-42.5 42.5h-155C19 234 0 215 0 191.5v-149C0 19 19 0 42.5 0z"
+          fill="#00005b"
+        />
+        <g fill="#99f">
+          <path
+            d="M57 164V61c0-.7.3-1.1 1-1.1 1.7 0 3.3 0 5.6-.1 2.4-.1 4.9-.1 7.6-.2s5.6-.1 8.7-.2 6.1-.1 9.1-.1c8.2 0 15 1 20.6 3.1 5 1.7 9.6 4.5 13.4 8.2 3.2 3.2 5.7 7.1 7.3 11.4 1.5 4.2 2.3 8.5 2.3 13 0 8.6-2 15.7-6 21.3s-9.6 9.8-16.1 12.2c-6.8 2.5-14.3 3.4-22.5 3.4-2.4 0-4 0-5-.1s-2.4-.1-4.3-.1v32.1c.1.7-.4 1.3-1.1 1.4H58.2c-.8 0-1.2-.4-1.2-1.3zm21.8-84.7v33.6c1.4.1 2.7.2 3.9.2H88c3.9 0 7.8-.6 11.5-1.8 3.2-.9 6-2.8 8.2-5.3 2.1-2.5 3.1-5.9 3.1-10.3.1-3.1-.7-6.2-2.3-8.9-1.7-2.6-4.1-4.6-7-5.7-3.7-1.5-7.7-2.1-11.8-2-2.6 0-4.9 0-6.8.1-2-.1-3.4 0-4.1.1zM147 85.2h17.5c1 0 1.8.7 2.1 1.6.3.8.5 1.6.6 2.5.2 1 .4 2.1.5 3.1.1 1.1.2 2.3.2 3.6 3-3.5 6.6-6.4 10.7-8.6 4.6-2.6 9.9-3.9 15.2-3.9.7-.1 1.3.4 1.4 1.1v19.9c0 .8-.5 1.1-1.6 1.1-3.6-.1-7.3.2-10.8 1-2.9.6-5.7 1.5-8.4 2.7-1.9.9-3.7 2.1-5.1 3.7v51c0 1-.4 1.4-1.3 1.4h-19.7c-.8.1-1.5-.4-1.6-1.2v-55.8c0-2.4 0-4.9-.1-7.5s-.1-5.2-.2-7.8c0-2.3-.2-4.5-.4-6.8-.1-.5.2-1 .7-1.1 0-.1.2-.1.3 0z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-claude" viewBox="0 -.01 39.5 39.53" fill="none">
+        <path
+          d="m7.75 26.27 7.77-4.36.13-.38-.13-.21h-.38l-1.3-.08-4.44-.12-3.85-.16-3.73-.2-.94-.2-.88-1.16.09-.58.79-.53 1.13.1 2.5.17 3.75.26 2.72.16 4.03.42h.64l.09-.26-.22-.16-.17-.16-3.88-2.63-4.2-2.78-2.2-1.6-1.19-.81-.6-.76-.26-1.66 1.08-1.19 1.45.1.37.1 1.47 1.13 3.14 2.43 4.1 3.02.6.5.24-.17.03-.12-.27-.45-2.23-4.03-2.38-4.1-1.06-1.7-.28-1.02c-.1-.42-.17-.77-.17-1.2l1.23-1.67.68-.22 1.64.22.69.6 1.02 2.33 1.65 3.67 2.56 4.99.75 1.48.4 1.37.15.42h.26v-.24l.21-2.81.39-3.45.38-4.44.13-1.25.62-1.5 1.23-.81.96.46.79 1.13-.11.73-.47 3.05-.92 4.78-.6 3.2h.35l.4-.4 1.62-2.15 2.72-3.4 1.2-1.35 1.4-1.49.9-.71h1.7l1.25 1.86-.56 1.92-1.75 2.22-1.45 1.88-2.08 2.8-1.3 2.24.12.18.31-.03 4.7-1 2.54-.46 3.03-.52 1.37.64.15.65-.54 1.33-3.24.8-3.8.76-5.66 1.34-.07.05.08.1 2.55.24 1.09.06h2.67l4.97.37 1.3.86.78 1.05-.13.8-2 1.02-2.7-.64-6.3-1.5-2.16-.54h-.3v.18l1.8 1.76 3.3 2.98 4.13 3.84.21.95-.53.75-.56-.08-3.63-2.73-1.4-1.23-3.17-2.67h-.21v.28l.73 1.07 3.86 5.8.2 1.78-.28.58-1 .35-1.1-.2-2.26-3.17-2.33-3.57-1.88-3.2-.23.13-1.11 11.95-.52.61-1.2.46-1-.76-.53-1.23.53-2.43.64-3.17.52-2.52.47-3.13.28-1.04-.02-.07-.23.03-2.36 3.24-3.59 4.85-2.84 3.04-.68.27-1.18-.61.11-1.09.66-.97 3.93-5 2.37-3.1 1.53-1.79-.01-.26h-.09l-10.44 6.78-1.86.24-.8-.75.1-1.23.38-.4 3.14-2.16z"
+          fill="#d97757"
+        />
+      </symbol>
+
+      <symbol id="icon-docker" viewBox="0 0 256 215">
+        <g fill="none" fill-rule="evenodd">
+          <path
+            d="M147.488 45.732h22.866v23.375h11.561c5.34 0 10.831-.951 15.887-2.664 2.485-.843 5.273-2.015 7.724-3.49-3.228-4.214-4.876-9.535-5.36-14.78-.66-7.135.78-16.421 5.608-22.005l2.404-2.78 2.864 2.303c7.211 5.793 13.276 13.889 14.345 23.118 8.683-2.554 18.878-1.95 26.531 2.467l3.14 1.812-1.652 3.226C246.933 68.946 233.4 72.86 220.17 72.167c-19.797 49.309-62.898 72.653-115.157 72.653-27 0-51.77-10.093-65.876-34.047l-.231-.39-2.055-4.182c-4.768-10.544-6.352-22.095-5.278-33.637l.323-3.457H51.45V45.732h22.865V22.866h45.733V0h27.44v45.732"
+            fill="#364548"
+          />
+          <path
+            d="M221.57 54.38c1.533-11.916-7.384-21.275-12.914-25.719-6.373 7.368-7.363 26.678 2.635 34.808-5.58 4.956-17.337 9.448-29.376 9.448H35.37c-1.17 12.567 1.036 24.14 6.075 34.045l1.667 3.05a56.536 56.536 0 0 0 3.455 5.184c6.025.387 11.58.52 16.662.408h.002c9.987-.22 18.136-1.4 24.312-3.54a1.761 1.761 0 0 1 1.153 3.326c-.822.286-1.678.552-2.562.805h-.003c-4.863 1.389-10.078 2.323-16.806 2.738.4.007-.416.06-.418.06-.229.015-.517.048-.747.06-2.648.149-5.506.18-8.428.18-3.196 0-6.343-.06-9.862-.24l-.09.06c12.21 13.724 31.302 21.955 55.234 21.955 50.648 0 93.608-22.452 112.632-72.857 13.496 1.385 26.467-2.057 32.367-13.575-9.398-5.423-21.484-3.694-28.443-.196"
+            fill="#22A0C8"
+          />
+          <path
+            d="M55.26 49.543h19.818v19.818H55.26V49.543zm22.866-22.866h19.819v19.817h-19.82V26.677zm22.867 22.866h19.818v19.818h-19.818V49.543zm22.866-22.866h19.818v19.817h-19.818V26.677zm0-22.867h19.818V23.63h-19.818V3.81zm22.866 45.733h19.818v19.818h-19.818V49.543zm22.865-22.866h19.818v19.817h-19.818V26.677z"
+            fill="#23A3C2"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-mysql" viewBox="-3.576 -8.996 259.406 260.1">
+        <g fill="#00546b">
+          <path
+            d="m235.648 194.212c-13.918-.347-24.705 1.045-33.752 4.872-2.61 1.043-6.786 1.044-7.134 4.35 1.392 1.392 1.566 3.654 2.784 5.567 2.09 3.479 5.741 8.177 9.047 10.614 3.653 2.783 7.308 5.566 11.134 8.002 6.786 4.176 14.442 6.611 21.053 10.787 3.829 2.434 7.654 5.568 11.482 8.177 1.914 1.39 3.131 3.654 5.568 4.523v-.521c-1.219-1.567-1.567-3.828-2.784-5.568-1.738-1.74-3.48-3.306-5.22-5.046-5.045-6.784-11.308-12.7-18.093-17.571-5.567-3.828-17.747-9.047-20.008-15.485 0 0-.175-.173-.348-.347 3.827-.348 8.35-1.74 12.005-2.784 5.915-1.567 11.308-1.218 17.398-2.784 2.783-.696 5.567-1.566 8.35-2.436v-1.565c-3.13-3.132-5.392-7.307-8.698-10.265-8.873-7.657-18.617-15.137-28.707-21.4-5.394-3.48-12.354-5.742-18.095-8.699-2.086-1.045-5.567-1.566-6.784-3.306-3.133-3.827-4.873-8.872-7.134-13.396-5.044-9.57-9.917-20.182-14.267-30.272-3.13-6.786-5.044-13.572-8.872-19.834-17.92-29.577-37.406-47.497-67.33-65.07-6.438-3.653-14.093-5.219-22.27-7.132-4.348-.175-8.699-.522-13.048-.697-2.784-1.218-5.568-4.523-8.004-6.089-9.915-6.264-35.492-19.833-42.799-1.913-4.698 11.308 6.96 22.442 10.96 28.185 2.96 4.001 6.786 8.524 8.874 13.048 1.218 2.956 1.565 6.09 2.783 9.221 2.785 7.653 5.393 16.18 9.048 23.314 1.914 3.653 4.001 7.48 6.437 10.786 1.392 1.913 3.827 2.784 4.35 5.915-2.435 3.48-2.61 8.7-4.003 13.049-6.263 19.66-3.826 44.017 5.046 58.457 2.783 4.348 9.395 13.92 18.268 10.265 7.83-3.131 6.09-13.048 8.35-21.747.524-2.09.176-3.48 1.219-4.872v.349c2.436 4.87 4.871 9.569 7.133 14.44 5.394 8.524 14.788 17.398 22.617 23.314 4.177 3.13 7.482 8.524 12.702 10.438v-.523h-.349c-1.044-1.566-2.61-2.261-4.001-3.48-3.131-3.13-6.612-6.958-9.047-10.438-7.306-9.744-13.745-20.53-19.486-31.665-2.783-5.392-5.22-11.308-7.481-16.701-1.045-2.09-1.045-5.22-2.784-6.263-2.61 3.827-6.437 7.133-8.351 11.83-3.304 7.481-3.653 16.702-4.871 26.27-.696.176-.349 0-.697.35-5.566-1.394-7.48-7.134-9.569-12.006-5.22-12.352-6.09-32.186-1.565-46.452 1.218-3.654 6.438-15.136 4.35-18.616-1.044-3.306-4.525-5.22-6.438-7.829-2.261-3.306-4.698-7.48-6.263-11.135-4.176-9.743-6.264-20.53-10.787-30.273-2.088-4.524-5.74-9.22-8.699-13.396-3.305-4.697-6.959-8.004-9.569-13.571-.869-1.913-2.088-5.045-.696-7.133.348-1.392 1.043-1.913 2.436-2.261 2.262-1.915 8.7.521 10.96 1.565 6.438 2.608 11.831 5.046 17.225 8.699 2.435 1.74 5.045 5.046 8.176 5.916h3.654c5.568 1.217 11.83.348 17.05 1.913 9.222 2.957 17.572 7.307 25.054 12.005 22.792 14.44 41.58 34.97 54.282 59.501 2.088 4 2.957 7.656 4.871 11.83 3.655 8.526 8.178 17.225 11.83 25.576 3.654 8.176 7.133 16.528 12.353 23.314 2.61 3.652 13.048 5.567 17.746 7.481 3.48 1.565 8.874 2.958 12.005 4.871 5.915 3.652 11.83 7.83 17.398 11.83 2.784 2.088 11.482 6.438 12.005 9.917z"
+          />
+          <path
+            d="m58.186 43.022c-2.957 0-5.044.35-7.132.871v.348h.348c1.393 2.784 3.827 4.698 5.566 7.133 1.393 2.783 2.61 5.568 4.003 8.352.173-.175.347-.348.347-.348 2.437-1.741 3.654-4.524 3.654-8.7-1.044-1.217-1.218-2.435-2.088-3.653-1.043-1.741-3.306-2.61-4.698-4.003z"
+          />
+        </g>
+      </symbol>
+
+      <symbol id="icon-php" viewBox="0 0 128 128">
+        <path
+          fill="url(#php-grad)"
+          d="M0 64c0 18.593 28.654 33.667 64 33.667 35.346 0 64-15.074 64-33.667 0-18.593-28.655-33.667-64-33.667C28.654 30.333 0 45.407 0 64Z"
+        />
+        <path
+          fill="#777bb3"
+          d="M64 95.167c33.965 0 61.5-13.955 61.5-31.167 0-17.214-27.535-31.167-61.5-31.167S2.5 46.786 2.5 64c0 17.212 27.535 31.167 61.5 31.167Z"
+        />
+        <path
+          d="M34.772 67.864c2.793 0 4.877-.515 6.196-1.53 1.306-1.006 2.207-2.747 2.68-5.175.44-2.27.272-3.854-.5-4.71-.788-.874-2.493-1.317-5.067-1.317h-4.464l-2.473 12.732zM20.173 83.547a.694.694 0 0 1-.68-.828l6.557-33.738a.695.695 0 0 1 .68-.561h14.134c4.442 0 7.748 1.206 9.827 3.585 2.088 2.39 2.734 5.734 1.917 9.935-.333 1.711-.905 3.3-1.7 4.724a15.818 15.818 0 0 1-3.128 3.92c-1.531 1.432-3.264 2.472-5.147 3.083-1.852.604-4.232.91-7.07.91h-5.724l-1.634 8.408a.695.695 0 0 1-.682.562z"
+        />
+        <path
+          fill="#fff"
+          d="M34.19 55.826h3.891c3.107 0 4.186.682 4.553 1.089.607.674.723 2.097.331 4.112-.439 2.257-1.253 3.858-2.42 4.756-1.194.92-3.138 1.386-5.773 1.386h-2.786l2.205-11.342zm6.674-8.1H26.731a1.39 1.39 0 0 0-1.364 1.123L18.81 82.588a1.39 1.39 0 0 0 1.363 1.653h7.35a1.39 1.39 0 0 0 1.363-1.124l1.525-7.846h5.151c2.912 0 5.364-.318 7.287-.944 1.977-.642 3.796-1.731 5.406-3.237a16.522 16.522 0 0 0 3.259-4.087c.831-1.487 1.429-3.147 1.775-4.931.86-4.423.161-7.964-2.076-10.524-2.216-2.537-5.698-3.823-10.349-3.823z"
+        />
+        <path
+          d="M69.459 74.577a.694.694 0 0 1-.682-.827l2.9-14.928c.277-1.42.209-2.438-.19-2.87-.245-.263-.979-.704-3.15-.704h-5.256l-3.646 18.768a.695.695 0 0 1-.683.56h-7.29a.695.695 0 0 1-.683-.826l6.558-33.739a.695.695 0 0 1 .682-.561h7.29a.695.695 0 0 1 .683.826L64.41 48.42h5.653c4.307 0 7.227.758 8.928 2.321 1.733 1.593 2.275 4.14 1.608 7.573l-3.051 15.702a.695.695 0 0 1-.682.56h-7.407z"
+        />
+        <path
+          fill="#fff"
+          d="M65.31 38.755h-7.291a1.39 1.39 0 0 0-1.364 1.124l-6.557 33.738a1.39 1.39 0 0 0 1.363 1.654h7.291a1.39 1.39 0 0 0 1.364-1.124l3.537-18.205h4.682c2.168 0 2.624.463 2.641.484.132.14.305.795.019 2.264l-2.9 14.927a1.39 1.39 0 0 0 1.364 1.654h7.408a1.39 1.39 0 0 0 1.363-1.124l3.051-15.7c.715-3.686.103-6.45-1.82-8.217-1.836-1.686-4.91-2.505-9.398-2.505h-4.81l1.421-7.315a1.39 1.39 0 0 0-1.364-1.655z"
+        />
+        <path
+          d="M92.136 67.864c2.793 0 4.878-.515 6.198-1.53 1.304-1.006 2.206-2.747 2.679-5.175.44-2.27.273-3.854-.5-4.71-.788-.874-2.493-1.317-5.067-1.317h-4.463l-2.475 12.732zM77.54 83.547a.694.694 0 0 1-.682-.828l6.557-33.738a.695.695 0 0 1 .682-.561H98.23c4.442 0 7.748 1.206 9.826 3.585 2.089 2.39 2.734 5.734 1.917 9.935a15.878 15.878 0 0 1-1.699 4.724 15.838 15.838 0 0 1-3.128 3.92c-1.53 1.432-3.265 2.472-5.147 3.083-1.852.604-4.232.91-7.071.91h-5.723l-1.633 8.408a.695.695 0 0 1-.683.562z"
+        />
+        <path
+          fill="#fff"
+          d="M91.555 55.826h3.891c3.107 0 4.186.682 4.552 1.089.61.674.724 2.097.333 4.112-.44 2.257-1.254 3.858-2.421 4.756-1.195.92-3.139 1.386-5.773 1.386h-2.786l2.204-11.342zm6.674-8.1H84.096a1.39 1.39 0 0 0-1.363 1.123l-6.558 33.739a1.39 1.39 0 0 0 1.364 1.653h7.35a1.39 1.39 0 0 0 1.363-1.124l1.525-7.846h5.15c2.911 0 5.364-.318 7.286-.944 1.978-.642 3.797-1.731 5.408-3.238a16.52 16.52 0 0 0 3.258-4.086c.832-1.487 1.428-3.147 1.775-4.931.86-4.423.162-7.964-2.076-10.524-2.216-2.537-5.697-3.823-10.35-3.823z"
+        />
+        <defs>
+          <radialGradient
+            id="php-grad"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientTransform="matrix(84.04136 0 0 84.04136 38.426 42.169)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#AEB2D5" />
+            <stop offset=".3" stop-color="#AEB2D5" />
+            <stop offset=".75" stop-color="#484C89" />
+            <stop offset="1" stop-color="#484C89" />
+          </radialGradient>
+        </defs>
+      </symbol>
+
+      <symbol id="icon-wordpress" viewBox="16 16 992 992">
+        <path
+          fill="#21759b"
+          d="M123.3 338.8l203 556.1C184.4 826 86.5 680.4 86.5 512a424.1 424.1 0 0 1 36.8-173.2zm675.9 151.7c0-52.6-18.9-89-35.1-117.3-21.5-35.1-41.7-64.8-41.7-99.8 0-39.1 29.6-75.5 71.4-75.5 1.9 0 3.7.2 5.5.3A423.6 423.6 0 0 0 512 86.5c-148.7 0-279.4 76.3-355.5 191.8 10 .3 19.4.5 27.4.5 44.5 0 113.4-5.4 113.4-5.4 22.9-1.4 25.6 32.3 2.7 35.1 0 0-23.1 2.7-48.7 4l154.9 460.9 93.1-279.3-66.2-181.6c-23-1.4-44.7-4.1-44.7-4.1-22.9-1.3-20.2-36.4 2.7-35 0 0 70.3 5.4 112.1 5.4 44.5 0 113.4-5.4 113.4-5.4 23-1.4 25.6 32.3 2.7 35 0 0-23.1 2.7-48.7 4.1l153.8 457.4 42.4-141.8c18.4-58.9 32.4-101.2 32.4-137.6zm-279.7 58.7l-127.7 371a426.3 426.3 0 0 0 261.5-6.8 29.7 29.7 0 0 1-3-5.9zm365.8-241.4a315.7 315.7 0 0 1 2.9 43.8c0 43.2-8.1 91.7-32.4 152.4L725.9 879.8C852.4 806 937.5 669 937.5 512a423 423 0 0 0-52.2-204.2zM1008 512c0 273.5-222.5 496-496 496S16 785.5 16 512 238.5 16 512 16s496 222.5 496 496zm-22.8 0c0-261-212.3-473.3-473.2-473.3S38.7 251 38.7 512 251 985.3 512 985.3 985.2 773 985.2 512z"
+        />
+      </symbol>
+    </svg>
+
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Changer de theme"
+    >
+      <svg id="theme-icon-sun" width="17" height="17" aria-hidden="true">
+        <use href="#icon-sun" />
+      </svg>
+      <svg
+        id="theme-icon-moon"
+        width="17"
+        height="17"
+        aria-hidden="true"
+        style="display: none"
+      >
+        <use href="#icon-moon" />
+      </svg>
+      <span id="theme-label">Mode clair</span>
+    </button>
+
+    <button
+      id="bubble-toggle"
+      class="bubble-toggle"
+      aria-label="Desactiver l'effet curseur"
+    >
+      <svg id="bubble-icon-on" width="18" height="18" aria-hidden="true">
+        <use href="#icon-bubble-on" />
+      </svg>
+      <svg
+        id="bubble-icon-off"
+        width="18"
+        height="18"
+        aria-hidden="true"
+        style="display: none"
+      >
+        <use href="#icon-bubble-off" />
+      </svg>
+      <span id="bubble-label">Curseur</span>
+    </button>
+
+    <script>
+      (function () {
+        const html = document.documentElement;
+        const btn = document.getElementById("theme-toggle");
+        const iconSun = document.getElementById("theme-icon-sun");
+        const iconMoon = document.getElementById("theme-icon-moon");
+        const label = document.getElementById("theme-label");
+        function currentTheme() {
+          const saved = html.getAttribute("data-theme");
+          if (saved) return saved;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        function applyUI(theme) {
+          if (theme === "dark") {
+            iconSun.style.display = "";
+            iconMoon.style.display = "none";
+            label.textContent = "Mode clair";
+          } else {
+            iconSun.style.display = "none";
+            iconMoon.style.display = "";
+            label.textContent = "Mode sombre";
+          }
+        }
+        applyUI(currentTheme());
+        btn.addEventListener("click", () => {
+          const next = currentTheme() === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          localStorage.setItem("theme", next);
+          applyUI(next);
+          setTimeout(applyLogo, 0);
+        });
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", () => {
+            if (!localStorage.getItem("theme")) {
+              applyUI(currentTheme());
+              applyLogo();
+            }
+          });
+      })();
+
+      function applyLogo() {
+        const theme =
+          document.documentElement.getAttribute("data-theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        const logoEl = document.getElementById("navbar-logo");
+        if (!logoEl) return;
+        logoEl.src =
+          theme === "dark"
+            ? "./images/Logo_moderne_et_digi (1).webp"
+            : "./images/Logo_moderne_et_digi_light.webp";
+      }
+      document.addEventListener("DOMContentLoaded", applyLogo);
+
+      (function () {
+        const isTouch =
+          "ontouchstart" in window || navigator.maxTouchPoints > 0;
+        const toggleBtn = document.getElementById("bubble-toggle");
+        const iconOn = document.getElementById("bubble-icon-on");
+        const iconOff = document.getElementById("bubble-icon-off");
+        if (isTouch) {
+          toggleBtn.style.display = "none";
+          return;
+        }
+        const fragment = document.createDocumentFragment();
+        const bubbles = Array.from({ length: 6 }, () => {
+          const d = document.createElement("div");
+          d.className = "bubble";
+          fragment.appendChild(d);
+          return d;
+        });
+        document.body.insertBefore(fragment, document.body.firstChild);
+        const positions = bubbles.map(() => ({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+        }));
+        const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let idle = false,
+          idleTimer = null,
+          bubbleEnabled = true;
+        document.addEventListener(
+          "mousemove",
+          (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            idle = false;
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => (idle = true), 120);
+          },
+          { passive: true },
+        );
+        toggleBtn.addEventListener("click", () => {
+          bubbleEnabled = !bubbleEnabled;
+          bubbles.forEach(
+            (b) => (b.style.display = bubbleEnabled ? "" : "none"),
+          );
+          iconOn.style.display = bubbleEnabled ? "" : "none";
+          iconOff.style.display = bubbleEnabled ? "none" : "";
+          toggleBtn.classList.toggle("bubble-toggle--off", !bubbleEnabled);
+        });
+        function animate() {
+          if (bubbleEnabled) {
+            positions[0].x += (mouse.x - positions[0].x) * 0.22;
+            positions[0].y += (mouse.y - positions[0].y) * 0.22;
+            for (let i = 1; i < positions.length; i++) {
+              positions[i].x +=
+                (positions[i - 1].x - positions[i].x) * (0.22 - i * 0.02);
+              positions[i].y +=
+                (positions[i - 1].y - positions[i].y) * (0.22 - i * 0.02);
+            }
+            if (idle) {
+              for (let i = 1; i < positions.length; i++) {
+                positions[i].x += (positions[0].x - positions[i].x) * 0.12;
+                positions[i].y += (positions[0].y - positions[i].y) * 0.12;
+              }
+            }
+            bubbles.forEach((b, i) => {
+              b.style.setProperty("--x", positions[i].x);
+              b.style.setProperty("--y", positions[i].y);
+              b.style.opacity = Math.max(0.08, 1 - i * 0.18);
+            });
+          }
+          requestAnimationFrame(animate);
+        }
+        window.addEventListener(
+          "resize",
+          () => {
+            positions.forEach((p) => {
+              p.x = window.innerWidth / 2;
+              p.y = window.innerHeight / 2;
+            });
+          },
+          { passive: true },
+        );
+        requestAnimationFrame(animate);
+      })();
+    </script>
+
+    <header class="navbar">
+      <div class="logo">
+        <img
+          id="navbar-logo"
+          src="./images/Logo_moderne_et_digi (1).webp"
+          alt="logo alexis"
+          width="120"
+          height="40"
+        />
+      </div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#hero">Accueil</a></li>
+          <li><a href="#projects">Projets</a></li>
+          <li><a href="#about">A propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="erreur.html">Erreurs</a></li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+            >
+              <svg
+                width="26"
+                height="26"
+                aria-hidden="true"
+                class="linkedin-icon"
+                style="fill: #b453cf; color: #b453cf"
+              >
+                <use href="#icon-linkedin" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="hero" class="hero">
+      <div class="hero-inner">
+        <div class="hero-content fade-in-stagger">
+          <span class="eyebrow">Developpeur Front-End</span>
+          <h1>DELOISY<span class="accent-word">Alexis</span></h1>
+          <h2>Developpeur Web - Front Dev</h2>
+          <p class="hero-subtext">
+            Ma passion du web nourrit mes etudes, et mes etudes nourrissent ma
+            creativite.
+          </p>
+          <a href="#projects" class="cta-btn">Voir mes projets</a>
+        </div>
+        <div class="hero-stacks-col">
+          <div class="stacks-wrapper">
+            <p class="stacks-label">Stack principale</p>
+            <div class="stacks-row">
+              <div class="stack-card">
+                <img
+                  src="./images/docker.svg"
+                  alt="Docker"
+                  width="40"
+                  height="40"
+                />
+                <span>Docker</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="PHP" role="img">
+                  <use href="#icon-php" />
+                </svg>
+                <span>PHP</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="MySQL" role="img">
+                  <use href="#icon-mysql" />
+                </svg>
+                <span>MySQL</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="HTML" role="img">
+                  <use href="#icon-html" />
+                </svg>
+                <span>HTML</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="CSS" role="img">
+                  <use href="#icon-css" />
+                </svg>
+                <span>CSS</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="JavaScript" role="img">
+                  <use href="#icon-js" />
+                </svg>
+                <span>JavaScript</span>
+              </div>
+              <div class="stack-card">
+                <svg width="40" height="40" aria-label="Claude" role="img">
+                  <use href="#icon-claude" />
+                </svg>
+                <span>Claude</span>
+              </div>
+            </div>
+            <p class="stacks-label stacks-label--secondary">
+              Outils &amp; creation
+            </p>
+            <div class="stacks-row stacks-row--secondary">
+              <div class="stack-card stack-card--secondary">
+                <svg width="40" height="40" aria-label="WordPress" role="img">
+                  <use href="#icon-wordpress" />
+                </svg>
+                <span>WordPress</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg width="40" height="40" aria-label="Photoshop" role="img">
+                  <use href="#icon-photoshop" />
+                </svg>
+                <span>Photoshop</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg
+                  width="40"
+                  height="40"
+                  aria-label="After Effects"
+                  role="img"
+                >
+                  <use href="#icon-aftereffects" />
+                </svg>
+                <span>After Effects</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg width="40" height="40" aria-label="Illustrator" role="img">
+                  <use href="#icon-illustrator" />
+                </svg>
+                <span>Illustrator</span>
+              </div>
+              <div class="stack-card stack-card--secondary">
+                <svg
+                  width="40"
+                  height="40"
+                  aria-label="Premiere Pro"
+                  role="img"
+                >
+                  <use href="#icon-premiere" />
+                </svg>
+                <span>Premiere Pro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="section-inner">
+        <span class="eyebrow fade-in">Selection</span>
+        <h2 class="fade-in">Mes Projets</h2>
+        <div class="project-grid">
+          <a href="detail-hellenism.html" class="fade-in">
+            <div class="project-card">
+              <h3>HELLENISM PALLAS</h3>
+              <p>site vitrine de vente de chapelets paiens en ligne</p>
+              <img
+                src="./images/Capture-d_écran-2025-12-04-200011.webp"
+                alt="Apercu Hellenism Pallas"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-rainbow.html" class="fade-in">
+            <div class="project-card">
+              <h3>UMAMI RAINBOW SHOP</h3>
+              <p>site vitrine de vente de goodies importe du japon</p>
+              <img
+                src="./images/Capture-d_écran-2025-12-04-200049.webp"
+                alt="Apercu Umami Rainbow Shop"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-cv.html" class="fade-in">
+            <div class="project-card">
+              <h3>CV SIMPLE</h3>
+              <p>re creation de mon cv en html5 css</p>
+              <img
+                src="./images/Capture-d_écran-2025-12-04-210244.webp"
+                alt="Apercu CV Simple"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-zestia.html" class="fade-in">
+            <div class="project-card">
+              <h3>SITE FICTIF ZESTIA</h3>
+              <p>
+                site vitrine d'eau gazeuse aromatise fictif dans le cadre d'une
+                SAE
+              </p>
+              <img
+                src="./images/Capture-d_écran-2026-01-09-090734.webp"
+                alt="Apercu Zestia"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-kintsugi.html" class="fade-in">
+            <div class="project-card">
+              <h3>KINTSUGI CARS IMPORT</h3>
+              <p>
+                site d'importation de porsche du japon pour la vente en France
+              </p>
+              <img
+                src="./images/Capture-d_écran-2026-01-09-103515.webp"
+                alt="Apercu Kintsugi Car Import"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-linda.html" class="fade-in">
+            <div class="project-card">
+              <h3>SITE LINDA CONVERT</h3>
+              <p>
+                site vitrine d'une practicienne independante en reflexologie
+              </p>
+              <img
+                src="./images/Capture-d_écran-2026-03-22-185657.webp"
+                alt="Apercu site Linda Convert"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-todo.html" class="fade-in">
+            <div class="project-card">
+              <h3>TASKFLOW</h3>
+              <p>application de gestion de taches</p>
+              <img
+                src="./images/Capture-d_écran-2026-04-03-141534.webp"
+                alt="Apercu Taskflow"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail-tupac.html" class="fade-in">
+            <div class="project-card">
+              <h3>TUPAC SHAKUR - OFFICIAL</h3>
+              <p>
+                site fictif de Tupac imagine si internet avaient existe en 1991
+              </p>
+              <img
+                src="./images/Capture_d-écran2026-05-30_120648_1.webp"
+                alt="Apercu site Tupac Shakur"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+          <a href="detail_quokka.html" class="fade-in">
+            <div class="project-card">
+              <h3>TRANSPORT QUOKKA</h3>
+              <p>site web de transport et de logistique</p>
+              <img
+                src="./images/quokka.png"
+                alt="Apercu du site Transport Quokka"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-layout">
+        <div class="about-portrait-col fade-in">
+          <div class="about-portrait-wrap">
+            <img
+              src="./images/portrait2.webp"
+              alt="Alexis Deloisy"
+              class="about-portrait-img"
+              width="400"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="about-portrait-badge">
+              <span class="about-banner-role">Developpeur Front-End</span>
+              <div class="about-banner-location">Troyes - France</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text-col fade-in">
+          <h2 class="about-banner-name">Deloisy<br /><em>Alexis</em></h2>
+          <p class="about-chapeau">
+            Je suis un developpeur front-end qui croit que coder c'est aussi
+            concevoir - chaque interface que je construis est pensee dans ses
+            moindres details, parce que la forme et le fond ne font qu'un.
+          </p>
+          <blockquote class="about-bq">
+            "Ma passion du web nourrit mes etudes, et mes etudes nourrissent ma
+            creativite."
+          </blockquote>
+          <div class="about-col--body">
+            <p>
+              Ma passion pour le web est nee au lycee, la ou j'ai compris qu'on
+              pouvait exprimer autant sa logique que sa creativite en
+              construisant des choses sur internet. Depuis, je n'ai pas arrete.
+            </p>
+            <p>
+              Avant de toucher au code, je structure toujours&nbsp;:
+              arborescence, organisation, palette, typographies. J'ai besoin
+              d'une vision claire pour que le developpement soit fluide. Puis je
+              construis avec une approche perfectionniste - tester, ajuster,
+              recommencer - jusqu'a ce que le resultat soit fidele a ce que
+              j'avais imagine.
+            </p>
+            <p>
+              Curieux et determine, j'integre l'IA dans mon workflow comme un
+              vrai partenaire de travail. Solide en front-end, je renforce ma
+              maitrise du back-end pour avoir une vision complete du projet - de
+              la base de donnees a l'interface.
+            </p>
+            <p>
+              Mon cap&nbsp;: devenir fullstack, decrocher une alternance solide,
+              et construire quelque chose sur la duree.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="section-inner">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <form
+            id="contact-form"
+            class="contact-form fade-in"
+            method="POST"
+            action="https://formspree.io/f/mgonbkyp"
+          >
+            <div class="field">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder=" "
+              />
+              <label for="name">Votre nom</label><span class="error"></span>
+            </div>
+            <div class="field">
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                required
+                placeholder=" "
+              />
+              <label for="prenom">Votre prenom</label
+              ><span class="error"></span>
+            </div>
+            <div class="field">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder=" "
+              />
+              <label for="email">Email</label><span class="error"></span>
+            </div>
+            <div class="field">
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder=" "
+              ></textarea>
+              <label for="message">Votre message</label
+              ><span class="error"></span>
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn-primary">
+                <span class="btn-content">Envoyer</span>
+                <svg class="btn-loader" viewBox="0 0 50 50" aria-hidden="true">
+                  <circle
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div id="form-toast" class="form-toast">Message envoye</div>
+          </form>
+          <div class="contact-aside fade-in">
+            <p class="aside-title">Besoin d'une collaboration ?</p>
+            <p class="aside-text">
+              Parle-moi de ton projet, je reviens vers toi rapidement.
+            </p>
+            <div class="aside-divider"></div>
+            <ul class="aside-infos">
+              <li>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-mail" /></svg
+                ></span>
+                <span class="info-label">Email</span>
+                <span class="info-value"
+                  ><a href="mailto:alexis.deloisydev@gmail.com"
+                    >alexis.deloisydev@gmail.com</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-location" /></svg
+                ></span>
+                <span class="info-label">Localisation</span>
+                <span class="info-value">Troyes / France</span>
+              </li>
+              <li>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-check" /></svg
+                ></span>
+                <span class="info-label">Disponibilite</span>
+                <span class="info-value"
+                  >Freelance / Alternance / CDD / CDI</span
+                >
+              </li>
+              <li>
+                <span class="icon"
+                  ><svg
+                    width="24"
+                    height="24"
+                    aria-hidden="true"
+                    style="stroke: currentColor"
+                  >
+                    <use href="#icon-phone" /></svg
+                ></span>
+                <span class="info-label">Telephone</span>
+                <span class="info-value"
+                  ><a href="tel:+33648582055">+33 6 48 58 20 55</a></span
+                >
+              </li>
+            </ul>
+            <a href="mailto:alexis.deloisydev@gmail.com" class="aside-cta"
+              >Me contacter</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-inner section-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="footer-logo"
+              >DELOISY<span class="accent-word">.</span>Alexis</span
+            >
+            <p class="footer-tagline">
+              Developpeur Web Front-End, base a Troyes. Toujours partant pour un
+              nouveau projet.
+            </p>
+            <a
+              href="https://www.linkedin.com/in/alexis-deloisy-53b911281/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+              class="footer-social"
+            >
+              <svg width="20" height="20" aria-hidden="true">
+                <use href="#icon-linkedin" />
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-col-title">Navigation</p>
+            <ul class="footer-links">
+              <li><a href="#hero">Accueil</a></li>
+              <li><a href="#projects">Projets</a></li>
+              <li><a href="#about">A propos</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="erreur.html">Erreurs</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-col-title">Contact</p>
+            <ul class="footer-links">
+              <li>
+                <a href="mailto:alexis.deloisydev@gmail.com"
+                  >alexis.deloisydev@gmail.com</a
+                >
+              </li>
+              <li><a href="tel:+33648582055">+33 6 48 58 20 55</a></li>
+              <li><span>Troyes / France</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-col-title">Disponibilite</p>
+            <p class="footer-status">
+              <span class="footer-status-dot"></span>
+              Freelance / Alternance / CDD / CDI
+            </p>
+            <a href="#contact" class="footer-cta">Me contacter</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&#169; 2026 DELOISY ALEXIS - Tous droits reserves</p>
+          <p>Concu &amp; developpe par Alexis Deloisy</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const form = document.getElementById("contact-form");
+        const toast = document.getElementById("form-toast");
+        const btn = form.querySelector(".btn-primary");
+        function checkField(field) {
+          const input = field.querySelector("input, textarea");
+          const error = field.querySelector(".error");
+          if (!input.checkValidity()) {
+            error.textContent = input.validationMessage;
+            return false;
+          }
+          error.textContent = "";
+          return true;
+        }
+        function validateAll() {
+          return [...document.querySelectorAll(".field")]
+            .map(checkField)
+            .every(Boolean);
+        }
+        function showToast(message, isError) {
+          toast.textContent = message;
+          toast.classList.toggle("toast--error", !!isError);
+          toast.classList.add("show");
+          setTimeout(
+            () => {
+              toast.classList.remove("show", "toast--error");
+              toast.textContent = "Message envoye";
+            },
+            isError ? 3500 : 2500,
+          );
+        }
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          if (!validateAll()) return;
+          btn.classList.add("sending");
+          try {
+            const response = await fetch("https://formspree.io/f/mgonbkyp", {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: new FormData(form),
+            });
+            if (response.ok) {
+              btn.classList.remove("sending");
+              form.reset();
+              showToast("Message envoye", false);
+            } else {
+              const data = await response.json();
+              btn.classList.remove("sending");
+              showToast(
+                data?.errors?.map((err) => err.message).join(", ") ||
+                  "Erreur lors de l'envoi.",
+                true,
+              );
+            }
+          } catch (_) {
+            btn.classList.remove("sending");
+            showToast("Erreur reseau. Reessaie.", true);
+          }
+        });
+      })();
+      (function () {
+        const btn = document.getElementById("hamburger");
+        const nav = document.getElementById("main-nav");
+        btn.addEventListener("click", () => {
+          const open = nav.classList.toggle("nav--open");
+          btn.classList.toggle("hamburger--open", open);
+          btn.setAttribute("aria-expanded", open);
+        });
+        nav.querySelectorAll("a").forEach((link) =>
+          link.addEventListener("click", () => {
+            nav.classList.remove("nav--open");
+            btn.classList.remove("hamburger--open");
+            btn.setAttribute("aria-expanded", false);
+          }),
+        );
+      })();
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
+        t--;
+        return (-c / 2) * (t * (t - 2) - 1) + b;
+      }
+      function smoothScroll(target, duration) {
+        const el = document.querySelector(target);
+        if (!el) return;
+        const navbar = document.querySelector(".navbar");
+        const start = window.pageYOffset;
+        const end =
+          el.getBoundingClientRect().top +
+          window.pageYOffset -
+          (navbar ? navbar.offsetHeight : 0) -
+          12;
+        const dist = end - start;
+        let startTime = null;
+        function step(now) {
+          if (!startTime) startTime = now;
+          const elapsed = now - startTime;
+          window.scrollTo(0, easeInOutQuad(elapsed, start, dist, duration));
+          if (elapsed < duration) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const t = this.getAttribute("href");
+          if (t && t.startsWith("#") && document.querySelector(t)) {
+            e.preventDefault();
+            smoothScroll(t, 700);
+          }
+        });
+      });
+      (function () {
+        const els = document.querySelectorAll(".fade-in, .fade-in-stagger");
+        if (!els.length) return;
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        els.forEach((el) => observer.observe(el));
+      })();
+    </script>
+  </body>
+</html>

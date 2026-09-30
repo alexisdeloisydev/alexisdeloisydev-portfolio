@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hellenism Pallas — Détail Projet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       BASE — reprise fidèle de style.css (portfolio principal)
+       ============================================================ */
+
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: #0f0f0f;
+      color: #e5e5e5;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      z-index: 100;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      display: block;
+      width: auto;
+      max-height: 200px;
+      height: auto;
+    }
+
+    .navbar ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #e5e5e5;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 1.4rem;
+    }
+
+    .navbar a:hover {
+      color: #8b5cf6;
+      transition: ease-in-out 0.2s;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 12px;
+      background: #0a0a0a;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.05);
+      margin-top: 80px;
+      width: 100%;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 20px;
+    }
+
+    /* BUBBLE TRAIL */
+    .bubble {
+      position: fixed;
+      left: 0;
+      top: 0;
+      --x: 0;
+      --y: 0;
+      width: 35px;
+      height: 35px;
+      background: #8b5cf6;
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      opacity: 0.75;
+      z-index: 9999;
+      transform: translate3d(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%), 0);
+      will-change: transform, opacity;
+      transition: opacity 300ms linear;
+    }
+
+    .bubble:nth-child(1) { transform-origin: center; width: 35px; height: 35px; }
+    .bubble:nth-child(2) { opacity: 0.75; transform-origin: center; transform: translate3d(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%), 0) scale(0.95); }
+    .bubble:nth-child(3) { opacity: 0.58; transform-origin: center; transform: translate3d(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%), 0) scale(0.84); }
+    .bubble:nth-child(4) { opacity: 0.42; transform-origin: center; transform: translate3d(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%), 0) scale(0.75); }
+    .bubble:nth-child(5) { opacity: 0.32; transform-origin: center; transform: translate3d(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%), 0) scale(0.65); }
+    .bubble:nth-child(6) { opacity: 0.24; transform-origin: center; transform: translate3d(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%), 0) scale(0.55); }
+
+    /* FADE-IN ANIMATION */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll reveal */
+    @media (min-width: 1px) {
+      body {
+        overflow-x: hidden;
+      }
+    }
+
+    /* ============================================================
+       PAGE DÉTAIL PROJET — styles spécifiques à cette page
+       ============================================================ */
+
+    /* Bouton retour dans la navbar */
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e5e5e5;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: #8b5cf6; }
+    .back-btn svg { transition: transform 0.2s; }
+    .back-btn:hover svg { transform: translateX(-4px); }
+
+    /* ─── HERO PROJET ─── */
+    .project-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 160px 80px 80px;
+      position: relative;
+      background: radial-gradient(ellipse at 60% 30%, #1a0d2e 0%, #0f0f0f 65%);
+      overflow: hidden;
+    }
+
+    /* Orbe lumineux haut-droite */
+    .project-hero::after {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .project-type {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8b5cf6;
+      font-weight: 600;
+    }
+    .meta-dot { width: 4px; height: 4px; border-radius: 50%; background: #3a3a46; }
+    .project-year {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .project-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .project-tagline {
+      margin-top: 20px;
+      font-size: 1.15rem;
+      color: #999;
+      max-width: 560px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .tag {
+      padding: 6px 16px;
+      border-radius: 50px;
+      border: 1px solid #3a3a46;
+      font-size: 0.78rem;
+      color: #bbbbbb;
+      background: rgba(255,255,255,0.03);
+      letter-spacing: 0.05em;
+    }
+
+    /* Indicateur de scroll */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #444;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.8s forwards;
+    }
+    .scroll-line {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, #8b5cf6, transparent);
+    }
+
+    /* ─── PREVIEW SCREENSHOT ─── */
+    .preview-strip {
+      padding: 0 80px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 10;
+    }
+    .preview-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid #2a2a36;
+      box-shadow: 0 0 60px rgba(139,92,246,0.15), 0 40px 80px rgba(0,0,0,0.6);
+      background: #1b1b1b;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.6s forwards;
+      position: relative;
+    }
+
+    /* Barre de navigateur factice */
+    .browser-bar {
+      height: 38px;
+      background: #1a1a22;
+      border-bottom: 1px solid #2a2a36;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 8px;
+    }
+    .browser-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+    }
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+    .browser-url {
+      margin-left: 12px;
+      flex: 1;
+      height: 22px;
+      background: #0f0f14;
+      border-radius: 4px;
+      border: 1px solid #2a2a36;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      font-size: 0.7rem;
+      color: #555;
+      max-width: 320px;
+    }
+    .preview-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* ─── CORPS DU DÉTAIL ─── */
+    .detail-body {
+      padding: 120px 80px;
+      max-width: 1200px;
+    }
+
+    /* Grille contexte + fiche */
+    .context-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.45fr;
+      gap: 60px;
+      align-items: start;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8b5cf6;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .context-text h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #e5e5e5;
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .context-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #aaa;
+      margin-bottom: 16px;
+    }
+
+    /* Fiche technique */
+    .info-card {
+      background: #131318;
+      border: 1px solid #22222a;
+      border-radius: 14px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: 0 0 18px rgba(139,92,246,0.05);
+    }
+    .info-item { display: flex; flex-direction: column; gap: 6px; }
+    .info-item-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: 600;
+    }
+    .info-item-value {
+      font-size: 0.95rem;
+      color: #ddd;
+      font-weight: 500;
+    }
+    .info-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2a2a36, transparent);
+    }
+
+    /* ─── FONCTIONNALITÉS ─── */
+    .features-section {
+      margin-top: 100px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s forwards;
+    }
+    .features-section h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      padding: 28px;
+      background: #131318;
+      border: 1px solid #22222a;
+      border-radius: 12px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(139,92,246,0.4);
+      box-shadow: 0 0 18px rgba(139,92,246,0.1);
+      transform: translateY(-4px);
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e5e5e5;
+      margin-bottom: 10px;
+      /* on neutralise le gradient global h3 du portfolio */
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+    }
+    .feature-card p {
+      font-size: 0.88rem;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    /* ─── STACK TECHNIQUE ─── */
+    .stack-section {
+      margin-top: 100px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.15s forwards;
+    }
+    .stack-section h2 { font-size: 1.9rem; font-weight: 700; margin-bottom: 40px; }
+    .stack-list { display: flex; flex-wrap: wrap; gap: 14px; }
+    .stack-item {
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: rgba(139,92,246,0.07);
+      border: 1px solid rgba(139,92,246,0.2);
+      font-size: 0.88rem;
+      color: #c4b5fd;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── BILAN & APPRENTISSAGES ─── */
+    .lessons-section {
+      margin-top: 100px;
+      padding: 50px;
+      background: rgba(139, 92, 246, 0.05);
+      border-left: 3px solid #8b5cf6;
+      border-radius: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .lessons-section h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; }
+    .lessons-section p {
+      font-size: 0.98rem;
+      color: #bbb;
+      line-height: 1.85;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-section {
+      margin-top: 100px;
+      padding: 80px;
+      text-align: center;
+      background: radial-gradient(ellipse at center, #1a0d2e 0%, #0f0f0f 70%);
+      border-radius: 20px;
+      border: 1px solid #22222a;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .cta-section p {
+      color: #888;
+      margin-bottom: 40px;
+      font-size: 0.98rem;
+      position: relative;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .btn-visit {
+      padding: 14px 36px;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-visit:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 28px rgba(139,92,246,0.45);
+    }
+    .btn-back {
+      padding: 14px 36px;
+      border-radius: 50px;
+      border: 1.5px solid #3a3a46;
+      color: #ccc;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      background: transparent;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-back:hover {
+      border-color: #8b5cf6;
+      color: #e5e5e5;
+      transform: translateY(-2px);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .project-hero, .preview-strip, .detail-body { padding-left: 24px; padding-right: 24px; }
+      .context-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .scroll-hint { left: 24px; }
+      .cta-section { padding: 48px 24px; }
+      .lessons-section { padding: 30px 24px; }
+    }
+    @media (max-width: 600px) {
+      .navbar { padding: 0 20px; }
+      .navbar ul { gap: 16px; }
+      .navbar a { font-size: 0.85rem; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<!-- Bubbles -->
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="./images/Logo moderne et digi.png" alt="logo alexis">
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Retour au portfolio
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="project-hero">
+    <div class="hero-meta">
+      <span class="project-type">Site Vitrine</span>
+      <span class="meta-dot"></span>
+      <span class="project-year">2025</span>
+    </div>
+
+    <h1>HELLENISM PALLAS</h1>
+    <p class="project-tagline">
+      Boutique en ligne dédiée à la vente de chapelets et objets votifs inspirés de la tradition païenne hellénistique — une expérience visuelle entre antiquité et modernité.
+    </p>
+
+    <div class="hero-tags">
+      <span class="tag">HTML5</span>
+      <span class="tag">CSS3</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">E-commerce</span>
+      <span class="tag">Design</span>
+    </div>
+
+    <div class="scroll-hint">
+      <span class="scroll-line"></span>
+      Défiler pour découvrir
+    </div>
+  </section>
+
+  <!-- ═══ PREVIEW ═══ -->
+  <div class="preview-strip">
+    <div class="preview-frame">
+      <div class="browser-bar">
+        <span class="browser-dot"></span>
+        <span class="browser-dot"></span>
+        <span class="browser-dot"></span>
+        <div class="browser-url">hellenism-pallas.fr</div>
+      </div>
+      <!--
+        Remplacer le src par la vraie capture du projet.
+        Ex: src="./images/Capture d'écran 2025-12-04 200011.png"
+      -->
+      <img class="preview-img" src="./images/Capture d'écran 2025-12-04 200011.png" alt="Aperçu Hellenism Pallas">
+    </div>
+  </div>
+
+  <!-- ═══ CORPS ═══ -->
+  <div class="detail-body">
+
+    <!-- CONTEXTE -->
+    <div class="context-grid reveal">
+      <div class="context-text">
+        <p class="section-label">Contexte du projet</p>
+        <h2>Un univers à part entière, construit autour de la spiritualité hellénistique</h2>
+        <p>
+          Ce projet est né de l'envie de créer un espace de vente qui ne ressemble à aucun autre : une boutique 
+          spécialisée dans les chapelets païens grecs, les objets votifs et les symboles de la tradition helléniste. 
+          L'objectif était de conjuguer esthétique soignée et clarté de navigation pour servir une communauté de niche.
+        </p>
+        <p>
+          Le design s'inspire des matières nobles de l'Antiquité — marbre, or, terre cuite — tout en restant 
+          fonctionnel et moderne. Chaque section est pensée pour immerger le visiteur dans l'atmosphère du projet 
+          avant même qu'il ne décide d'acheter.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-item">
+          <span class="info-item-label">Type</span>
+          <span class="info-item-value">Site vitrine / E-commerce</span>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="info-item-label">Année</span>
+          <span class="info-item-value">2025</span>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="info-item-label">Statut</span>
+          <span class="info-item-value">Terminé</span>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="info-item-label">Rôle</span>
+          <span class="info-item-value">Design · Intégration · Dev front</span>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="info-item-label">Durée</span>
+          <span class="info-item-value">~3 semaines</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features-section reveal">
+      <p class="section-label">Ce que le site propose</p>
+      <h2>Fonctionnalités clés</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Identité visuelle forte</h3>
+          <p>Une charte graphique cohérente inspirée de la Grèce antique, avec une palette sombre et des accents dorés.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Catalogue produits</h3>
+          <p>Présentation claire des chapelets et objets votifs avec descriptions détaillées et visuels soignés.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Responsive design</h3>
+          <p>Interface adaptée à tous les écrans, du mobile au grand format, sans perte de qualité visuelle.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Navigation fluide</h3>
+          <p>Transitions douces et structure claire pour une expérience utilisateur agréable et intuitive.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Animations CSS</h3>
+          <p>Effets visuels travaillés au hover et au scroll pour donner vie aux éléments sans alourdir la page.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Formulaire de contact</h3>
+          <p>Un formulaire intégré avec validation côté client pour simplifier les demandes de commande.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STACK -->
+    <div class="stack-section reveal">
+      <p class="section-label">Technologies utilisées</p>
+      <h2>Stack technique</h2>
+      <div class="stack-list">
+        <span class="stack-item">HTML5</span>
+        <span class="stack-item">CSS3 / Flexbox / Grid</span>
+        <span class="stack-item">JavaScript Vanilla</span>
+        <span class="stack-item">Animations CSS</span>
+        <span class="stack-item">Responsive / Mobile-first</span>
+        <span class="stack-item">Google Fonts</span>
+      </div>
+    </div>
+
+    <!-- APPRENTISSAGES -->
+    <div class="lessons-section reveal">
+      <p class="section-label">Bilan & apprentissages</p>
+      <h2>Ce que ce projet m'a appris</h2>
+      <p>
+        Hellenism Pallas a été l'occasion de pousser plus loin la cohérence visuelle d'un projet de bout en bout. 
+        J'ai appris à définir une identité graphique claire avant de coder, à construire une grille CSS solide 
+        adaptée au e-commerce, et à affiner chaque détail d'animation pour qu'il serve l'expérience sans la surcharger. 
+        Ce projet m'a aussi confronté à la contrainte de traduire un univers culturel fort — la spiritualité hellénistique — 
+        en interface digitale lisible et moderne.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section reveal">
+      <h2>Prêt à explorer le site ?</h2>
+      <p>Naviguez librement dans l'interface finale du projet Hellenism Pallas.</p>
+      <div class="cta-buttons">
+        <a href="site2.html" target="_blank" rel="noopener" class="btn-visit">
+          Visiter le projet
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a href="index.html" class="btn-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Retour au portfolio
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>© DELOISY ALEXIS — Tous droits réservés</p>
+  </footer>
+
+</body>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  /* BUBBLE TRAIL */
+  (function () {
+    const bubbles = Array.from(document.querySelectorAll('.bubble'));
+    if (!bubbles.length) return;
+    const positions = bubbles.map(() => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+    const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let idle = false, idleTimer = null;
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX; mouse.y = e.clientY;
+      idle = false; clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => idle = true, 120);
+    }, { passive: true });
+    function animate() {
+      positions[0].x += (mouse.x - positions[0].x) * 0.22;
+      positions[0].y += (mouse.y - positions[0].y) * 0.22;
+      for (let i = 1; i < positions.length; i++) {
+        positions[i].x += (positions[i-1].x - positions[i].x) * (0.22 - i * 0.02);
+        positions[i].y += (positions[i-1].y - positions[i].y) * (0.22 - i * 0.02);
+      }
+      if (idle) {
+        for (let i = 1; i < positions.length; i++) {
+          positions[i].x += (positions[0].x - positions[i].x) * 0.12;
+          positions[i].y += (positions[0].y - positions[i].y) * 0.12;
+        }
+      }
+      bubbles.forEach((b, i) => {
+        b.style.setProperty('--x', positions[i].x);
+        b.style.setProperty('--y', positions[i].y);
+        b.style.opacity = Math.max(0.08, 1 - i * 0.18);
+      });
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  })();
+
+  /* SCROLL REVEAL */
+  (function () {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+</script>
+</html>
