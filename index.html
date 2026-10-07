@@ -2,35 +2,81 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-site-verification" content="5sOyGXasIuENGh_YeqmZWSLAJ07pkTYXvus2hmfMzwY" />
+
+    <!-- SEO -->
     <meta
       name="description"
-      content="Portfolio de Deloisy Alexis, développeur web front-end."
+      content="Portfolio de Deloisy Alexis, développeur web front-end. Découvrez mes projets, mes réalisations et mon parcours."
     />
-    <title>Portfolio · DELOISY ALEXIS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta name="author" content="Deloisy Alexis" />
+
+    <title>Alexis Deloisy — Développeur Web Front-End</title>
+
+    <!-- URL canonique -->
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="canonical"
+      href="https://alexisdeloisydev.github.io/alexisdeloisydev-portfolio/"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="./images/favicon.ico" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:title"
+      content="Alexis Deloisy — Développeur Web Front-End"
+    />
+
+    <meta
+      property="og:description"
+      content="Portfolio de Deloisy Alexis, développeur web front-end. Découvrez mes projets, mes réalisations et mon parcours."
+    />
+
+    <meta
+      property="og:url"
+      content="https://alexisdeloisydev.github.io/alexisdeloisydev-portfolio/"
+    />
+
+    <meta property="og:site_name" content="Alexis Deloisy — Portfolio" />
+
+    <!-- Couleur du navigateur -->
     <meta
       name="theme-color"
       content="#0f0f0f"
       media="(prefers-color-scheme: dark)"
     />
+
     <meta
       name="theme-color"
       content="#ffffff"
       media="(prefers-color-scheme: light)"
     />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Gestion du thème -->
     <script>
       (function () {
         const saved = localStorage.getItem("theme");
-        if (saved) document.documentElement.setAttribute("data-theme", saved);
+
+        if (saved) {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
       })();
     </script>
   </head>
